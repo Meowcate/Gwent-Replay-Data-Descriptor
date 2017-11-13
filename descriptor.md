@@ -201,49 +201,63 @@ A **step** object contains an independant change during the game.
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
-``number`` | Step number | *Integer more than 0* |
+``number``\* | Step number | *Integer more than 0* |
 ``origin`` | Origin of an action | *See **List of origins*** | player
-``source``\* | Source of an action | *See **List of sources/targets*** |
+``source``\* | Source of an action | *See the **Positions** section* |
 ``action``\* | Type of action | *See **List of actions*** |
-``target``\* | Target of an action | *see **List of sources/targets*** |
-``before``\* | Variable value before the action | *See **List of befores/afters*** |
-``after``\* | Variable value after the action | *See  **List of befores/afters*** |
+``target``\* | Target of an action | *See the **Positions** section* |
+``before-after``\* | Variable value before the action | *See the **Befores/afters** section* |
 ``choices``\* | Cards-list of the choices | *See the **Card-list** section* |
 ``chosen``\* | Number-positions of the chosen cards from a ``choices`` card-list | Array of strictly positive integers |
 
 ### List of origins :
-* ``player`` : Player action, *the player has played a card, has made a choice...*
-* ``random`` : Random action, *a random card has been picked from the graveyard, a random card has been targeted on the board...*
-* ``fixed`` : Predictible action, *a card damages automaticaly the strongest enemy each turn, a card consumes the card on its right after 2 turns*
+* ``player`` : Player action is when a player makes a decision. *The player has played a card, has made a choice...*
+* ``random`` : Random action is when something random happens. Even if it's because of a player action, the player doesn't choose how a random action is resolved. *A random card has been picked from the graveyard after 2 turns, beucase of a player action a random card has been targeted on the board...*
+* ``fixed`` : Predictible automated action, which happens without the intervention of the player, and the result isn't random. *A card damages automaticaly the strongest enemy each turn, a card consumes the card on its right after 2 turns*
 
-### Sources/targets object :
+### Position object :
+A **position** object contains the position of a source or target of an action. It can designate a card or an element of the board.
+Element | Description | Possibles values | Default Value
+--- | --- | --- | ---
+``type`` | Type of position | ``card``, ``board`` |
+``region`` | Area of choice. It must be one of the board area : ``blue-hand``, ``blue-deck``, ``blue-graveyard``, ``blue-melee``, ``blue-ranged``, ``blue-siege``, ``blue-play``, ``banned`` |
+``location``\* | Exact position of the target. Not needed if it targets a full row for example | *See below for the details* |
 
-* ``card:list:position`` :
-* ``list`` must be a card list name : ``blue-hand``, ``blue-deck``, ``blue-graveyard``, ``blue-melee``, ``blue-ranged``, ``blue-siege``. It's where the card is located
-* ``position`` is an positive integer.
+##### ``location`` values
+``location`` is an positive integer.
+* In the ``type`` is ``card`` :
   * If it's *0*, it targets an unseen card (when a card in the deck is boosted for example).
   * If it's *1*, it means the first card (from left to right, or top to bottom), if it's *5*, it's the 5th card...
   * If the number is superior to the number of cards, the last possible card position must be chosen
-* ``board:place:position``:
-* ``place`` must be a located place : ``blue-melee``, ``blue-ranged``, ``blue-siege``, ``blue-melee``, ``blue-ranged``, ``blue-siege``. If a weather effect gives damages, the row must be designed as the source of the damages
-* ``position`` is an positive integer.
-  * If it's *0*, it means the position is meaningless (e.g. targeting the ``blue-melee`` with a weather effect).
+* In the ``type`` is ``board`` :
+  * If it's *0*, it means the position is meaningless (e.g. targeting the ``blue-melee`` with a weather effect don't need a position).
   * If it's *1*, it means the first position, so before the first card (from left to right, or top to bottom), if it's *5*, it's the 5th position...
   * If the number is superior to the number of cards, the position after the last card must be chosen
-  
+
+> **Note :** ``blue-play`` is the unique card position when a card is in the player's hand and can't be anywhere else. For example, when a card A generates another card B with a ``spawn`` action, A is the source, and B is the target. On the next step, with B in hand ready to be played (unit to be deployed, spell to be played...), the source of the step is this position :
+```json
+{
+  "type": "board",
+  "region": "blue-play"
+}
+```
+The ``blue-play`` is considerated as a **card-list** as well, even if in a vast majority of the time, it concerns only one card. If the ``location`` isn't specified, the first (generaly only) card in the ``blue-play`` is selected.
+
+
 ### List of actions
+
 #### Actions on strength
 Gwent action | GRDD action code | Note
 --- | --- | ---
 Damage an unit | ``change-strength`` |
 Boost an unit | ``change-strength`` |
 
-
 #### Create/remove cards
 Gwent action | GRDD action code | Note
 --- | --- | ---
 Spawn a card | ``spawn:card-id`` | e.g. : using the name as well, ``spawn:132313:Ekimmara``. The card is spawned with the default values. If something must be added during this spawn (boost, resilience...), do it on the next step.
 Destroy an unit | ``destroy`` | The targeted card will loose its ``Armor``, ``Shield``, ``Lock`` and ``Revelead`` values
+Play a card | ``play`` | The ``play`` code means the called card is in the ``blue-play`` card-list
 
 #### Change statut of card
 Gwent action | GRDD action code | Note
@@ -256,13 +270,47 @@ Gwent action | GRDD action code | Note
 Apply an hazard | ``hazard:name`` | The name of the hazard must be one of these : ``frost``, ``fog``, ``rain``, ``drought``, ``ragh-nar-roog``, ``golden-froth``
 Clear all hazards | ``clear`` |
 
+#### Tokens
+Gwent action | GRDD action code | Note
+--- | --- | ---
+Toggle Resilience | toggle-resilience |
+Toggle spy | toggle-spy |
+Toggle lock | toggle-lock | If a unit is locked, a replay application has to remember some tokens can be removed from the target
+Toggle 
 
 #### Others actions
 Gwent action | GRDD action code | Note
 --- | --- | ---
 Choice in a list of cards | ``choice`` | The ``choices`` element must be provided. If ``chosen`` is empty, no choice has been made. The ``choice`` action exists only to give a feedback to anyone watching this replay. Whatever the action of the choice is (spawn a card between 5, pick 3 cards and discard one...), it should exist in the next step with the same ``source`` as the ``choice`` ``source``.
 
+## Before/After
+A **before/after** is an object containing the specific change of an action. This element is particulary important has it's a way to go back to the board statut before an action takes place.
+On a replay application, it could show something like *« The [origin] [card] [action] changed [target] from [before value] to [after value] »*
+Element | Description | Possibles values | Default Value
+--- | --- | --- | ---
+``type`` | Type of change | ``strength``, ``position``, ``card-type``, ``token`` |
+``before`` | Value before change | *See list below* |
+``after`` | Value after change | *See list below* |
 
+> **Note :** In an action has multiple changes, only the first change should be given a proper origin/source/target, then all the others changes must have a ``fixed`` origin and be treated as individual steps.
+For example, if a card played by player divides all the strengths on a row, the initial step gives ``player`` as origin, and the *row* as target. But after that, every card on this row must get an individual step where the origin is ``fixed``, the origin being the played card, and the target being the current step card of the row.
+
+
+### Examples
+The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being *played* by the *player*. It picks the *random* strongest unit from the deck, *boost* it by 2 points, and *put it into ``blue-play``*. The card (an **Ekimmara** here) will then be *deployed* by the *player* on the *blue ranged row between the 1st and 2nd card*, and *consumes* the card (a **Nekker**) on the *melee row on 3rd position*. The Nekker *dies*, the Ekimmara is *boosted* again. Because a Nekker dies, another Nekker will be *called from the deck* (without specific position, because we don't know the position of each card in the deck) on the *last position on the right (the 5th) of the melee row*.
+```json
+"turns": [
+  {
+    "origin": "player",
+    "source": {
+      "type": "card",
+      "region": "blue-hand",
+      "location": 3
+    },
+    "action": 
+  },
+]
+```
 
 
 
