@@ -163,7 +163,7 @@ Element | Description | Possibles values | Default Value
 ``armor``\* | Current armor value | *Positive integer* | 0
 ``countdown``\* | Current countdown value | *Positive integer* | 0
 ``revealed``\* | The card is visible to the other player | ``1`` if the card is revealed, else ``0`` | 0
-``type``\* | The card type, only useful if the card has been demoted | ``bronze``, ``silver``, ``gold`` | 
+``type`` | The card type | ``bronze``, ``silver``, ``gold`` | 
 
 > **Note :** If the ``strength`` value is provided because it has changed, it's a good idea to provide the ``base-strength`` value as well to see if the unit is currently boosted or damaged.
 
@@ -175,7 +175,8 @@ Element | Description | Possibles values | Default Value
   "base-strength": 6,
   "strength": 8,
   "resilience": 1,
-  "shield": 1
+  "shield": 1,
+  "type": "bronze"
 }
 ```
 
@@ -207,8 +208,9 @@ Element | Description | Possibles values | Default Value
 ``action``\* | Type of action | *See **List of actions*** |
 ``target``\* | Target of an action | *See the **Positions** section* |
 ``before-after``\* | Variable value before the action | *See the **Befores/afters** section* |
-``choices``\* | Cards-list of the choices | *See the **Card-list** section* |
-``chosen``\* | Number-positions of the chosen cards from a ``choices`` card-list | Array of strictly positive integers |
+``card``\* | Card object | *See the **Card** section* |
+``card-list``\* | Cards-list when necessary | *See the **Card-list** section* |
+``chosen``\* | Number-positions of the chosen cards from a ``card-list`` | Array of strictly positive integers |
 
 ### List of origins :
 * ``player`` : Player action is when a player makes a decision. *The player has played a card, has made a choice...*
@@ -221,7 +223,7 @@ Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
 ``type`` | Type of position | ``card``, ``board`` |
 ``region`` | Area of choice. It must be one of the board area : ``blue-hand``, ``blue-deck``, ``blue-graveyard``, ``blue-melee``, ``blue-ranged``, ``blue-siege``, ``blue-play``, ``banned`` |
-``location``\* | Exact position of the target. Not needed if it targets a full row for example | *See below for the details* |
+``location``\* | Exact position of the target. Not needed if it targets a full row for example | *See below for the details* | 0
 
 ##### ``location`` values
 ``location`` is an positive integer.
@@ -252,12 +254,15 @@ Gwent action | GRDD action code | Note
 Damage an unit | ``change-strength`` |
 Boost an unit | ``change-strength`` |
 
-#### Create/remove cards
+#### Create/add/remove cards
 Gwent action | GRDD action code | Note
 --- | --- | ---
-Spawn a card | ``spawn:card-id`` | e.g. : using the name as well, ``spawn:132313:Ekimmara``. The card is spawned with the default values. If something must be added during this spawn (boost, resilience...), do it on the next step.
+Spawn a card | ``spawn`` | The spawning card is placed in ``blue-play``.
 Destroy an unit | ``destroy`` | The targeted card will loose its ``Armor``, ``Shield``, ``Lock`` and ``Revelead`` values
 Play a card | ``play`` | The ``play`` code means the called card is in the ``blue-play`` card-list
+Pick a card | ``pick`` | The card list of the ``source`` must be updated.
+Pick and play | ``pick-and-play`` | When a picked card must be played immediatly after. The picked card is placed in ``blue-play``. The card list of the ``source`` must be updated.
+Consume a card | ``consume`` | A consumed card is automatically put into the player's target graveyard
 
 #### Change statut of card
 Gwent action | GRDD action code | Note
@@ -288,27 +293,163 @@ A **before/after** is an object containing the specific change of an action. Thi
 On a replay application, it could show something like *« The [origin] [card] [action] changed [target] from [before value] to [after value] »*
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
-``type`` | Type of change | ``strength``, ``position``, ``card-type``, ``token`` |
+``type`` | Type of change | ``position``, ``[card-element]`` |
 ``before`` | Value before change | *See list below* |
 ``after`` | Value after change | *See list below* |
 
-> **Note :** In an action has multiple changes, only the first change should be given a proper origin/source/target, then all the others changes must have a ``fixed`` origin and be treated as individual steps.
+* Any element of a card (except the ID) can be change with the same element name. See the **Card** section to check all the possibilities and the possible values.
+* The ``position`` possible value is a position object. See the **Position** section for more informations.
+
+
+> **Note :** If an action has multiple changes, only the first change should be given a proper origin/source/target, then all the others changes must have a ``fixed`` origin and be treated as individual steps.
 For example, if a card played by player divides all the strengths on a row, the initial step gives ``player`` as origin, and the *row* as target. But after that, every card on this row must get an individual step where the origin is ``fixed``, the origin being the played card, and the target being the current step card of the row.
 
 
 ### Examples
-The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being *played* by the *player*. It picks the *random* strongest unit from the deck, *boost* it by 2 points, and *put it into ``blue-play``*. The card (an **Ekimmara** here) will then be *deployed* by the *player* on the *blue ranged row between the 1st and 2nd card*, and *consumes* the card (a **Nekker**) on the *melee row on 3rd position*. The Nekker *dies*, the Ekimmara is *boosted* again. Because a Nekker dies, another Nekker will be *called from the deck* (without specific position, because we don't know the position of each card in the deck) on the *last position on the right (the 5th) of the melee row*.
+The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being *played* by the *player*. It picks the *random* strongest unit from the deck (automatically in ``blue-play``) and *boost* it by 2 points. The card (an **Ekimmara** here, which was *boosted* by 2 and has a *shield*, thanks to **Quen Sign**) will then be *deployed* by the *player* on the *blue ranged row between the 1st and 2nd card*, earns *resilience*, and *consumes* the card (a **Nekker** which has a strength of 7) on the *melee row on 3rd position*. The consumed Nekker is in the last, *12th* position of the *graveyard*, and the Ekimmara is *boosted* again by 7. As the Ekimmara consumed a card, all invisible nekkers in the blue deck are *boosted* (as we don't know the position of each card, we will call it twice, for two nekkers in the deck, without position). Because the Nekker died, another Nekker will be *called from the deck* (with a strength of 8 so) on the *last position on the right (the 5th) of the melee row*.
 ```json
 "turns": [
-  {
+  "1": {
     "origin": "player",
+    "__comment": "As the pick-and-play action is a player action, the origin is player, even if the immediat effect can be random",
     "source": {
       "type": "card",
       "region": "blue-hand",
       "location": 3
     },
-    "action": 
+    "action": "pick-and-play",
+    "target": {
+      "type": "card",
+      "region": "blue-deck"
+    },
+    "card": {
+        "id": "132313:Ekimmara",
+        "original-base-strength": 6,
+        "base-strength": 6,
+        "strength": 8,
+        "shield": 1,
+        "type": "bronze"
+    }
   },
+  "2": {
+    "origin": "fixed",
+    "action": "change-strength",
+    "target": {
+      "type": "card",
+      "region": "blue-play",
+      "__comment": "The only possible card in blue-play is the one we just picked, so 'location' is optional here"
+    }
+    "before-after": {
+      "type": "strength",
+      "before": 8,
+      "after": 10
+    }
+  },
+  "3": {
+    "origin": "player",
+    "source": {
+      "type": "card",
+      "region": "blue-play",
+    },
+    "action": "deploy",
+    "target": {
+      "type": "board",
+      "region": "blue-ranged",
+      "location": 2
+    }
+  },
+  "4": {
+    "origin": "fixed",
+    "action": "toggle-resilience",
+    "target": {
+      "type": "card",
+      "region": "blue-ranged",
+      "location": 2
+    },
+    "before-after": {
+      "type": "resilience",
+      "before": 0,
+      "after": 1
+    }
+  },
+  "5": {
+    "origin": "player",
+    "source": {
+      "type": "card",
+      "region": "blue-ranged",
+      "location": 2
+    }
+    "action": "consume",
+    "target": {
+      "type": "card",
+      "region": "blue-melee",
+      "location": 3
+    }
+  }
+  "6": {
+    "origin": "fixed",
+    "action": "boost",
+    "target": {
+      "type": "card",
+      "region": "blue-ranged",
+      "location": 2
+    }
+    "before-after": {
+      "type": "strength",
+      "before": 8,
+      "after": 15
+    }
+  },
+  "7": {
+    "origin": "fixed",
+    "action": "boost",
+    "target": {
+      "type": "card",
+      "region": "blue-deck"
+    }
+  },
+  "8": {
+    "origin": "fixed",
+    "action": "boost",
+    "target": {
+      "type": "card",
+      "region": "blue-deck"
+    }
+  },
+  "9": {
+    "origin": "fixed",
+    "source": {
+      "type": "card",
+      "region": "blue-graveyard",
+      "location": 12
+    },
+    "action": "pick-and-play",
+    "target": {
+      "type": "card",
+      "region": "blue-deck",
+      "location": 0
+    },
+    "card": {
+        "id": "132305:Nekker",
+        "original-base-strength": 3,
+        "base-strength": 3,
+        "strength": 8,
+        "type": "bronze"
+    }
+  },
+  "10": {
+    "origin": "fixed",
+    "source": {
+      "type": "card",
+      "region": "blue-play"
+    },
+    "action": "deploy",
+    "target": {
+      "type": "board",
+      "region": "blue-melee",
+      "location": 5
+    }
+  }
 ]
 ```
 
