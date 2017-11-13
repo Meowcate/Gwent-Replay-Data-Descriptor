@@ -308,7 +308,7 @@ For example, if a card played by player divides all the strengths on a row, the 
 ### Examples
 The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being *played* by the *player*. It picks the *random* strongest unit from the deck (automatically in ``blue-play``) and *boost* it by 2 points. The card (an **Ekimmara** here, which was *boosted* by 2 and has a *shield*, thanks to **Quen Sign**) will then be *deployed* by the *player* on the *blue ranged row between the 1st and 2nd card*, earns *resilience*, and *consumes* the card (a **Nekker** which has a strength of 7) on the *melee row on 3rd position*. The consumed Nekker is in the last, *12th* position of the *graveyard*, and the Ekimmara is *boosted* again by 7. As the Ekimmara consumed a card, all invisible nekkers in the blue deck are *boosted* (as we don't know the position of each card, we will call it twice, for two nekkers in the deck, without position). Because the Nekker died, another Nekker will be *called from the deck* (with a strength of 8 so) on the *last position on the right (the 5th) of the melee row*.
 ```json
-"turns": [
+"turns": {
   "1": {
     "origin": "player",
     "__comment": "As the pick-and-play action is a player action, the origin is player, even if the immediat effect can be random",
@@ -450,7 +450,7 @@ The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being
       "location": 5
     }
   }
-]
+}
 ```
 
 
