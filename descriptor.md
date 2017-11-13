@@ -219,13 +219,14 @@ Element | Description | Possibles values | Default Value
 
 ### Position object :
 A **position** object contains the position of a source or target of an action. It can designate a card or an element of the board.
+
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
-``type`` | Type of position | ``card``, ``board`` |
-``region`` | Area of choice. It must be one of the board area : ``blue-hand``, ``blue-deck``, ``blue-graveyard``, ``blue-melee``, ``blue-ranged``, ``blue-siege``, ``blue-play``, ``banned`` |
+``type`` | Type of position | ``card``, ``board`` | card
+``region`` | Area of choice | ``blue-hand``, ``blue-deck``, ``blue-graveyard``, ``blue-melee``, ``blue-ranged``, ``blue-siege``, ``blue-play``, ``banned`` |
 ``location``\* | Exact position of the target. Not needed if it targets a full row for example | *See below for the details* | 0
 
-##### ``location`` values
+##### location values
 ``location`` is an positive integer.
 * In the ``type`` is ``card`` :
   * If it's *0*, it targets an unseen card (when a card in the deck is boosted for example).
@@ -291,6 +292,7 @@ Choice in a list of cards | ``choice`` | The ``choices`` element must be provide
 ## Before/After
 A **before/after** is an object containing the specific change of an action. This element is particulary important has it's a way to go back to the board statut before an action takes place.
 On a replay application, it could show something like *« The [origin] [card] [action] changed [target] from [before value] to [after value] »*
+
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
 ``type`` | Type of change | ``position``, ``[card-element]`` |
@@ -338,7 +340,7 @@ The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being
       "type": "card",
       "region": "blue-play",
       "__comment": "The only possible card in blue-play is the one we just picked, so 'location' is optional here"
-    }
+    },
     "before-after": {
       "type": "strength",
       "before": 8,
@@ -378,14 +380,14 @@ The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being
       "type": "card",
       "region": "blue-ranged",
       "location": 2
-    }
+    },
     "action": "consume",
     "target": {
       "type": "card",
       "region": "blue-melee",
       "location": 3
     }
-  }
+  },
   "6": {
     "origin": "fixed",
     "action": "boost",
@@ -393,7 +395,7 @@ The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being
       "type": "card",
       "region": "blue-ranged",
       "location": 2
-    }
+    },
     "before-after": {
       "type": "strength",
       "before": 8,
