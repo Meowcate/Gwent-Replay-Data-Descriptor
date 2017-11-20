@@ -238,7 +238,7 @@ Element | Description | Possibles values | Default Value
   * If the number is superior to the number of cards, the position after the last card must be chosen
 
 > ``blue-play`` is the unique card position when a card is in the player's hand and can't be anywhere else. For example, when a card A generates another card B with a ``spawn`` action, A is the source, and B is the target. On the next step, with B in hand ready to be played (unit to be deployed, spell to be played...), the source of the step is this position :
->```json
+```json
 {
   "type": "board",
   "region": "blue-play"
