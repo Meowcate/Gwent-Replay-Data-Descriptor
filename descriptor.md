@@ -223,7 +223,7 @@ A **position** object contains the position of a source or target of an action. 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
 ``type`` | Type of position | ``card``, ``board`` | card
-``region`` | Area of choice | ``blue-hand``, ``blue-deck``, ``blue-graveyard``, ``blue-melee``, ``blue-ranged``, ``blue-siege``, ``blue-play``, ``banned`` |
+``region`` | Area of choice | ``blue-hand``, ``blue-deck``, ``blue-graveyard``, ``blue-melee``, ``blue-ranged``, ``blue-siege``, ``blue-play``, ``blue-choices``, ``banned`` |
 ``location``\* | Exact position of the target. Not needed if it targets a full row for example | *See below for the details* | 0
 
 ##### location values
@@ -237,15 +237,14 @@ Element | Description | Possibles values | Default Value
   * If it's *1*, it means the first position, so before the first card (from left to right, or top to bottom), if it's *5*, it's the 5th position...
   * If the number is superior to the number of cards, the position after the last card must be chosen
 
-> **Note :** ``blue-play`` is the unique card position when a card is in the player's hand and can't be anywhere else. For example, when a card A generates another card B with a ``spawn`` action, A is the source, and B is the target. On the next step, with B in hand ready to be played (unit to be deployed, spell to be played...), the source of the step is this position :
-```json
+> ``blue-play`` is the unique card position when a card is in the player's hand and can't be anywhere else. For example, when a card A generates another card B with a ``spawn`` action, A is the source, and B is the target. On the next step, with B in hand ready to be played (unit to be deployed, spell to be played...), the source of the step is this position :
+>```json
 {
   "type": "board",
   "region": "blue-play"
 }
 ```
-The ``blue-play`` is considerated as a **card-list** as well, even if in a vast majority of the time, it concerns only one card. If the ``location`` isn't specified, the first (generaly only) card in the ``blue-play`` is selected.
-
+> The ``blue-play`` is considerated as a **card-list** as well, even if in a vast majority of the time, it concerns only one card. If the ``location`` isn't specified, the first (generaly only) card in the ``blue-play`` is selected.
 
 ### List of actions
 
@@ -254,27 +253,33 @@ Gwent action | GRDD action code | Note
 --- | --- | ---
 Damage an unit | ``change-strength`` |
 Boost an unit | ``change-strength`` |
+Reset an unit | ``change-strength`` |
 
-#### Create/add/remove cards
+#### Create/add/change/remove cards
 Gwent action | GRDD action code | Note
 --- | --- | ---
-Spawn a card | ``spawn`` | The spawning card is placed in ``blue-play``.
+Deploy an unit | ``deploy`` |
+Spawn a card | ``spawn`` | It creates an unit from nothing. The spawning card is placed in ``blue-play``.
 Destroy an unit | ``destroy`` | The targeted card will loose its ``Armor``, ``Shield``, ``Lock`` and ``Revelead`` values
-Play a card | ``play`` | The ``play`` code means the called card is in the ``blue-play`` card-list
 Pick a card | ``pick`` | The card list of the ``source`` must be updated.
 Pick and play | ``pick-and-play`` | When a picked card must be played immediatly after. The picked card is placed in ``blue-play``. The card list of the ``source`` must be updated.
 Consume a card | ``consume`` | A consumed card is automatically put into the player's target graveyard
+Transform a card | ``transform`` | The **before/after** are cards elements. The new card is kept at the same ``location`` as the ``target``
+Move a card | ``move`` | Move a card from any position to another. You particulary need to move a spell card from ``blue-hand`` (or anywhere else) to ``blue-graveyard`` once the effect of the spell is done. 
 
 #### Change statut of card
 Gwent action | GRDD action code | Note
 --- | --- | ---
-Demote an unit | ``demote`` | 
+Demote an unit | ``change-type`` |
+Promote an unit | ``change-type`` |
+Reveal an unit | ``reveal`` |
+Hide an unit | ``ambush`` |
 
 #### Row statuts
 Gwent action | GRDD action code | Note
 --- | --- | ---
-Apply an hazard | ``hazard:name`` | The name of the hazard must be one of these : ``frost``, ``fog``, ``rain``, ``drought``, ``ragh-nar-roog``, ``golden-froth``
-Clear all hazards | ``clear`` |
+Apply an hazard | ``hazard`` | The name of the hazard is in the **before/after**
+Clear one hazard | ``clear-row`` | The **before/after** must be given so the replay know what was the previous effect. So a full-clear must use 3 ``clear-row``.
 
 #### Tokens
 Gwent action | GRDD action code | Note
@@ -282,26 +287,27 @@ Gwent action | GRDD action code | Note
 Toggle Resilience | toggle-resilience |
 Toggle spy | toggle-spy |
 Toggle lock | toggle-lock | If a unit is locked, a replay application has to remember some tokens can be removed from the target
-Toggle 
+Toggle shield | toggle-shield |
 
 #### Others actions
 Gwent action | GRDD action code | Note
 --- | --- | ---
-Choice in a list of cards | ``choice`` | The ``choices`` element must be provided. If ``chosen`` is empty, no choice has been made. The ``choice`` action exists only to give a feedback to anyone watching this replay. Whatever the action of the choice is (spawn a card between 5, pick 3 cards and discard one...), it should exist in the next step with the same ``source`` as the ``choice`` ``source``.
+Choice in a list of cards | ``choice`` | The ``card-list`` element must be provided. If ``chosen`` is empty, no choice has been made. The ``choice`` action exists only to give a feedback to anyone watching this replay. Whatever the action of the choice is (spawn a card between 5, pick 3 cards and discard one...), it should exist in the next step with the same ``source`` as the ``choice``'s ``source``.
 
 ## Before/After
-A **before/after** is an object containing the specific change of an action. This element is particulary important has it's a way to go back to the board statut before an action takes place.
+A **before/after** is an object containing the specific change of an action. This element is particulary important has it's a way to go back to the board statut before an action takes place. If it's useless when a replay go forward, it must be filled as much as possible to go backward.
 On a replay application, it could show something like *« The [origin] [card] [action] changed [target] from [before value] to [after value] »*
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
-``type`` | Type of change | ``position``, ``[card-element]`` |
+``type`` | Type of change | ``position``, ``[card-element]``, ``hazard``, ``card`` |
 ``before`` | Value before change | *See list below* |
 ``after`` | Value after change | *See list below* |
 
 * Any element of a card (except the ID) can be change with the same element name. See the **Card** section to check all the possibilities and the possible values.
 * The ``position`` possible value is a position object. See the **Position** section for more informations.
-
+* The ``hazard`` on a row must be one of these : ``frost``, ``fog``, ``rain``, ``drought``, ``ragh-nar-roog``, ``skellige-storm``, ``golden-froth``, ``none``
+* A ``card`` element is necessary for some situations, like a transformation.
 
 > **Note :** If an action has multiple changes, only the first change should be given a proper origin/source/target, then all the others changes must have a ``fixed`` origin and be treated as individual steps.
 For example, if a card played by player divides all the strengths on a row, the initial step gives ``player`` as origin, and the *row* as target. But after that, every card on this row must get an individual step where the origin is ``fixed``, the origin being the played card, and the target being the current step card of the row.
