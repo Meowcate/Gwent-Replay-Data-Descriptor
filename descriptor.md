@@ -316,148 +316,152 @@ For example, if a card played by player divides all the strengths on a row, the 
 ### Examples
 The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being *played* by the *player*. It picks the *random* strongest unit from the deck (automatically in ``blue-play``) and *boost* it by 2 points. The card (an **Ekimmara** here, which was *boosted* by 2 and has a *shield*, thanks to **Quen Sign**) will then be *deployed* by the *player* on the *blue ranged row between the 1st and 2nd card*, earns *resilience*, and *consumes* the card (a **Nekker** which has a strength of 7) on the *melee row on 3rd position*. The consumed Nekker is in the last, *12th* position of the *graveyard*, and the Ekimmara is *boosted* again by 7. As the Ekimmara consumed a card, all invisible nekkers in the blue deck are *boosted* (as we don't know the position of each card, we will call it twice, for two nekkers in the deck, without position). Because the Nekker died, another Nekker will be *called from the deck* (with a strength of 8 so) on the *last position on the right (the 5th) of the melee row*.
 ```json
-"turns": {
-  "1": {
-    "origin": "player",
-    "__comment": "As the pick-and-play action is a player action, the origin is player, even if the immediat effect can be random",
-    "source": {
-      "type": "card",
-      "region": "blue-hand",
-      "location": 3
+  "turns": {
+  "player": "blue",
+  "number": 4,
+  "steps": [
+    {
+      "origin": "player",
+      "__comment": "As the pick-and-play action is a player action, the origin is player, even if the immediat effect can be random",
+      "source": {
+        "type": "card",
+        "region": "blue-hand",
+        "location": 3
+      },
+      "action": "pick-and-play",
+      "target": {
+        "type": "card",
+        "region": "blue-deck"
+      },
+      "card": {
+          "id": "132313:Ekimmara",
+          "original-base-strength": 6,
+          "base-strength": 6,
+          "strength": 8,
+          "shield": 1,
+          "type": "bronze"
+      }
     },
-    "action": "pick-and-play",
-    "target": {
-      "type": "card",
-      "region": "blue-deck"
+    {
+      "origin": "fixed",
+      "action": "change-strength",
+      "target": {
+        "type": "card",
+        "region": "blue-play",
+        "__comment": "The only possible card in blue-play is the one we just picked, so 'location' is optional here"
+      },
+      "before-after": {
+        "type": "strength",
+        "before": 8,
+        "after": 10
+      }
     },
-    "card": {
-        "id": "132313:Ekimmara",
-        "original-base-strength": 6,
-        "base-strength": 6,
-        "strength": 8,
-        "shield": 1,
-        "type": "bronze"
-    }
-  },
-  "2": {
-    "origin": "fixed",
-    "action": "change-strength",
-    "target": {
-      "type": "card",
-      "region": "blue-play",
-      "__comment": "The only possible card in blue-play is the one we just picked, so 'location' is optional here"
+    {
+      "origin": "player",
+      "source": {
+        "type": "card",
+        "region": "blue-play",
+      },
+      "action": "deploy",
+      "target": {
+        "type": "board",
+        "region": "blue-ranged",
+        "location": 2
+      }
     },
-    "before-after": {
-      "type": "strength",
-      "before": 8,
-      "after": 10
-    }
-  },
-  "3": {
-    "origin": "player",
-    "source": {
-      "type": "card",
-      "region": "blue-play",
+    {
+      "origin": "fixed",
+      "action": "toggle-resilience",
+      "target": {
+        "type": "card",
+        "region": "blue-ranged",
+        "location": 2
+      },
+      "before-after": {
+        "type": "resilience",
+        "before": 0,
+        "after": 1
+      }
     },
-    "action": "deploy",
-    "target": {
-      "type": "board",
-      "region": "blue-ranged",
-      "location": 2
-    }
-  },
-  "4": {
-    "origin": "fixed",
-    "action": "toggle-resilience",
-    "target": {
-      "type": "card",
-      "region": "blue-ranged",
-      "location": 2
+    {
+      "origin": "player",
+      "source": {
+        "type": "card",
+        "region": "blue-ranged",
+        "location": 2
+      },
+      "action": "consume",
+      "target": {
+        "type": "card",
+        "region": "blue-melee",
+        "location": 3
+      }
     },
-    "before-after": {
-      "type": "resilience",
-      "before": 0,
-      "after": 1
-    }
-  },
-  "5": {
-    "origin": "player",
-    "source": {
-      "type": "card",
-      "region": "blue-ranged",
-      "location": 2
+    {
+      "origin": "fixed",
+      "action": "boost",
+      "target": {
+        "type": "card",
+        "region": "blue-ranged",
+        "location": 2
+      },
+      "before-after": {
+        "type": "strength",
+        "before": 8,
+        "after": 15
+      }
     },
-    "action": "consume",
-    "target": {
-      "type": "card",
-      "region": "blue-melee",
-      "location": 3
-    }
-  },
-  "6": {
-    "origin": "fixed",
-    "action": "boost",
-    "target": {
-      "type": "card",
-      "region": "blue-ranged",
-      "location": 2
+    {
+      "origin": "fixed",
+      "action": "boost",
+      "target": {
+        "type": "card",
+        "region": "blue-deck"
+      }
     },
-    "before-after": {
-      "type": "strength",
-      "before": 8,
-      "after": 15
-    }
-  },
-  "7": {
-    "origin": "fixed",
-    "action": "boost",
-    "target": {
-      "type": "card",
-      "region": "blue-deck"
-    }
-  },
-  "8": {
-    "origin": "fixed",
-    "action": "boost",
-    "target": {
-      "type": "card",
-      "region": "blue-deck"
-    }
-  },
-  "9": {
-    "origin": "fixed",
-    "source": {
-      "type": "card",
-      "region": "blue-graveyard",
-      "location": 12
+    {
+      "origin": "fixed",
+      "action": "boost",
+      "target": {
+        "type": "card",
+        "region": "blue-deck"
+      }
     },
-    "action": "pick-and-play",
-    "target": {
-      "type": "card",
-      "region": "blue-deck",
-      "location": 0
+    {
+      "origin": "fixed",
+      "source": {
+        "type": "card",
+        "region": "blue-graveyard",
+        "location": 12
+      },
+      "action": "pick-and-play",
+      "target": {
+        "type": "card",
+        "region": "blue-deck",
+        "location": 0
+      },
+      "card": {
+          "id": "132305:Nekker",
+          "original-base-strength": 3,
+          "base-strength": 3,
+          "strength": 8,
+          "type": "bronze"
+      }
     },
-    "card": {
-        "id": "132305:Nekker",
-        "original-base-strength": 3,
-        "base-strength": 3,
-        "strength": 8,
-        "type": "bronze"
+    {
+      "origin": "fixed",
+      "source": {
+        "type": "card",
+        "region": "blue-play"
+      },
+      "action": "deploy",
+      "target": {
+        "type": "board",
+        "region": "blue-melee",
+        "location": 5
+      }
     }
-  },
-  "10": {
-    "origin": "fixed",
-    "source": {
-      "type": "card",
-      "region": "blue-play"
-    },
-    "action": "deploy",
-    "target": {
-      "type": "board",
-      "region": "blue-melee",
-      "location": 5
-    }
-  }
+  ]
 }
 ```
 
