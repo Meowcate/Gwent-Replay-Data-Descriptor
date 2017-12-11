@@ -206,6 +206,11 @@ Element | Description | Possibles values | Default Value
 ``before-after``\* | Variable value before the action | *See the **Befores/afters** section* |
 ``card``\* | Card object | *See the **Card** section* |
 ``card-list``\* | Cards-list when necessary | *See the **Card-list** section* |
+``card-choice``\* | ID of the card for an action choice | *Integer* |
+``chosen``\* | Array of chosen choices from a card-list | *See the note below* |
+
+> **Note :** When a player have choices (from a card-list, from actions...), ``chosen`` is an array of integers, each one designating the *nth* choice (from left to right) that has been done by the player. Therefore, if a player can choose 2 between 5 spells to play, the 5 cards are showed from the ``card-list``, and (in the same **step**), the ``chosen`` array can be ``[3, 5]``, picking the 3rd and 5th choices of the list.
+When the choices are from a card's action (and not "choose to spawn *card A* or *card B*"), the card ID is put to ``card-choice``, so the replay tool can show the card instead of a card list. The ``chosen`` element must contain the number of the choice (1st, 2nd, etc) the same way in an array (for example, *[2]* for taking the 2nd action).
 
 ### Position object :
 A **position** string contains the position of a source or target of an action. It can designate a card or an element of the board.
