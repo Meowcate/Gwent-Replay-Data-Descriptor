@@ -42,13 +42,11 @@ Element | Description | Possibles values | Default Value
 ## Rounds
 The **rounds** object contains an array of rounds.
 
-* The rounds should have the same order as in the game, but even for a 3 rounds game, the file can contain only the 2 or 3rd last rounds. That's why *number* is needed, even with the score (a 1st round can lead to a tie).
-
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
+``number`` | Number of the round | 1
 ``coinflip`` | Which player plays first | ``blue``, ``red`` | blue
 ``blue-point`` | Number of points the player have at the beggining of the round | ``0`` or ``1`` | 0
-``number`` | Number of the round | 1
 ``board`` | Board description | *See the **Board** section* |
 ``turns`` | List of changes on the board, turn after turn | *See the **Turn** section* |
 
@@ -56,6 +54,7 @@ Element | Description | Possibles values | Default Value
 ```json
 "rounds": [
   {
+    "number": 1,
     "coinflip": "blue",
     "blue-point": 0,
     "red-point": 0,
@@ -67,12 +66,14 @@ Element | Description | Possibles values | Default Value
     }
   },
   {
+    "number": 2,
     "coinflip": "red",
     "blue-point": 1,
     "red-point": 0,
     "(...)"
   },
   {
+    "number": 3,
     "coinflip": "blue",
     "blue-point": 1,
     "red-point": 1,
@@ -184,173 +185,117 @@ The next card has been renforced by 2, then boosted by 3.
 ## Turns
 A **turn** object contains a list of **steps** played during a player turn.
 
-* ``number`` is optional. It's used for partial replay, if one needs to know how many turns have been played at the beggining of the replay. 
-
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
+``number`` | Turn number | *Integer greater than 0* |
 ``player`` | Current player | ``blue``, ``red`` | blue
 ``passed``\* | Passed info | ``true`` if the player has passed, else ``false`` | false
-``number``\* | Turn number | *Integer more than 0* |
 ``steps`` | Array of steps | |
 
 > **Note :** Even if a player has passed, some actions can happen during his turn.
 
 ## Step
-
 A **step** object contains an independant change during the game.
-
-* ``number`` is needed to find a specific moment (e.g. **1-15-2** for the 2nd step of the 15th turn of the 1st round).
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
 ``number`` | Step number | *Integer greater than 0* |
-``origin`` | Origin of an action | *See **List of origins*** | player
 ``source``\* | Source of an action | *See the **Positions** section* |
 ``action``\* | Type of action | *See **List of actions*** |
 ``target``\* | Target of an action | *See the **Positions** section* |
 ``before-after``\* | Variable value before the action | *See the **Befores/afters** section* |
 ``card``\* | Card object | *See the **Card** section* |
 ``card-list``\* | Cards-list when necessary | *See the **Card-list** section* |
-``chosen``\* | Number-positions of the chosen cards from a ``card-list`` | Array of strictly positive integers |
-
-### List of origins :
-* ``player`` : Player action is when a player makes a decision. *The player has played a card, has made a choice...*
-* ``random`` : Random action is when something random happens. Even if it's because of a player action, the player doesn't choose how a random action is resolved. *A random card has been picked from the graveyard after 2 turns, beucase of a player action a random card has been targeted on the board...*
-* ``fixed`` : Predictible automated action, which happens without the intervention of the player, and the result isn't random. *A card damages automaticaly the strongest enemy each turn, a card consumes the card on its right after 2 turns*
 
 ### Position object :
-A **position** object contains the position of a source or target of an action. It can designate a card or an element of the board.
+A **position** string contains the position of a source or target of an action. It can designate a card or an element of the board.
+
+*  The two elements of a position are separated by a dot. For example, the 4th card of the blue melee is *blue-melee.4*.
+*  When the position is an entire row, the location is *0*.
+*  When the position is a specific card, the location is the number of the card from left to right.
+*  When the position is between cards, the location is the number of the card to the right. For example, on a row with 6 cards, deploying a card on 1st position is **board.blue-melee.1**. Between the 3rd and 4th card, it becomes **board.blue-melee.4**. And after the 6th card, it's **board.blue-melee.7**.
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
-``type`` | Type of position | ``card``, ``board`` | card
-``region`` | Area of choice | ``blue-hand``, ``blue-deck``, ``blue-graveyard``, ``blue-melee``, ``blue-ranged``, ``blue-siege``, ``blue-play``, ``blue-choices``, ``banned`` |
+``type`` | Type of position | ``card``, ``board`` |
+``region`` | Area of choice | ``blue-hand``, ``blue-deck``, ``blue-graveyard``, ``blue-melee``, ``blue-ranged``, ``blue-siege``, ``blue-play``, ``banned``, ``generation`` |
 ``location``\* | Exact position of the target. Not needed if it targets a full row for example | *See below for the details* | 0
 
-##### location values
-``location`` is an positive integer.
-* In the ``type`` is ``card`` :
-  * If it's *0*, it targets an unseen card (when a card in the deck is boosted for example).
-  * If it's *1*, it means the first card (from left to right, or top to bottom), if it's *5*, it's the 5th card...
-  * If the number is superior to the number of cards, the last possible card position must be chosen
-* In the ``type`` is ``board`` :
-  * If it's *0*, it means the position is meaningless (e.g. targeting the ``blue-melee`` with a weather effect don't need a position).
-  * If it's *1*, it means the first position, so before the first card (from left to right, or top to bottom), if it's *5*, it's the 5th position...
-  * If the number is superior to the number of cards, the position after the last card must be chosen
+> **Note :** *blue-play* is the position of a spell being played, on the right side of the board. This helps to show which card is played before its sends to graveyard.
+> *generation* is a non-existent position for **step:source** when a card is not moved from one position to another, but generated from nowhere (created, duplicated, etc).
 
-> ``blue-play`` is the unique card position when a card is in the player's hand and can't be anywhere else. For example, when a card A generates another card B with a ``spawn`` action, A is the source, and B is the target. On the next step, with B in hand ready to be played (unit to be deployed, spell to be played...), the source of the step is this position :
-```json
-{
-  "type": "board",
-  "region": "blue-play"
-}
-```
-> The ``blue-play`` is considerated as a **card-list** as well, even if in a vast majority of the time, it concerns only one card. If the ``location`` isn't specified, the first (generaly only) card in the ``blue-play`` is selected.
 
 ### List of actions
 
-#### Actions on strength
+#### Actions on cards
 Gwent action | GRDD action code | Note
 --- | --- | ---
-Damage an unit | ``change-strength`` |
-Boost an unit | ``change-strength`` |
-Reset an unit | ``change-strength`` |
+Spawn / Generate a card | ``spawn`` | The card information is in **step.card**.
+Transform a card into another | ``transform`` | The changed card is in **step.target**. The new card is in **step.card**.
+Move a card | ``move`` | Move a card from anywhere to anywhere. It's used to deploy, pick a card from the deck, move to graveyard or banned pile...
+Play a card | ``play`` | Shortcut for spells to move a card to the ``blue-play`` this turn, and be considered and moved to the graveyard at the end of the step
+Change a token / an element | ``change`` | The changed element, its previous and its new status are in **step.before-after**
+Destroy a card | ``destroy`` | Shortcut to move a unit card to its side's graveyard last place, then reset its strength, and remove tokens and armor (excepted the *countdown-token*).
+Display a card | ``display`` | Display a hidden card (ambush, red hand, etc). **step.card** must contain the informations of the showed card.
 
-#### Create/add/change/remove cards
-Gwent action | GRDD action code | Note
---- | --- | ---
-Deploy an unit | ``deploy`` |
-Spawn a card | ``spawn`` | It creates an unit from nothing. The spawning card is placed in ``blue-play``.
-Destroy an unit | ``destroy`` | The targeted card will loose its ``Armor``, ``Shield``, ``Lock`` and ``Revelead`` values
-Pick a card | ``pick`` | The card list of the ``source`` must be updated.
-Pick and play | ``pick-and-play`` | When a picked card must be played immediatly after. The picked card is placed in ``blue-play``. The card list of the ``source`` must be updated.
-Consume a card | ``consume`` | A consumed card is automatically put into the player's target graveyard
-Transform a card | ``transform`` | The **before/after** are cards elements. The new card is kept at the same ``location`` as the ``target``
-Move a card | ``move`` | Move a card from any position to another. You particulary need to move a spell card from ``blue-hand`` (or anywhere else) to ``blue-graveyard`` once the effect of the spell is done. 
+> **Note :** When a card is moved from a pile of unknow position, the position *0* is used. The pile must then remove one empty element.
+When the **red player** plays a hidden card, the card information must be filled. The *0* position can be used as a shortcut to the first possible hidden card of the hand.
 
-#### Change statut of card
-Gwent action | GRDD action code | Note
---- | --- | ---
-Demote an unit | ``change-type`` |
-Promote an unit | ``change-type`` |
-Reveal an unit | ``reveal`` |
-Hide an unit | ``ambush`` |
 
-#### Row statuts
+#### Actions on rows
 Gwent action | GRDD action code | Note
 --- | --- | ---
-Apply an hazard | ``hazard`` | The name of the hazard is in the **before/after**
-Clear one hazard | ``clear-row`` | The **before/after** must be given so the replay know what was the previous effect. So a full-clear must use 3 ``clear-row``.
-
-#### Tokens
-Gwent action | GRDD action code | Note
---- | --- | ---
-Toggle Resilience | toggle-resilience |
-Toggle spy | toggle-spy |
-Toggle lock | toggle-lock | If a unit is locked, a replay application has to remember some tokens can be removed from the target
-Toggle shield | toggle-shield |
+Change the status | ``change-row`` | The name of the boon or the hazard is in **step.before/after**. Cleaning a row is applying the ``clear`` status.
 
 #### Others actions
 Gwent action | GRDD action code | Note
 --- | --- | ---
-Choice in a list of cards | ``choice`` | The ``card-list`` element must be provided. If ``chosen`` is empty, no choice has been made. The ``choice`` action exists only to give a feedback to anyone watching this replay. Whatever the action of the choice is (spawn a card between 5, pick 3 cards and discard one...), it should exist in the next step with the same ``source`` as the ``choice``'s ``source``.
+Choice in a list of cards | ``choice`` | The ``card-list`` element must be provided. This action shows a list of cards to choose for a player, so the replay viewer can see what the player could choose. The cards of the list are not moved from/to any position and exists only for display.
 
 ## Before/After
-A **before/after** is an object containing the specific change of an action. This element is particulary important has it's a way to go back to the board statut before an action takes place. If it's useless when a replay go forward, it must be filled as much as possible to go backward.
-On a replay application, it could show something like *« The [origin] [card] [action] changed [target] from [before value] to [after value] »*
+A **before/after** is an object containing the specific change of an action. This element is particulary important has it's a way to go back to the board statut before an action takes place.
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
-``type`` | Type of change | ``position``, ``[card-element]``, ``hazard``, ``card`` |
+``type`` | Type of change | ``position``, ``[card-element]``, ``row``, ``card`` |
 ``before`` | Value before change | *See list below* |
 ``after`` | Value after change | *See list below* |
 
-* Any element of a card (except the ID) can be change with the same element name. See the **Card** section to check all the possibilities and the possible values.
-* The ``position`` possible value is a position object. See the **Position** section for more informations.
-* The ``hazard`` on a row must be one of these : ``frost``, ``fog``, ``rain``, ``drought``, ``ragh-nar-roog``, ``skellige-storm``, ``golden-froth``, ``none``
-* A ``card`` element is necessary for some situations, like a transformation.
+* Any ``[card-element]`` (except the ``id``) can be changed using the same element name (``spy-token``, ``base-strength``...) as type. See the **Card** section to check all the possibilities and the possible values.
+* The ``position`` is a position object. See the **Position** section for more informations.
+* The ``row`` before/after values must be one of these : ``frost``, ``fog``, ``rain``, ``drought``, ``ragh-nar-roog``, ``skellige-storm``, ``golden-froth``, ``clean``
+* The ``card`` type is necessary for some situations, like a transformation.
 
-> **Note :** If an action has multiple changes, only the first change should be given a proper origin/source/target, then all the others changes must have a ``fixed`` origin and be treated as individual steps.
-For example, if a card played by player divides all the strengths on a row, the initial step gives ``player`` as origin, and the *row* as target. But after that, every card on this row must get an individual step where the origin is ``fixed``, the origin being the played card, and the target being the current step card of the row.
 
 
 ### Examples
-The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being *played* by the *player*. It picks the *random* strongest unit from the deck (automatically in ``blue-play``) and *boost* it by 2 points. The card (an **Ekimmara** here, which was *boosted* by 2 and has a *shield*, thanks to **Quen Sign**) will then be *deployed* by the *player* on the *blue ranged row between the 1st and 2nd card*, earns *resilience*, and *consumes* the card (a **Nekker** which has a strength of 7) on the *melee row on 3rd position*. The consumed Nekker is in the last, *12th* position of the *graveyard*, and the Ekimmara is *boosted* again by 7. As the Ekimmara consumed a card, all invisible nekkers in the blue deck are *boosted* (as we don't know the position of each card, we will call it twice, for two nekkers in the deck, without position). Because the Nekker died, another Nekker will be *called from the deck* (with a strength of 8 so) on the *last position on the right (the 5th) of the melee row*.
+The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being *played*. It picks the random strongest unit from the deck (*moved* from an unkown position (0) card in ``blue-deck`` to ``blue-play``) and *boost* it by 2 points. The card (an **Ekimmara** here, which was *boosted* by 2 and has a *shield*, thanks to an earlier **Quen Sign**) will then be deployed (*moved*) on the blue ranged row between the 1st and 2nd card (the *board.blue-ranged.2* position), earns *resilience*, and consumes (*destroy*) the card (a **Nekker** which has a strength of 7) on the *blue melee row on 3rd position*. The Ekimmara is *boosted* again by 7. As the Ekimmara consumed a card, all invisible nekkers in the blue deck are *boosted* (as we don't know the position of each card, we will call twice the *card.blue-deck.0* position, as there is two nekkers in the deck). Because the Nekker died, another Nekker will be *called from the deck* (with a strength of 8 so) on the *last position on the right (the 5th) of the melee row*.
 ```json
-  "turns": {
+"turns": [
   "player": "blue",
   "number": 4,
   "steps": [
     {
-      "origin": "player",
-      "__comment": "As the pick-and-play action is a player action, the origin is player, even if the immediat effect can be random",
-      "source": {
-        "type": "card",
-        "region": "blue-hand",
-        "location": 3
-      },
-      "action": "pick-and-play",
-      "target": {
-        "type": "card",
-        "region": "blue-deck"
-      },
+      "source": "card.blue-hand.3",
+      "action": "play",
+      "target": "card.blue-play.1"
+    },
+    {
+      "source": "card.blue-deck.0",
+      "action": "move",
+      "target": "card.blue-play-1",
       "card": {
           "id": "132313:Ekimmara",
           "original-base-strength": 6,
           "base-strength": 6,
           "strength": 8,
-          "shield": 1,
+          "shield-token": true,
           "type": "bronze"
       }
     },
     {
-      "origin": "fixed",
-      "action": "change-strength",
-      "target": {
-        "type": "card",
-        "region": "blue-play",
-        "__comment": "The only possible card in blue-play is the one we just picked, so 'location' is optional here"
-      },
+      "action": "change",
+      "target": "card.blue-play.1",
       "before-after": {
         "type": "strength",
         "before": 8,
@@ -358,54 +303,27 @@ The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being
       }
     },
     {
-      "origin": "player",
-      "source": {
-        "type": "card",
-        "region": "blue-play",
-      },
-      "action": "deploy",
-      "target": {
-        "type": "board",
-        "region": "blue-ranged",
-        "location": 2
-      }
+      "source": "type": "card.blue-play.1",
+      "action": "move",
+      "target": "board.blue-ranged.2"
     },
     {
-      "origin": "fixed",
-      "action": "toggle-resilience",
-      "target": {
-        "type": "card",
-        "region": "blue-ranged",
-        "location": 2
-      },
+      "action": "change",
+      "target": "card.blue-ranged.2",
       "before-after": {
-        "type": "resilience",
-        "before": 0,
-        "after": 1
+        "type": "resilience-token",
+        "before": false,
+        "after": true
       }
     },
     {
-      "origin": "player",
-      "source": {
-        "type": "card",
-        "region": "blue-ranged",
-        "location": 2
-      },
-      "action": "consume",
-      "target": {
-        "type": "card",
-        "region": "blue-melee",
-        "location": 3
-      }
+      "source": "card.blue-ranged.2",
+      "action": "destroy",
+      "target": "card.blue-melee.3"
     },
     {
-      "origin": "fixed",
-      "action": "boost",
-      "target": {
-        "type": "card",
-        "region": "blue-ranged",
-        "location": 2
-      },
+      "action": "change",
+      "target": "card.blue-ranged.2",
       "before-after": {
         "type": "strength",
         "before": 8,
@@ -413,34 +331,17 @@ The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being
       }
     },
     {
-      "origin": "fixed",
-      "action": "boost",
-      "target": {
-        "type": "card",
-        "region": "blue-deck"
-      }
+      "action": "change",
+      "target": "card.blue-deck.0"
     },
     {
-      "origin": "fixed",
-      "action": "boost",
-      "target": {
-        "type": "card",
-        "region": "blue-deck"
-      }
+      "action": "change",
+      "target": "card.blue-deck.0"
     },
     {
-      "origin": "fixed",
-      "source": {
-        "type": "card",
-        "region": "blue-graveyard",
-        "location": 12
-      },
-      "action": "pick-and-play",
-      "target": {
-        "type": "card",
-        "region": "blue-deck",
-        "location": 0
-      },
+      "source": "card.blue-deck.0",
+      "action": "move",
+      "target": "board.blue-melee.5",
       "card": {
           "id": "132305:Nekker",
           "original-base-strength": 3,
@@ -448,22 +349,9 @@ The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being
           "strength": 8,
           "type": "bronze"
       }
-    },
-    {
-      "origin": "fixed",
-      "source": {
-        "type": "card",
-        "region": "blue-play"
-      },
-      "action": "deploy",
-      "target": {
-        "type": "board",
-        "region": "blue-melee",
-        "location": 5
-      }
     }
   ]
-}
+]
 ```
 
 
