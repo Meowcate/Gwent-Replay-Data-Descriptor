@@ -61,9 +61,9 @@ Element | Description | Possibles values | Default Value
     "board": {
       "(...)"
     },
-    "turns": [
+    "turns": {
       "(...)"
-    ]
+    }
   },
   {
     "number": 2,
@@ -271,7 +271,7 @@ Element | Description | Possibles values | Default Value
 ### Examples
 The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being *played*. It picks the random strongest unit from the deck (*moved* from an unkown position (0) card in ``blue-deck`` to ``blue-play``) and *boost* it by 2 points. The card (an **Ekimmara** here, which was *boosted* by 2 and has a *shield*, thanks to an earlier **Quen Sign**) will then be deployed (*moved*) on the blue ranged row between the 1st and 2nd card (the *board.blue-ranged.2* position), earns *resilience*, and consumes (*destroy*) the card (a **Nekker** which has a strength of 7) on the *blue melee row on 3rd position*. The Ekimmara is *boosted* again by 7. As the Ekimmara consumed a card, all invisible nekkers in the blue deck are *boosted* (as we don't know the position of each card, we will call twice the *card.blue-deck.0* position, as there is two nekkers in the deck). Because the Nekker died, another Nekker will be *called from the deck* (with a strength of 8 so) on the *last position on the right (the 5th) of the melee row*.
 ```json
-"turns": [
+"turns": {
   "player": "blue",
   "number": 4,
   "steps": [
@@ -303,7 +303,7 @@ The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being
       }
     },
     {
-      "source": "type": "card.blue-play.1",
+      "source": "card.blue-play.1",
       "action": "move",
       "target": "board.blue-ranged.2"
     },
@@ -350,7 +350,7 @@ The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being
           "type": "bronze"
       }
     }
-  ]
+  }
 ]
 ```
 
