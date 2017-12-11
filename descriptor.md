@@ -350,8 +350,8 @@ The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being
           "type": "bronze"
       }
     }
-  }
-]
+  ]
+}
 ```
 
 
