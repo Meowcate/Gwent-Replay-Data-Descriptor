@@ -2,7 +2,7 @@
 
 The Gwent Replay Data Descriptor (GRDD) gives a complete structure to record a Gwent game, to be used for step by step replay application.
 
-* The datas are stored using the JSON format. An example is available in the **Example.json** file.
+* The datas are stored using the JSON format.
 * Any element followed by an asterisk ``*`` is optional. If not filled, it will be empty or use a default value depending of the element. Any other element has to be filled.
 * Any reference to ``blue`` mean *Player 1*, on the bottom on the screen. Any occurrence of ``blue`` in the following text can be changed by ``red`` as a reference to *Player 2*, on the top of the screen. If an element isn't optional for ``blue-[...]``, then it's not optional for ``red-[...]`` as well.
 * Any card is referenced by its **Gwent card ID** integer. The card ID can be followed by the card name, separed by a colon ``:`` , in an effort to make the data content more understandable by humans, but this name is optional : only the ID should be used to get the card infos from a replay application.
@@ -40,22 +40,22 @@ Element | Description | Possibles values | Default Value
 ```
 
 ## Rounds
-The **rounds** object contains an array of round, from 1 to 3.
+The **rounds** object contains an array of rounds.
 
-* The rounds should have the same order as in the game.
-* A round root is its number.
+* The rounds should have the same order as in the game, but even for a 3 rounds game, the file can contain only the 2 or 3rd last rounds. That's why *number* is needed, even with the score (a 1st round can lead to a tie).
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
 ``coinflip`` | Which player plays first | ``blue``, ``red`` | blue
 ``blue-point`` | Number of points the player have at the beggining of the round | ``0`` or ``1`` | 0
+``number`` | Number of the round | 1
 ``board`` | Board description | *See the **Board** section* |
 ``turns`` | List of changes on the board, turn after turn | *See the **Turn** section* |
 
 ### Example
 ```json
-"rounds": {
-  "1": {
+"rounds": [
+  {
     "coinflip": "blue",
     "blue-point": 0,
     "red-point": 0,
@@ -66,30 +66,30 @@ Element | Description | Possibles values | Default Value
       "(...)"
     }
   },
-  "2": {
+  {
     "coinflip": "red",
     "blue-point": 1,
     "red-point": 0,
     "(...)"
   },
-  "3": {
+  {
     "coinflip": "blue",
     "blue-point": 1,
     "red-point": 1,
     "(...)"
   }
-}
+]
 ```
 
 ## Board
 A **board** object contains a full description of the board at the beggining of a round.
 
 * If there is resilient units, it should be a part of the board.
-* Before-mulligan actions as *losing resilience*, *automatic resurrection*, *deathwishes on a new round* and others has to be placed in the ``before-mulligan`` element as **step** elements. ``after-mulligan`` acts the same, especially for actions activated when a card is discarded. Any action executed before the first player gets the "Your turn" Gwent message must be put into one of those space.
+* Before-mulligan actions as *losing resilience*, *automatic resurrection*, *deathwishes on a new round* and others has to be placed in the ``before-mulligan`` element as **step** elements. ``after-mulligan`` acts the same, especially for actions activated when a card is discarded from the mulligan. Any action executed before the first player gets the "Your turn" Gwent message must be put into one of those space.
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
-``blue-used-leader`` | Show if the leader can be use or not | ``0`` if the leader can't be used, else ``1`` | 1
+``blue-playable-leader`` | Show if the leader is still playable | ``true`` if the leader can be played, else ``false`` | false
 ``blue-hand`` | Player's hand **Card-list** | *See the **Card-list** section* |
 ``blue-deck`` | Player's deck **Card-list** | *See the **Card-list** section* |
 ``blue-graveyard`` | Player's graveyard **Card-list** | *See the **Card-list** section* |
@@ -100,7 +100,7 @@ Element | Description | Possibles values | Default Value
 ### Example
 ```json
 "board": {
-  "blue-used-leader": 0,
+  "blue-used-leader": true,
   "blue-hand": [
     "(...)"
   ],
@@ -119,7 +119,7 @@ Element | Description | Possibles values | Default Value
   "blue-siege": [
     "(...)"
   ],
-  "red-used-leader": 1,
+  "red-used-leader": false,
   "red-hand": [
     "(...)",
   ],
@@ -129,18 +129,18 @@ Element | Description | Possibles values | Default Value
 
 
 ## Card-list
-A **card-list** array contains a list of cards.
+A **card-list** array contains a list of **cards objects**.
 
 * The cards are ordered from left to right.
-* The number of values is the number of cards in the list.
 * Any empty value is considered as a hidden card, which is considered to be inaccessible (e.g. the red deck), simply hidden but can be revealed (e.g. the red hand) or temporary hidden (e.g. an *ambush* card).
+* Hidden or revelead, a card-list must contain as many values as cards in the list. 
 
 ## Board-row
 A **board-row** object contains the description of a row.
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
-``statut``\* | Statut of the row | ``frost``, ``fog``, ``rain``, ``drought``, ``ragh-nar-roog``, ``golden-froth`` | *none*
+``status``\* | Status of the row | ``frost``, ``fog``, ``rain``, ``drought``, ``ragh-nar-roog``, ``golden-froth`` | *none*
 ``card-list`` | Card-list of the row | | *none*
 
 ## Card
@@ -149,33 +149,34 @@ A **card** object contains the current statut of the card.
 * Except the card ID, all the elements are optionals.
   * The variable elements of the card (token, current strength...) are provided only if the card is concerned.
   * The constant elements of the card (original base strength...) aren't necessary if the replay tool used can get those elements from a card database, according to the game version provided in the ``game`` object. However it's recommended to provide it to keep the replay consistant in the long run.
+  * The 3 strengths values are optionals because they are needed for unit cards, but not for others cards.
+ 
   
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
 ``id`` | Gwent card ID | *Positive integer ID* |
-``original-base-strength``\* | Original base strength | *Positive integer* | *Current version-based original value*
-``base-strength``\* | Current base strength | *Positive integer* | *Current version-based original value*
+``original-base-strength``\* | Original base strength when playing a copy of the card | *Positive integer* | 
+``base-strength``\* | Current base strength | *Positive integer* | 
 ``strength``\* | Current strength | *Positive integer* | 
-``spy``\* | Spy token | ``1`` if the spy token is present, else ``0`` | 0
-``resilience``\* | Resilience token | ``1`` if the resilience token is present, else ``0`` | 0
-``lock``\* | Lock token | ``1`` if the lock token is present, else ``0`` | 0
-``shield``\* | Shield token | ``1`` if the shield token is present, else ``0`` | 0
+``spy-token``\* | Spy token | ``true``, ``false`` | false
+``resilience-token``\* | Spy token | ``true``, ``false`` | false
+``lock-token``\* | Spy token | ``true``, ``false`` | false
+``shield-token``\* | Spy token | ``true``, ``false`` | false
 ``armor``\* | Current armor value | *Positive integer* | 0
 ``countdown``\* | Current countdown value | *Positive integer* | 0
-``revealed``\* | The card is visible to the other player | ``1`` if the card is revealed, else ``0`` | 0
-``type`` | The card type | ``bronze``, ``silver``, ``gold`` | 
-
-> **Note :** If the ``strength`` value is provided because it has changed, it's a good idea to provide the ``base-strength`` value as well to see if the unit is currently boosted or damaged.
+``revealed``\* | The card is visible to the other player | ``true``, ``false`` | false
+``type`` | Card type | ``bronze``, ``silver``, ``gold`` | 
 
 ### Example
+The next card has been renforced by 2, then boosted by 3.
 ```json
 {
   "id": "132313:Ekimmara",
   "original-base-strength": 6,
-  "base-strength": 6,
-  "strength": 8,
-  "resilience": 1,
-  "shield": 1,
+  "base-strength": 8,
+  "strength": 11,
+  "resilience-token": true,
+  "shield-token": true,
   "type": "bronze"
 }
 ```
@@ -183,12 +184,12 @@ Element | Description | Possibles values | Default Value
 ## Turns
 A **turn** object contains a list of **steps** played during a player turn.
 
-* ``number`` is optional, and on a full game, a replay application could count that number. It's mostly used for a partial replay, or a solo example.
+* ``number`` is optional. It's used for partial replay, if one needs to know how many turns have been played at the beggining of the replay. 
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
 ``player`` | Current player | ``blue``, ``red`` | blue
-``passed``\* | Passed info | ``1`` if the player has passed, else ``0`` | 0
+``passed``\* | Passed info | ``true`` if the player has passed, else ``false`` | false
 ``number``\* | Turn number | *Integer more than 0* |
 ``steps`` | Array of steps | |
 
@@ -198,11 +199,11 @@ Element | Description | Possibles values | Default Value
 
 A **step** object contains an independant change during the game.
 
-* ``number`` is optional, and on a full game, a replay application could count that number. To find a very specific moment, one can use a **round-turn-step** combinaison (e.g. **1-15-2** for the 2nd step of the 15th turn of the 1st round).
+* ``number`` is needed to find a specific moment (e.g. **1-15-2** for the 2nd step of the 15th turn of the 1st round).
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
-``number``\* | Step number | *Integer more than 0* |
+``number`` | Step number | *Integer greater than 0* |
 ``origin`` | Origin of an action | *See **List of origins*** | player
 ``source``\* | Source of an action | *See the **Positions** section* |
 ``action``\* | Type of action | *See **List of actions*** |
