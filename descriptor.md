@@ -141,7 +141,7 @@ A **board-row** object contains the description of a row.
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
-``status``\* | Status of the row | ``frost``, ``fog``, ``rain``, ``drought``, ``ragh-nar-roog``, ``golden-froth`` | *none*
+``status``\* | Status of the row | ``frost``, ``fog``, ``rain``, ``drought``, ``ragh-nar-roog``, ``golden-froth``, ``clean`` | clear
 ``card-list`` | Card-list of the row | | *none*
 
 ## Card
