@@ -48,7 +48,7 @@ Element | Description | Possibles values | Default Value
 ``coinflip`` | Which player plays first | ``blue``, ``red`` | blue
 ``blue-point`` | Number of points the player have at the beggining of the round | ``0`` or ``1`` | 0
 ``board`` | Board description | *See the **Board** section* |
-``turns`` | List of changes on the board, turn after turn | *See the **Turn** section* |
+``turns`` | Array of changes on the board, turn after turn | *See the **Turn** section* |
 
 ### Example
 ```json
@@ -61,9 +61,9 @@ Element | Description | Possibles values | Default Value
     "board": {
       "(...)"
     },
-    "turns": {
+    "turns": [
       "(...)"
-    }
+    ]
   },
   {
     "number": 2,
