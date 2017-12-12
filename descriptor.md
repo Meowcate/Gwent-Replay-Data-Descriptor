@@ -160,9 +160,9 @@ Element | Description | Possibles values | Default Value
 ``base-strength``\* | Current base strength | *Positive integer* | 
 ``strength``\* | Current strength | *Positive integer* | 
 ``spy-token``\* | Spy token | ``true``, ``false`` | false
-``resilience-token``\* | Spy token | ``true``, ``false`` | false
-``lock-token``\* | Spy token | ``true``, ``false`` | false
-``shield-token``\* | Spy token | ``true``, ``false`` | false
+``resilience-token``\* | Resilience token | ``true``, ``false`` | false
+``lock-token``\* | Lock token | ``true``, ``false`` | false
+``shield-token``\* | Shield token | ``true``, ``false`` | false
 ``armor``\* | Current armor value | *Positive integer* | 0
 ``countdown``\* | Current countdown value | *Positive integer* | 0
 ``revealed``\* | The card is visible to the other player | ``true``, ``false`` | false
