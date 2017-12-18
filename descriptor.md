@@ -130,11 +130,14 @@ Element | Description | Possibles values | Default Value
 
 
 ## Card-list
-A **card-list** array contains a list of **cards objects**.
+A **card-list** array contains a list of **cards**.
 
 * The cards are ordered from left to right.
-* Any empty value is considered as a hidden card, which is considered to be inaccessible (e.g. the red deck), simply hidden but can be revealed (e.g. the red hand) or temporary hidden (e.g. an *ambush* card).
-* Hidden or revelead, a card-list must contain as many values as cards in the list. 
+* Any empty object value is considered as a hidden card, which is considered to be inaccessible (e.g. the red deck), simply hidden but can be revealed (e.g. the red hand) or temporary hidden (e.g. an *ambush* card).
+* Hidden or revelead, a card-list must contain as many values as cards in the list.
+* The **card-list** can be a string, designating an entire existing card-list (e.g. when a player has to choose a card to discard from his deck, the **card-list** can be ``blue-deck``).
+* A card from the **card-list** can be a string, each string designating a position (e.g. when a player has to resurrect a gold card from his graveyard, the **card-list** can be ``["card.red-graveyard.2", "card.red-graveyard.6"]``).
+* A card from the **card-list** can be a **card object**.
 
 ## Board-row
 A **board-row** object contains the description of a row.
