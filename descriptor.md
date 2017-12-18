@@ -244,6 +244,7 @@ Play a card | ``play`` | Shortcut for spells to move a card to the ``blue-play``
 Change a token / an element | ``change`` | The changed element, its previous and its new status are in **step.before-after**
 Destroy a card | ``destroy`` | Shortcut to move a unit card to its side's graveyard last place, then reset its strength, and remove tokens and armor (excepted the *countdown-token*).
 Display a card | ``display`` | Display a hidden card (ambush, red hand, etc). **step.card** must contain the informations of the showed card.
+Play the player's leader | ``leader`` | This action, which has no ``source`` nor ``target`` nor ``before-after``, must be followed by a ``spawn`` action for the deployed card : the leader card is different, at least as different ``ingameid``, according to Gwent standard, to the card deployed on the board.
 
 > **Note :** When a card is moved from a pile of unknow position, the position *0* is used. The pile must then remove one empty element.
 When the **red player** plays a hidden card, the card information must be filled. The *0* position can be used as a shortcut to the first possible hidden card of the hand.
