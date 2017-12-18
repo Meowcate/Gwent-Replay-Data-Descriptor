@@ -168,6 +168,8 @@ Element | Description | Possibles values | Default Value
 ``revealed``\* | The card is visible to the other player | ``true``, ``false`` | false
 ``type`` | Card type | ``bronze``, ``silver``, ``gold`` | 
 
+> Note : if the `strength` is ommited, the card is considerated as a *special card*. If the `base-strength` is ommited, a replay tool must take the `strength` value as the `base-value`. If the `original-base-value` is ommited, a replay tool must take the `base-value` as the `original-base-value`.
+
 ### Example
 The next card has been renforced by 2, then boosted by 3.
 ```json
