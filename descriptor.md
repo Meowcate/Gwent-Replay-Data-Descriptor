@@ -271,7 +271,7 @@ A **before/after** is an object containing the specific change of an action. Thi
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
-``type`` | Type of change | ``position``, ``[card-element]``, ``row``, ``card`` |
+``type`` | Type of change | ``position``, ``[card-element]``, ``base-strength-strength``, ``row``, ``card`` |
 ``before`` | Value before change | *See list below* |
 ``after`` | Value after change | *See list below* |
 
@@ -279,6 +279,7 @@ Element | Description | Possibles values | Default Value
 * The ``position`` is a position object. See the **Position** section for more informations.
 * The ``row`` before/after values must be one of these : ``frost``, ``fog``, ``rain``, ``drought``, ``ragh-nar-roog``, ``skellige-storm``, ``golden-froth``, ``clean``
 * The ``card`` type is necessary for some situations, like a transformation.
+* ``base-strength-strength`` is a shortcut when you need to change the strength and the base-strength of a unit from the **same** ``before`` value to the **same** ``after`` value. It helps for example when you need to *reset-and-weaken* an unit.
 
 
 ## Massive assignations
