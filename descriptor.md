@@ -242,7 +242,8 @@ Gwent action | GRDD action code | Note
 Spawn / Generate a card | ``spawn`` | The card information is in **step.card**.
 Transform a card into another | ``transform`` | The changed card is in **step.target**. The new card is in **step.card**.
 Move a card | ``move`` | Move a card from anywhere to anywhere. It's used to deploy, pick a card from the deck, move to graveyard or banned pile...
-Play a card | ``play`` | Shortcut for spells to move a card to the ``blue-play`` this turn, and be considered and moved to the graveyard at the end of the step
+Play a card | ``play`` | Shortcut for spells to move a card to the ``blue-play`` this turn, and be considered and moved to the graveyard at the end of the step. **Important :** when using ``play``, ``source`` must be the played spell, because ``target`` designates the potential target of the spell.
+Play and ban | ``playban`` | Similar as ``play``, when a spell must be banned after been played.
 Change a token / an element | ``change`` | The changed element, its previous and its new status are in **step.before-after**
 Destroy a card | ``destroy`` | Shortcut to move a unit card to its side's graveyard last place, then reset its strength, and remove tokens and armor (excepted the *countdown-token*).
 Display a card | ``display`` | Display a hidden card (ambush, red hand, etc). **step.card** must contain the informations of the showed card.
