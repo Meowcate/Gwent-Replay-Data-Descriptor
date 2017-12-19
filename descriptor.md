@@ -44,7 +44,7 @@ The **rounds** object contains an array of rounds.
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
-``number`` | Number of the round | 1
+``round`` | Number of the round | 1
 ``coinflip`` | Which player plays first | ``blue``, ``red`` | blue
 ``blue-point`` | Number of points the player have at the beggining of the round | ``0`` or ``1`` | 0
 ``board`` | Board description | *See the **Board** section* |
@@ -192,7 +192,7 @@ A **turn** object contains a list of **steps** played during a player turn.
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
-``number`` | Turn number | *Integer greater than 0* |
+``turn`` | Turn number | *Integer greater than 0* |
 ``player`` | Current player | ``blue``, ``red`` | blue
 ``passed``\* | Passed info | ``true`` if the player has passed, else ``false`` | false
 ``steps`` | Array of steps | |
@@ -204,7 +204,7 @@ A **step** object contains an independant change during the game.
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
-``number`` | Step number | *Integer greater than 0* |
+``step`` | Step number | *Integer greater than 0* |
 ``source``\* | Source of an action | *See the **Positions** section* |
 ``action``\* | Type of action | *See **List of actions*** |
 ``target``\* | Target of an action | *See the **Positions** section* |
@@ -262,6 +262,9 @@ Change the status | ``change-row`` | The name of the boon or the hazard is in **
 Gwent action | GRDD action code | Note
 --- | --- | ---
 Choice in a list of cards | ``choice`` | The ``card-list`` element must be provided. This action shows a list of cards to choose for a player, so the replay viewer can see what the player could choose. The cards of the list are not moved from/to any position and exists only for display.
+Discover a card | `` discover`` | *See the Note below*
+
+> **Note : ** Sometimes, one can't know some informations in advance. For example, making a replay by watching a video, if the red player discards some cards during some turns, but blue doesn't check the graveyard soon enough, one can't know when this or that card has been discarded. In this kind of situation, the cards are moved hidden to graveyard when discarded, and when the information is known, the ``discover`` action ``target`` each card and use the ``card`` information of the step to "reveal" it to the replay tool. As this doesn't count as a real "ingame action", the ``step`` number of a ``discover`` action is always 0 : it's not counted by the replay tool, and you can't go to this specific moment.
 
 ## Before/After
 A **before/after** is an object containing the specific change of an action. This element is particulary important has it's a way to go back to the board statut before an action takes place.
