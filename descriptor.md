@@ -221,18 +221,17 @@ When the choices are from a card's action (and not "choose to spawn *card A* or 
 A **position** string contains the position of a source or target of an action. It can designate a card or an element of the board.
 
 *  The two elements of a position are separated by a dot. For example, the 4th card of the blue melee is *blue-melee.4*.
-*  When the position is an entire row, the location is *0*.
+*  When the position is an entire row or the original leader position, the location is *0* (and so, optional).
 *  When the position is a specific card, the location is the number of the card from left to right.
 *  When the position is between cards, the location is the number of the card to the right. For example, on a row with 6 cards, deploying a card on 1st position is **board.blue-melee.1**. Between the 3rd and 4th card, it becomes **board.blue-melee.4**. And after the 6th card, it's **board.blue-melee.7**.
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
 ``type`` | Type of position | ``card``, ``board`` |
-``region`` | Area of choice | ``blue-hand``, ``blue-deck``, ``blue-graveyard``, ``blue-melee``, ``blue-ranged``, ``blue-siege``, ``blue-play``, ``banned``, ``generation`` |
-``location``\* | Exact position of the target. Not needed if it targets a full row for example | *See below for the details* | 0
+``region`` | Area of choice | ``blue-leader``, ``blue-hand``, ``blue-deck``, ``blue-graveyard``, ``blue-melee``, ``blue-ranged``, ``blue-siege``, ``blue-play``, ``banned`` |
+``location``\* | Exact position of the target. Not needed if it targets a full row for example | *Integer. See above for the details* | 0
 
 > **Note :** *blue-play* is the position of a spell being played, on the right side of the board. This helps to show which card is played before its sends to graveyard.
-> *generation* is a non-existent position for **step:source** when a card is not moved from one position to another, but generated from nowhere (created, duplicated, etc).
 
 
 ### List of actions
@@ -281,6 +280,15 @@ Element | Description | Possibles values | Default Value
 * The ``row`` before/after values must be one of these : ``frost``, ``fog``, ``rain``, ``drought``, ``ragh-nar-roog``, ``skellige-storm``, ``golden-froth``, ``clean``
 * The ``card`` type is necessary for some situations, like a transformation.
 
+
+## Massive assignations
+**Step** elements has to be atomic : when you do some damages to a unit which has some armor, the lost of the armor is one step, the lost of strength is another one. But sometimes, the change of an action happens to multiple cards. For example, when you play an effect that boost by 2 the strength of 10 cards on your board at the same time, it would be long for the replay viewer to pass 10 steps with "boost a card by 2", and it would increase the size of the replay file.
+
+When you need to make multiple changes at one, as long as the action is a ``change``, a ``move`` or a ``destroy`` type, you can have an array of ``target`` to have multiple targets. Then the ``before`` and the ``after`` elements need to be array as well, and each elements of the array must be on the same index as the others one (e.g. ``target[3]`` on a move action has its previous position in ``before[3]`` and the destination in ``after[3]``).
+
+Don't forget that it concerns only one action at the time. If you needs to increase strength and armor of multiple units, first increase the strength, then armor. Also, be careful about what should be massive assignations : for example, sometimes Gwent allows you to push multiple units from one row to another, but sometimes it changes multiple units positions one after the other.
+
+Note that, for the ``destroy`` action, the targets are going to their graveyards following the ``target`` order (in a blue graveyard with 8 cards, first blue target of ``destroy`` takes the 9th place, next is 10th, etc).
 
 
 ### Examples
