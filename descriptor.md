@@ -228,10 +228,11 @@ A **position** string contains the position of a source or target of an action. 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
 ``type`` | Type of position | ``card``, ``board`` |
-``region`` | Area of choice | ``blue-leader``, ``blue-hand``, ``blue-deck``, ``blue-graveyard``, ``blue-melee``, ``blue-ranged``, ``blue-siege``, ``blue-play``, ``banned`` |
+``region`` | Area of choice | ``blue-leader``, ``blue-hand``, ``blue-deck``, ``blue-graveyard``, ``blue-melee``, ``blue-ranged``, ``blue-siege``, ``blue-play``, ``blue-banned``, ``generated`` |
 ``location``\* | Exact position of the target. Not needed if it targets a full row for example | *Integer. See above for the details* | 0
 
 > **Note :** *blue-play* is the position of a spell being played, on the right side of the board. This helps to show which card is played before its sends to graveyard.
+> The ``generated`` position is when a card doesn't come from the board (e.g. a card spawned by a spell).
 
 
 ### List of actions
@@ -239,13 +240,12 @@ Element | Description | Possibles values | Default Value
 #### Actions on cards
 Gwent action | GRDD action code | Note
 --- | --- | ---
-Spawn / Generate a card | ``spawn`` | The card information is in **step.card**.
 Transform a card into another | ``transform`` | The changed card is in **step.target**. The new card is in **step.card**.
-Move a card | ``move`` | Move a card from anywhere to anywhere. It's used to deploy, pick a card from the deck, move to graveyard or banned pile...
+Move a card | ``move`` | Move a card from anywhere to anywhere. It's used to deploy, pick a card from the deck, move to graveyard or banned pile... You can generate a new card by setting the ``before`` position as ``generated``.
 Play a card | ``play`` | Shortcut for spells to move a card to the ``blue-play`` this turn, and be considered and moved to the graveyard at the end of the step. **Important :** when using ``play``, ``source`` must be the played spell, because ``target`` designates the potential target of the spell.
 Play and ban | ``playban`` | Similar as ``play``, when a spell must be banned after been played.
 Change a token / an element | ``change`` | The changed element, its previous and its new status are in **step.before-after**
-Destroy a card | ``destroy`` | Shortcut to move a unit card to its side's graveyard last place, then reset its strength, and remove tokens and armor (excepted the *countdown-token*).
+Destroy a card | ``destroy`` | Shortcut to move a unit card to its side's graveyard last place. The previous and new state of the card are on the **step.before-after**.
 Display a card | ``display`` | Display a hidden card (ambush, red hand, etc). **step.card** must contain the informations of the showed card.
 Play the player's leader | ``leader`` | This action, which has no ``source`` nor ``target`` nor ``before-after``, must be followed by a ``spawn`` action for the deployed card : the leader card is different, at least as different ``ingameid``, according to Gwent standard, to the card deployed on the board.
 
@@ -279,7 +279,7 @@ Element | Description | Possibles values | Default Value
 * Any ``[card-element]`` (except the ``id``) can be changed using the same element name (``spy-token``, ``base-strength``...) as type. See the **Card** section to check all the possibilities and the possible values.
 * The ``position`` is a position object. See the **Position** section for more informations.
 * The ``row`` before/after values must be one of these : ``frost``, ``fog``, ``rain``, ``drought``, ``ragh-nar-roog``, ``skellige-storm``, ``golden-froth``, ``clean``
-* The ``card`` type is necessary for some situations, like a transformation.
+* The ``card`` type is necessary when you need to keep the full state of a card before ``transform`` or ``destroy``. Note that the ``id`` is necessary for ``transform`` (the card identity should be different), but not for ``destroy``.
 * ``base-strength-strength`` is a shortcut when you need to change the strength and the base-strength of a unit from the **same** ``before`` value to the **same** ``after`` value. It helps for example when you need to *reset-and-weaken* an unit.
 
 
@@ -290,7 +290,7 @@ When you need to make multiple changes at one, as long as the action is a ``chan
 
 Don't forget that it concerns only one action at the time. If you needs to increase strength and armor of multiple units, first increase the strength, then armor. Also, be careful about what should be massive assignations : for example, sometimes Gwent allows you to push multiple units from one row to another, but sometimes it changes multiple units positions one after the other.
 
-Note that, for the ``destroy`` action, the targets are going to their graveyards following the ``target`` order (in a blue graveyard with 8 cards, first blue target of ``destroy`` takes the 9th place, next is 10th, etc).
+Note that, for the ``destroy`` action, the targets are going to their graveyards following the ``target`` order (in a blue graveyard with 8 cards, first blue target of ``destroy`` takes the 9th place, next is 10th, etc). If one or more targets has to be banned, it should be done once its in the graveyard as the next step.
 
 
 ### Examples
