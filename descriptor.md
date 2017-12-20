@@ -320,45 +320,39 @@ Note that, for the ``destroy`` action, the targets are going to their graveyards
 
 
 ### Examples
-The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being *played*. It picks the random strongest unit from the deck (*moved* from an unkown position (0) card in ``blue-deck`` to ``blue-play``) and *boost* it by 2 points. The card (an **Ekimmara** here, which was *boosted* by 2 and has a *shield*, thanks to an earlier **Quen Sign**) will then be deployed (*moved*) on the blue ranged row between the 1st and 2nd card (the *board.blue-ranged.2* position), earns *resilience*, and consumes (*destroy*) the card (a **Nekker** which has a strength of 7) on the *blue melee row on 3rd position*. The Ekimmara is *boosted* again by 7. As the Ekimmara consumed a card, all invisible nekkers in the blue deck are *boosted* (as we don't know the position of each card, we will call twice the *card.blue-deck.0* position, as there is two nekkers in the deck). Because the Nekker died, another Nekker will be *called from the deck* (with a strength of 8 so) on the *last position on the right (the 5th) of the melee row*.
+*  **(Step 1)** The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being *played*.
+*  **(Step 2)** It picks the random strongest unit from the deck. The card (an **Ekimmara** here (base strength 6), which was *boosted* by 2 (strength 8) and has a *shield*, thanks to an earlier **Quen Sign**) is boosted by 2 when spawned (strength 10), and deployed (*moved*) from an unkown position in the deck (``card.blue-deck``) to the blue ranged row between the 1st and 2nd card (the *board.blue-ranged.2* position)
+*  **(Step 3)** It earns *resilience*,
+*  **(Step 4)** and consumes (*destroy*) the card (a **Nekker** which has a strength of 7) on the *blue melee row on 3rd position*.
+* **(Step 5)** The Ekimmara is *boosted* again by 7.
+* **(Step 6)** As the Ekimmara consumed a card, all invisible nekkers in the blue deck are *boosted*. As we don't know the position of each card, we will call twice the *card.blue-deck* position, as there is two nekkers in the deck. And because we don't know the current strength of the nekker (but may be known, for example with GwentUp), we don't use the ``before-after`` here.
+* **(Step 7)** Because the Nekker died and can call another one with his *deathwish*, another Nekker is *moved* from the deck (now with a strength of 8) on the 5th of the melee row.
 ```json
 "turns": {
+  "turn": 4,
   "player": "blue",
-  "number": 4,
   "steps": [
     {
+      "step": 1,
       "source": "card.blue-hand.3",
-      "action": "play",
-      "target": "card.blue-play.1"
+      "action": "play"
     },
     {
-      "source": "card.blue-deck.0",
+      "step": 2,
       "action": "move",
-      "target": "card.blue-play-1",
+      "source": "card.blue-deck",
+      "target": "board.blue-ranged-2",
       "card": {
           "id": "132313:Ekimmara",
           "original-base-strength": 6,
           "base-strength": 6,
-          "strength": 8,
+          "strength": 10,
           "shield-token": true,
           "type": "bronze"
       }
     },
     {
-      "action": "change",
-      "target": "card.blue-play.1",
-      "before-after": {
-        "type": "strength",
-        "before": 8,
-        "after": 10
-      }
-    },
-    {
-      "source": "card.blue-play.1",
-      "action": "move",
-      "target": "board.blue-ranged.2"
-    },
-    {
+      "step": 3,
       "action": "change",
       "target": "card.blue-ranged.2",
       "before-after": {
@@ -368,31 +362,48 @@ The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being
       }
     },
     {
+      "step": 4,
       "source": "card.blue-ranged.2",
       "action": "destroy",
-      "target": "card.blue-melee.3"
+      "target": "card.blue-melee.3",
+      "before-after": {
+        "type": "card",
+        "before": {
+          "id": "132305:Nekker",
+          "base-strength": 3,
+          "strength": 7,
+          "type": "bronze"
+        },
+        "after": {
+          "id": "132305:Nekker",
+          "strength": 3,
+          "type": "bronze"
+        }
+      }
     },
     {
+      "step": 5,
       "action": "change",
       "target": "card.blue-ranged.2",
       "before-after": {
         "type": "strength",
-        "before": 8,
-        "after": 15
+        "before": 10,
+        "after": 17
       }
     },
     {
+      "step": 6,
       "action": "change",
-      "target": "card.blue-deck.0"
+      "target": ["card.blue-deck", "card.blue-deck"]
     },
     {
-      "action": "change",
-      "target": "card.blue-deck.0"
-    },
-    {
-      "source": "card.blue-deck.0",
+      "step": 7,
       "action": "move",
-      "target": "board.blue-melee.5",
+      "before-after": {
+        "type": "position",
+        "before": "card.blue-deck",
+        "after": "board.blue-melee.5"
+      }
       "card": {
           "id": "132305:Nekker",
           "original-base-strength": 3,
