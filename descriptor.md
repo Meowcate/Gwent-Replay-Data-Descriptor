@@ -17,6 +17,7 @@ Element | Description | Possibles values | Default Value
 ``blue-mmr``\* | Player's MMR during this game | *any positive integer* | *none*
 ``blue-faction`` | Player's faction | ``northern-realms``, ``skellige``, ``nilfgaard``, ``monsters``, ``scoia-tael`` | 
 ``blue-leader`` | Player's leader | *any Gwent leader card ID* | 
+``red-visible`` | Are red hand cards visible ? | ``true``, ``false`` | false
 ``version`` | The game version number during this replay | *A version number without letters with major, minor, and patch numbers* | *The current version number. For example : ``0.9.12``*
 ``winner``* | Winner player | ``blue``, ``red`` | *none*
 
