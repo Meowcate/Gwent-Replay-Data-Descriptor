@@ -285,6 +285,14 @@ Targeting something | ``targeting`` | When anything needs to show it targets som
 
 > **Note :** Sometimes, one can't know some informations in advance. For example, making a replay by watching a video, if the red player discards some cards during some turns, but blue doesn't check the graveyard soon enough, one can't know when this or that card has been discarded. In this kind of situation, the cards are moved hidden to graveyard when discarded, and when the information is known, the ``discover`` action ``target`` each card and use the ``card`` information of the step to "reveal" it to the replay tool, filling what was previously an empty card object. As this doesn't count as a real "ingame action", the ``step`` number of a ``discover`` action is always 0 : it's not counted by the replay tool, and you can't go to this specific moment. Still, ``discover`` should be used as little as possible, one should fill card informations everytime he can get it during the game. In this "discard" example, the cards can be specified during the ``move`` action if the order of the discarded cards isn't important.
 
+
+#### Player actions
+Gwent action | GRDD action code | Note
+--- | --- | ---
+Pass | ``pass`` |
+Surrender | ``surrender`` |
+Out of time | ``rope`` | When the player is out of time, this action must be followed by a step to discard the random card from his hand, according to Gwent rules
+
 ## Before/After
 A **before/after** is an object containing the specific change of an action. This element is particulary important has it's a way to go back to the board statut before an action takes place.
 
