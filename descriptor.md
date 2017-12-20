@@ -97,6 +97,7 @@ Element | Description | Possibles values | Default Value
 ``blue-melee`` | Player's melee **Board-row** | *See the **Board-row** section* |
 ``blue-ranged`` | Player's ranged **Board-row** | *See the **Board-row** section* |
 ``blue-siege`` | Player's siege **Board-row** | *See the **Board-row** section* |
+``blue-mulligan``\* | Player's mulligan sequence | *See the **Mulligan** section* |
 
 ### Example
 ```json
@@ -187,6 +188,14 @@ The next card has been renforced by 2, then boosted by 3.
 }
 ```
 
+## Mulligan
+The ``blue-mulligan`` is an array of cards changes. It happens using the ``blue-deck`` and ``blue-hand`` cards-lists specified at the begin of a **round** element.
+
+* The new card comes from a **position** (if the card is identitfied in the deck) or is a card object.
+* The new card takes the position of the old card.
+* If the new card position in the deck is known, it is recommended that the old card takes it. Else, the old card new position should be the first empty card object.
+
+
 ## Turns
 A **turn** object contains a list of **steps** played during a player turn.
 
@@ -224,6 +233,7 @@ A **position** string contains the position of a source or target of an action. 
 *  When the position is an entire row or the original leader position, the location is *0* (and so, optional).
 *  When the position is a specific card, the location is the number of the card from left to right.
 *  When the position is between cards, the location is the number of the card to the right. For example, on a row with 6 cards, deploying a card on 1st position is **board.blue-melee.1**. Between the 3rd and 4th card, it becomes **board.blue-melee.4**. And after the 6th card, it's **board.blue-melee.7**.
+*  The *0* (or absence of) location can be used for a *card* ``type`` to designate the first empty card object of a list. 
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
