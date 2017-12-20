@@ -1,0 +1,2169 @@
+{
+    "game": {
+        "video": "https://www.youtube.com/watch?v=KBNAqGUhRWM",
+        "name": "A round of Gwent",
+        "blue-name": "ImDelude",
+        "blue-faction": "northern realms",
+        "blue-leader": "200170:Henselt",
+        "red-name": "Grande42",
+        "red-faction": "skellige",
+        "red-leader": "200159:King Bran",
+        "version": "0.9.12"
+    },
+    "rounds": [
+        {
+            "round": 1,
+            "coinflip": "blue",
+            "blue-point": 0,
+            "red-point": 0,
+            "board": {
+                "blue-playable-leader": true,
+                "blue-hand": [
+                    {
+                        "id": "113207:Commander's Horn",
+                        "type": "silver"
+                    },
+                    {
+                        "id": "113309:Scorch",
+                        "type": "silver"
+                    },
+                    {
+                        "id": "122318:Kaedweni Siege Master",
+                        "strength": 5,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122318:Kaedweni Siege Master",
+                        "strength": 5,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122301:Ballista",
+                        "strength": 6,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "200049:Battering Ram",
+                        "strength": 7,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "200529:Ronvid of Small Marsh",
+                        "strength": 10,
+                        "type": "silver"
+                    },
+                    {
+                        "id": "122203:Thalar",
+                        "strength": 11,
+                        "type": "silver"
+                    },
+                    {
+                        "id": "122103:John Natalis",
+                        "strength": 6,
+                        "type": "gold"
+                    },
+                    {
+                        "id": "112107:Villentretenmerth",
+                        "strength": 8,
+                        "countdown": 3,
+                        "type": "gold"
+                    }
+                ],
+                "blue-deck": [
+                    {
+                        "id": "122318:Kaedweni Siege Master",
+                        "strength": 5,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "200049:Battering Ram",
+                        "strength": 7,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "200049:Battering Ram",
+                        "strength": 7,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122301:Ballista",
+                        "strength": 6,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122301:Ballista",
+                        "strength": 6,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122302:Reinforced Ballista",
+                        "strength": 7,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122302:Reinforced Ballista",
+                        "strength": 7,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122302:Reinforced Ballista",
+                        "strength": 7,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122313:Dun Banner Light Cavalry",
+                        "strength": 4,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122313:Dun Banner Light Cavalry",
+                        "strength": 4,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122313:Dun Banner Light Cavalry",
+                        "strength": 4,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "123201:Reinforcement",
+                        "type": "silver"
+                    },
+                    {
+                        "id": "122211:Margarita Laux-Antille",
+                        "strength": 6,
+                        "type": "silver"
+                    },
+                    {
+                        "id": "200225:Muzzle",
+                        "type": "gold"
+                    },
+                    {
+                        "id": "122106:Shani",
+                        "strength": 5,
+                        "type": "gold"
+                    }
+                ],
+                "blue-graveyard": [],
+                "blue-melee": {},
+                "blue-ranged": {},
+                "blue-siege": {},
+                "red-playable-leader": true,
+                "red-hand": [{},{},{},{},{},{},{},{},{},{}],
+                "red-deck": [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
+                "red-graveyard": [],
+                "red-melee": {},
+                "red-ranged": {},
+                "red-siege": {}
+            },
+            "turns": [
+                {
+                    "turn": 1,
+                    "player": "blue",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.blue-hand.7",
+                                "after": "board.blue-melee.1"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 2,
+                    "player": "red",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-hand",
+                                "after": "board.red-ranged.1"
+                            },
+                            "card": {
+                                "id": "152107:Coral",
+                                "strength": 5,
+                                "type": "gold"
+                            }
+                        },
+                        {
+                            "step": 2,
+                            "action": "transform",
+                            "source": "card.red-ranged.1",
+                            "target": "card.blue.melee.1",
+                            "before-after": {
+                                "type": "card",
+                                "before": {
+                                    "id": "200529:Ronvid of Small Marsh",
+                                    "strength": 10,
+                                    "type": "silver"
+                                },
+                                "after": {
+                                    "id": "200307:Jade Figurine",
+                                    "strength": 2,
+                                    "type": "silver"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 3,
+                    "player": "blue",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.blue-hand.6",
+                                "after": "board.blue-melee.1"
+                            }
+                        },
+                        {
+                            "step": 2,
+                            "action": "change",
+                            "source": "card.blue-melee.1",
+                            "target": "card.red-ranged.1",
+                            "before-after": {
+                                "type": "strength",
+                                "before": 5,
+                                "after": 3
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 4,
+                    "player": "red",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "leader"
+                        },
+                        {
+                            "step": 2,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "generated",
+                                "after": "board.red-ranged.1"
+                            },
+                            "card": {
+                                "id": "151101:King Bran",
+                                "strength": 2,
+                                "type": "gold"
+                            }
+                        },
+                        {
+                            "step": 3,
+                            "action": "choice",
+                            "card-list": "red.deck",
+                            "chosen": [1, 2, 3]
+                        },
+                        {
+                            "step": 4,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-deck",
+                                "after": "board.red-graveyard.1"
+                            },
+                            "card": {
+                                "id": "152209:Morkvarg",
+                                "strength": 9,
+                                "type": "silver"
+                            }
+                        },
+                        {
+                            "step": 5,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-deck",
+                                "after": "board.red-graveyard.2"
+                            },
+                            "card": {
+                                "id": "152316:Clan an Craite Raider",
+                                "strength": 9,
+                                "type": "silver"
+                            }
+                        },
+                        {
+                            "step": 6,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-deck",
+                                "after": "board.red-graveyard.3"
+                            },
+                            "card": {
+                                "id": "200226:Wolfsbane",
+                                "countdown": 3,
+                                "type": "gold"
+                            }
+                        },
+                        {
+                            "step": 7,
+                            "action": "change",
+                            "target": "card.red-graveyard.1",
+                            "before-after": {
+                                "type": "base-strength-strength",
+                                "before": 9,
+                                "after": 10
+                            }
+                        },
+                        {
+                            "step": 8,
+                            "action": "change",
+                            "target": "card.red-graveyard.2",
+                            "before-after": {
+                                "type": "base-strength-strength",
+                                "before": 4,
+                                "after": 5
+                            }
+                        },
+                        {
+                            "step": 9,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-graveyard.1",
+                                "after": "board.red-melee.1"
+                            }
+                        },
+                        {
+                            "step": 10,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-graveyard.1",
+                                "after": "board.red-melee.2"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 5,
+                    "player": "blue",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.blue-hand.3",
+                                "after": "board.blue-melee.1"
+                            }
+                        },
+                        {
+                            "step": 2,
+                            "action": "targeting",
+                            "source": "card.blue-melee.1",
+                            "target": "card.blue-melee.2"
+                        },
+                        {
+                            "step": 3,
+                            "action": "change",
+                            "source": "card.blue-melee.2",
+                            "target": "card.red-ranged.2",
+                            "before-after": {
+                                "type": "strength",
+                                "before": 3,
+                                "after": 0
+                            }
+                        },
+                        {
+                            "step": 4,
+                            "action": "change",
+                            "source": "card.blue-melee.2",
+                            "target": "card.red-melee.2",
+                            "before-after": {
+                                "type": "strength",
+                                "before": 5,
+                                "after": 2
+                            }
+                        },
+                        {
+                            "step": 5,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-ranged.2",
+                                "after": "board.red-banned"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 6,
+                    "player": "red",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "change",
+                            "before-after": {
+                                "type": "countdown",
+                                "before": 3,
+                                "after": 2
+                            }
+                        },
+                        {
+                            "step": 2,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-hand",
+                                "after": "board.red-siege.1"
+                            },
+                            "card": {
+                                "id": "200046:Clan Tuirseach Veteran",
+                                "strength": 7,
+                                "type": "bronze"
+                            }
+                        },
+                        {
+                            "step": 3,
+                            "action": "change",
+                            "target": ["card.red-leader", "card.red-ranged.1"],
+                            "before-after": {
+                                "type": "base-strength-strength",
+                                "before": [2, 2],
+                                "after": [3, 3]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 7,
+                    "player": "blue",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.blue-hand.3",
+                                "after": "board.blue-melee.3"
+                            }
+                        },
+                        {
+                            "step": 2,
+                            "action": "targeting",
+                            "source": "card.blue-melee.3",
+                            "target": "card.blue-melee.2"
+                        },
+                        {
+                            "step": 3,
+                            "action": "change",
+                            "source": "card.blue-melee.2",
+                            "target": "card.red-ranged.1",
+                            "before-after": {
+                                "type": "strength",
+                                "before": 3,
+                                "after": 0
+                            }
+                        },
+                        {
+                            "step": 4,
+                            "action": "change",
+                            "source": "card.blue-melee.2",
+                            "target": "card.red-melee.1",
+                            "before-after": {
+                                "type": "strength",
+                                "before": 5,
+                                "after": 2
+                            }
+                        },
+                        {
+                            "step": 5,
+                            "action": "destroy",
+                            "target": "card.red-ranged.1",
+                            "before-after": {
+                                "type": "card",
+                                "before": {
+                                    "id": "151101:King Bran",
+                                    "original-base-strength": 2,
+                                    "base-strength": 3,
+                                    "strength": 0,
+                                    "type": "gold"
+                                },
+                                "after": {
+                                    "id": "151101:King Bran",
+                                    "strength": 3,
+                                    "type": "gold"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 8,
+                    "player": "red",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "change",
+                            "target": "card.red-graveyard.1",
+                            "before-after": {
+                                "type": "countdown",
+                                "before": 2,
+                                "after": 1
+                            }
+                        },
+                        {
+                            "step": 2,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-hand",
+                                "after": "board.red-ranged.1"
+                            }
+                        },
+                        {
+                            "step": 3,
+                            "action": "targeting",
+                            "source": "card.red-ranged.1",
+                            "target": "card.red-siege.1"
+                        },
+                        {
+                            "step": 4,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-deck",
+                                "after": "board.red-ranged.2"
+                            },
+                            "card": {
+                                "id": "200046:Clan Tuirseach Veteran",
+                                "strength": 8,
+                                "type": "bronze"
+                            }
+                        },
+                        {
+                            "step": 5,
+                            "action": "change",
+                            "target": ["card.red-leader", "card.red-siege.1"],
+                            "before-after": {
+                                "type": "base-strength-strength",
+                                "before": [3, 7],
+                                "after": [4, 8]
+                            }
+                        },
+                        {
+                            "step": 6,
+                            "action": "change",
+                            "source": "card.red-ranged.1",
+                            "target": "card.red-siege.1",
+                            "before-after": {
+                                "type": "strength",
+                                "before": 8,
+                                "after": 7
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 9,
+                    "player": "blue",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.blue-hand.5",
+                                "after": "board.blue-melee.1"
+                            }
+                        },
+                        {
+                            "step": 2,
+                            "action": "choice",
+                            "card-list": ["card.blue-deck.12"],
+                            "chosen": [1]
+                        },
+                        {
+                            "step": 3,
+                            "action": "play",
+                            "source": "card.blue-deck.12"
+                        },
+                        {
+                            "step": 4,
+                            "action": "choice",
+                            "card-list": [
+                                "card.blue-deck.1","card.blue-deck.2","card.blue-deck.3",
+                                    "card.blue-deck.4","card.blue-deck.5","card.blue-deck.6",
+                                        "card.blue-deck.7","card.blue-deck.8","card.blue-deck.9",
+                                            "card.blue-deck.10","card.blue-deck.11"],
+                            "chosen": [4]
+                        },
+                        {
+                            "step": 5,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.blue-deck.4",
+                                "after": "board.blue-melee.3"
+                            }
+                        },
+                        {
+                            "step": 6,
+                            "action": "change",
+                            "source": "card.blue-melee.3",
+                            "target": ["card.red-ranged.1", "card.red-melee.1", "card.red-melee.2"],
+                            "before-after": {
+                                "type": "strength",
+                                "before": [2, 2, 2],
+                                "after": [1, 1, 1]
+                            }
+                        },
+                        {
+                            "step": 7,
+                            "action": "change",
+                            "source": "card.blue-melee.3",
+                            "target": ["card.red-ranged.1", "card.red-melee.1", "card.red-melee.2"],
+                            "before-after": {
+                                "type": "strength",
+                                "before": [1, 1, 1],
+                                "after": [0, 0, 0]
+                            }
+                        },
+                        {
+                            "step": 8,
+                            "action": "destroy",
+                            "target": ["card.red-ranged.1", "card.red-melee.1", "card.red-melee.2"],
+                            "before-after": {
+                                "type": "card",
+                                "before": [
+                                    {
+                                        "id": "200528:Heymaey Battle Maiden",
+                                        "base-strength": 2,
+                                        "strength": 0,
+                                        "type": "bronze"
+                                    },
+                                    {
+                                        "id": "152209:Morkvarg",
+                                        "base-strength": 5,
+                                        "strength": 0,
+                                        "type": "bronze"
+                                    },
+                                    {
+                                        "id": "152316:Clan an Craite Raider",
+                                        "base-strength": 5,
+                                        "strength": 0,
+                                        "type": "bronze"
+                                    }
+                                ],
+                                "after": [
+                                    {
+                                        "id": "200528:Heymaey Battle Maiden",
+                                        "base-strength": 2,
+                                        "strength": 0,
+                                        "type": "bronze"
+                                    },
+                                    {
+                                        "id": "152209:Morkvarg",
+                                        "strength": 5,
+                                        "type": "bronze"
+                                    },
+                                    {
+                                        "id": "152316:Clan an Craite Raider",
+                                        "strength": 5,
+                                        "type": "bronze"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "step": 9,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-graveyard.4",
+                                "after": "board.red-melee.1"
+                            }
+                        },
+                        {
+                            "step": 10,
+                            "action": "change",
+                            "before-after": {
+                                "type": "base-strength-strength",
+                                "before": 5,
+                                "after": 2
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 10,
+                    "player": "red",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "change",
+                            "target": "card.red-graveyard.1",
+                            "before-after": {
+                                "type": "countdown",
+                                "before": 1,
+                                "after": 0
+                            }
+                        },
+                        {
+                            "step": 2,
+                            "action": "change",
+                            "source": "card.red-graveyard.1",
+                            "target": "card.red-melee.1",
+                            "before-after": {
+                                "type": "strength",
+                                "before": 2,
+                                "after": 8
+                            }
+                        },
+                        {
+                            "step": 3,
+                            "action": "change",
+                            "source": "card.red-graveyard.1",
+                            "target": "card.blue-melee.4",
+                            "before-after": {
+                                "type": "strength",
+                                "before": 7,
+                                "after": 1
+                            }
+                        },
+                        {
+                            "step": 4,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-hand",
+                                "after": "board.red-siege.2"
+                            },
+                            "card": {
+                                "id": "152213:Svanrige",
+                                "strength": 9,
+                                "type": "silver"
+                            }
+                        },
+                        {
+                            "step": 5,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-deck",
+                                "after": "board.red-hand.1"
+                            }
+                        },
+                        {
+                            "step": 6,
+                            "action": "choice",
+                            "card-list": "red-hand",
+                            "chosen": [1]
+                        },
+                        {
+                            "step": 7,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-hand",
+                                "after": "board.red-graveyard.5"
+                            },
+                            "card": {
+                                "id": "152313:Clan Tuirseach Skirmishers",
+                                "strength": 9,
+                                "type": "bronze"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 11,
+                    "player": "blue",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "play",
+                            "source": "card.blue-hand.1",
+                            "target": "card.blue-melee.4"
+                        },
+                        {
+                            "step": 2,
+                            "action": "change",
+                            "target": ["card.blue-melee.2","card.blue-melee.3",
+                                "card.blue-melee.4","card.blue-melee.5","card.blue-melee.6"],
+                            "before-after": {
+                                "type": "strength",
+                                "before": [5, 6, 1, 5, 2],
+                                "after": [9, 10, 5, 9, 6]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 12,
+                    "player": "red",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-hand",
+                                "after": "board.red-siege.1"
+                            },
+                            "card": {
+                                "id": "152310:Priestess of Freya",
+                                "strength": 1,
+                                "type": "bronze"
+                            }
+                        },
+                        {
+                            "step": 2,
+                            "action": "choice",
+                            "card-list": ["card.red-graveyard.3","card.red-graveyard.4","card.red-graveyard.5"],
+                            "chosen": [3]
+                        },
+                        {
+                            "step": 3,
+                            "action": "move",
+                            "before-after": {
+                                "before": "card.red-graveyard.5",
+                                "after": "card.red-melee.2"
+                            }
+                        },
+                        {
+                            "step": 4,
+                            "action": "change",
+                            "target": "card.red-melee.2",
+                            "before-after": {
+                                "type": "base-strength-strength",
+                                "before": 9,
+                                "after": 12
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 13,
+                    "player": "blue",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.blue-hand.2",
+                                "after": "board.blue-melee.2"
+                            }
+                        },
+                        {
+                            "step": 2,
+                            "action": "strength",
+                            "source": "card.blue-melee.2",
+                            "target": "card.red-melee.2",
+                            "before-after": {
+                                "type": "strength",
+                                "before": 12,
+                                "after": 11
+                            }
+                        },
+                        {
+                            "step": 3,
+                            "action": "strength",
+                            "source": "card.blue-melee.2",
+                            "target": ["card.blue-melee.1", "card.blue-ranged.1"],
+                            "before-after": {
+                                "type": "strength",
+                                "before": [8, 8],
+                                "after": [7, 7]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 14,
+                    "player": "red",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-hand",
+                                "after": "board.red-siege.4"
+                            },
+                            "card": {
+                                "id": "152206:Gremist",
+                                "strength": 3,
+                                "type": "silver"
+                            }
+                        },
+                        {
+                            "step": 2,
+                            "action": "choice",
+                            "card-list": [
+                                {
+                                    "id": "113305:Impenetrable Fog",
+                                    "type": "bronze"
+                                },
+                                {
+                                    "id": "113401:Clear Skies",
+                                    "type": "bronze"
+                                },
+                                {
+                                    "id": "200021:Bloodcurdling Roar",
+                                    "type": "bronze"
+                                }
+                            ],
+                            "chosen": 3
+                        },
+                        {
+                            "step": 3,
+                            "action": "playban",
+                            "source": "generated",
+                            "target": "card.red-siege.1",
+                            "card": {
+                                "id": "200021:Bloodcurdling Roar",
+                                "type": "bronze"
+                            }
+                        },
+                        {
+                            "step": 4,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-siege.1",
+                                "after": "board.red-banned"
+                            }
+                        },
+                        {
+                            "step": 5,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "generated",
+                                "after": "board.red-ranged.1"
+                            },
+                            "card": {
+                                "id": "152406:Bear",
+                                "strength": 11,
+                                "type": "bronze"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 15,
+                    "player": "blue",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "play",
+                            "source": "card.blue-hand.1"
+                        },
+                        {
+                            "step": 2,
+                            "action": "destroy",
+                            "target": ["card.red-melee.2", "card.red-ranged.2"],
+                            "before-after": {
+                                "type": "card",
+                                "before": [
+                                    {
+                                        "id": "152313:Clan Tuirseach Skirmishers",
+                                        "base-strength": 12,
+                                        "strength": 11,
+                                        "type": "bronze"
+                                    },
+                                    {
+                                        "id": "152406:Bear",
+                                        "strength": 11,
+                                        "type": "bronze"
+                                    }
+                                ],
+                                "after": [
+                                    {
+                                        "id": "152313:Clan Tuirseach Skirmishers",
+                                        "strength": 12,
+                                        "type": "bronze"
+                                    },
+                                    {
+                                        "id": "152406:Bear",
+                                        "strength": 11,
+                                        "type": "bronze"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "step": 3,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-graveyard.7",
+                                "after": "card.red-banned"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 16,
+                    "player": "red",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-hand",
+                                "after": "board.red-ranged.1"
+                            },
+                            "card": {
+                                "id": "200300:Whale Harpooner",
+                                "strength": 8,
+                                "type": "bronze"
+                            }
+                        },
+                        {
+                            "step": 2,
+                            "source": "card.red-ranged.1",
+                            "target": "card.blue-melee.4",
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.blue-melee.4",
+                                "after": "board.blue-ranged.1"
+                            }
+                        },
+                        {
+                            "step": 3,
+                            "source": "card.red-ranged.1",
+                            "target": "card.blue-ranged.1",
+                            "action": "change",
+                            "before-after": {
+                                "type": "strength",
+                                "before": 10,
+                                "after": 9
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 17,
+                    "player": "blue",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "pass"
+                        }
+                    ]
+                },
+                {
+                    "turn": 18,
+                    "player": "red",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-hand",
+                                "after": "board.red-melee.1"
+                            },
+                            "card": {
+                                "id": "112102:Geralt: Igni",
+                                "strength": 5,
+                                "type": "gold"
+                            }
+                        },
+                        {
+                            "step": 2,
+                            "action": "destroy",
+                            "target": ["card.red-melee.3", "card.red-ranged.5"],
+                            "before-after": {
+                                "type": "card",
+                                "before": [
+                                    {
+                                        "id": "122318:Kaedweni Siege Master",
+                                        "base-strength": 5,
+                                        "strength": 9,
+                                        "type": "bronze"
+                                    },
+                                    {
+                                        "id": "122318:Kaedweni Siege Master",
+                                        "base-strength": 5,
+                                        "strength": 9,
+                                        "type": "bronze"
+                                    }
+                                ],
+                                "after": [
+                                    {
+                                        "id": "122318:Kaedweni Siege Master",
+                                        "strength": 5,
+                                        "type": "bronze"
+                                    },
+                                    {
+                                        "id": "122318:Kaedweni Siege Master",
+                                        "strength": 5,
+                                        "type": "bronze"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 19,
+                    "player": "blue",
+                    "passed": true,
+                    "steps": []
+                },
+                {
+                    "turn": 20,
+                    "player": "red",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "pass"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "round": 2,
+            "coinflip": "red",
+            "blue-point": 0,
+            "red-point": 1,
+            "board": {
+                "blue-playable-leader": true,
+                "blue-hand": [
+                    {
+                        "id": "122301:Ballista",
+                        "strength": 6,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "200049:Battering Ram",
+                        "strength": 7,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122203:Thalar",
+                        "strength": 11,
+                        "type": "silver"
+                    },
+                    {
+                        "id": "112107:Villentretenmerth",
+                        "strength": 8,
+                        "countdown": 3,
+                        "type": "gold"
+                    }
+                ],
+                "blue-deck": [
+                    {
+                        "id": "122318:Kaedweni Siege Master",
+                        "strength": 5,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "200049:Battering Ram",
+                        "strength": 7,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122302:Reinforced Ballista",
+                        "strength": 7,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122302:Reinforced Ballista",
+                        "strength": 7,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122302:Reinforced Ballista",
+                        "strength": 7,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122313:Dun Banner Light Cavalry",
+                        "strength": 4,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122313:Dun Banner Light Cavalry",
+                        "strength": 4,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122313:Dun Banner Light Cavalry",
+                        "strength": 4,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122211:Margarita Laux-Antille",
+                        "strength": 6,
+                        "type": "silver"
+                    },
+                    {
+                        "id": "200225:Muzzle",
+                        "type": "gold"
+                    },
+                    {
+                        "id": "122106:Shani",
+                        "strength": 5,
+                        "type": "gold"
+                    }
+                ],
+                "blue-graveyard": [
+                    {
+                        "id": "113207:Commander's Horn",
+                        "type": "silver"
+                    },
+                    {
+                        "id": "113309:Scorch",
+                        "type": "silver"
+                    },
+                    {
+                        "id": "123201:Reinforcement",
+                        "type": "silver"
+                    },
+                    {
+                        "id": "200307:Jade Figurine",
+                        "type": "silver"
+                    },
+                    {
+                        "id": "122318:Kaedweni Siege Master",
+                        "strength": 5,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122318:Kaedweni Siege Master",
+                        "strength": 5,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122301:Ballista",
+                        "strength": 6,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122301:Ballista",
+                        "strength": 6,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "200049:Battering Ram",
+                        "strength": 7,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122103:John Natalis",
+                        "strength": 6,
+                        "type": "gold"
+                    }
+                ],
+                "blue-melee": {},
+                "blue-ranged": {},
+                "blue-siege": {},
+                "red-playable-leader": false,
+                "red-hand": [{},{}, {}, {}],
+                "red-deck": [{},{},{},{},{},{},{},{}],
+                "red-graveyard": [
+                    {
+                        "id": "152107:Coral",
+                        "strength": 5,
+                        "type": "gold"
+                    },
+                    {
+                        "id": "112102:Geralt: Igni",
+                        "strength": 5,
+                        "type": "gold"
+                    },
+                    {
+                        "id": "200021:Bloodcurdling Roar",
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "200226:Wolfsbane",
+                        "type": "gold"
+                    },
+                    {
+                        "id": "200258:Svanrige",
+                        "strength": 9,
+                        "type": "silver"
+                    },
+                    {
+                        "id": "152206:Gremist",
+                        "strength": 3,
+                        "type": "silver"
+                    },
+                    {
+                        "id": "152313:Clan Tuirseach Skirmishers",
+                        "original-base-strength": 7,
+                        "strength": 12,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "200046:Clan Tuirseach Veteran",
+                        "original-base-strength": 7,
+                        "strength": 8,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "200046:Clan Tuirseach Veteran",
+                        "original-base-strength": 7,
+                        "strength": 8,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "200300:Whale Harpooner",
+                        "strength": 8,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "152313:Clan an Craite Raider",
+                        "original-base-strength": 4,
+                        "strength": 5,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "200528:Heymaey Battle Maiden",
+                        "strength": 2,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "152209:Morkvarg",
+                        "original-base-strength": 9,
+                        "strength": 2,
+                        "type": "silver"
+                    }
+                ],
+                "red-melee": {},
+                "red-ranged": {},
+                "red-siege": {},
+                "before-mulligan": [
+                    {
+                        "step": 1,
+                        "action": "move",
+                        "before-after": {
+                            "type": "position",
+                            "before": "card.red-graveyard.13",
+                            "after": "board.red-melee.1"
+                        }
+                    },
+                    {
+                        "step": 2,
+                        "action": "change",
+                        "target": "card.red-melee.1",
+                        "before-after": {
+                            "type": "base-strength-strength",
+                            "before": 2,
+                            "after": 1
+                        }
+                    },
+                    {
+                        "step": 3,
+                        "action": "change",
+                        "target": ["red-leader", "card.red-graveyard.5", "card.red-graveyard.7",
+                            "card.red-graveyard.8", "card.red-graveyard.9"],
+                        "before-after": {
+                            "type": "base-strength-strength",
+                            "before": [4, 9, 12, 8, 8],
+                            "after": [5, 10, 13, 9, 9]
+                        }
+                    }
+                ],
+                "blue-mulligan": [
+                    {
+                        "old-card": "card.blue-hand.3",
+                        "new-card": "card.blue-deck.3"
+                    }
+                ],
+                "red-mulligan": [
+                    {
+                        "old-card": "card.blue-hand",
+                        "new-card": "card.blue-deck"
+                    }
+                ],
+                "after-mulligan": [
+                    {
+                        "step": 1,
+                        "action": "move",
+                        "before-after": {
+                            "type": "position",
+                            "before": "card.blue-hand.3",
+                            "after": "board.blue-hand.2"
+                        }
+                    }
+                ]
+            },
+            "turns": [
+                {
+                    "turn": 1,
+                    "player": "red",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-hand",
+                                "after": "board.red-siege.1"
+                            }
+                        },
+                        {
+                            "step": 2,
+                            "action": "choice",
+                            "card-list": [
+                                "card.red-graveyard.12", "card.red-graveyard.11",
+                                "card.red-graveyard.7", "card.red-graveyard.8", 
+                                "card.red-graveyard.9", "card.red-graveyard.10"
+                            ],
+                            "chosen": [3]
+                        },
+                        {
+                            "step": 3,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-graveyard.7",
+                                "after": "board.red-melee.2"
+                            }
+                        },
+                        {
+                            "step": 4,
+                            "action": "change",
+                            "target": "card.red-melee.2",
+                            "before-after": {
+                                "type": "base-strength-strength",
+                                "before": 13,
+                                "after": 16
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 2,
+                    "player": "blue",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.blue-hand.2",
+                                "after": "board.blue-melee.1"
+                            }
+                        },
+                        {
+                            "step": 2,
+                            "action": "change",
+                            "source": "card.blue-melee.1",
+                            "target": "card.red-melee.2",
+                            "before-after": {
+                                "type": "strength",
+                                "before": 16,
+                                "after": 14
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 3,
+                    "player": "red",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "play",
+                            "source": "card.red-hand",
+                            "card": {
+                                "id": "153201:Restore",
+                                "type": "silver"
+                            }
+                        },
+                        {
+                            "step": 2,
+                            "action": "choice",
+                            "card-list": [
+                                "card.red-graveyard.11", "card.red-graveyard.10", 
+                                "card.red-graveyard.7", "card.red-graveyard.8", 
+                                "card.red-graveyard.9", "card.red-graveyard.6", 
+                                "card.red-graveyard.5"
+                            ],
+                            "chosen": [7]
+                        },
+                        {
+                            "step": 3,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-graveyard.6",
+                                "after": "card.red-hand.1"
+                            }
+                        },
+                        {
+                            "step": 4,
+                            "action": "change",
+                            "target": "card.red-hand.1",
+                            "before-after": {
+                                "type": "base-strength-strength",
+                                "before": 3,
+                                "after": 9
+                            }
+                        },
+                        {
+                            "step": 5,
+                            "action": "choice",
+                            "card-list": [{},{},{}],
+                            "chosen": [3]
+                        },
+                        {
+                            "step": 6,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-hand.1",
+                                "after": "board.red-siege.2"
+                            }
+                        },
+                        {
+                            "step": 7,
+                            "action": "choice",
+                            "card-list": [
+                                {
+                                    "id": "113305:Impenetrable Fog",
+                                    "type": "bronze"
+                                },
+                                {
+                                    "id": "113401:Clear Skies",
+                                    "type": "bronze"
+                                },
+                                {
+                                    "id": "200021:Bloodcurdling Roar",
+                                    "type": "bronze"
+                                }
+                            ],
+                            "chosen": 3
+                        },
+                        {
+                            "step": 8,
+                            "action": "playban",
+                            "source": "generated",
+                            "target": "card.red-siege.1",
+                            "card": {
+                                "id": "200021:Bloodcurdling Roar",
+                                "type": "bronze"
+                            }
+                        },
+                        {
+                            "step": 9,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-siege.1",
+                                "after": "board.red-banned"
+                            }
+                        },
+                        {
+                            "step": 10,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "generated",
+                                "after": "board.red-ranged.1"
+                            },
+                            "card": {
+                                "id": "152406:Bear",
+                                "strength": 11,
+                                "type": "bronze"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 4,
+                    "player": "blue",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": ["card.blue-deck.6", "card.blue-deck.7", "card.blue-deck.8"],
+                                "after": ["board.blue-ranged.1", "board.blue-ranged.2", "board.blue-ranged.3"]
+                            }
+                        },
+                        {
+                            "step": 2,
+                            "action": "leader"
+                        },
+                        {
+                            "step": 3,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "generated",
+                                "after": "board.blue-melee.1"
+                            },
+                            "card": {
+                                "id": "121103:Henselt",
+                                "strength": 3,
+                                "type": "gold"
+                            }
+                        },
+                        {
+                            "step": 4,
+                            "action": "targeting",
+                            "source": "card.blue-melee.1",
+                            "target": "card.blue-melee.2"
+                        },
+                        {
+                            "step": 5,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.blue-deck.4",
+                                "after": "board.blue-melee.1"
+                            }
+                        },
+                        {
+                            "step": 6,
+                            "action": "change",
+                            "source": "card.blue-melee.1",
+                            "target": "card.red-siege.1",
+                            "before-after": {
+                                "type": "strength",
+                                "before": 8,
+                                "after": 6
+                            }
+                        },
+                        {
+                            "step": 7,
+                            "action": "change",
+                            "source": "card.blue-melee.1",
+                            "target": "card.red-ranged.1",
+                            "before-after": {
+                                "type": "strength",
+                                "before": 11,
+                                "after": 9
+                            }
+                        },
+                        {
+                            "step": 8,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.blue-deck.4",
+                                "after": "board.blue-melee.3"
+                            }
+                        },
+                        {
+                            "step": 9,
+                            "action": "change",
+                            "source": "card.blue-melee.3",
+                            "target": "card.red-siege.1",
+                            "before-after": {
+                                "type": "strength",
+                                "before": 6,
+                                "after": 4
+                            }
+                        },
+                        {
+                            "step": 10,
+                            "action": "change",
+                            "source": "card.blue-melee.3",
+                            "target": "card.red-ranged.1",
+                            "before-after": {
+                                "type": "strength",
+                                "before": 9,
+                                "after": 7
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 5,
+                    "player": "red",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "pass"
+                        }
+                    ]
+                },
+                {
+                    "turn": 6,
+                    "player": "blue",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "pass"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "round": 3,
+            "coinflip": "blue",
+            "blue-point": 1,
+            "red-point": 1,
+            "board": {
+                "blue-playable-leader": false,
+                "blue-hand": [
+                    {
+                        "id": "122301:Ballista",
+                        "strength": 6,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "200049:Battering Ram",
+                        "strength": 7,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122203:Thalar",
+                        "strength": 11,
+                        "type": "silver"
+                    },
+                    {
+                        "id": "112107:Villentretenmerth",
+                        "strength": 8,
+                        "countdown": 3,
+                        "type": "gold"
+                    }
+                ],
+                "blue-deck": [
+                    {
+                        "id": "122106:Shani",
+                        "strength": 5,
+                        "type": "gold"
+                    },
+                    {
+                        "id": "200225:Muzzle",
+                        "type": "gold"
+                    },
+                    {
+                        "id": "122211:Margarita Laux-Antille",
+                        "strength": 6,
+                        "type": "silver"
+                    },
+                    {
+                        "id": "200049:Battering Ram",
+                        "strength": 7,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122318:Kaedweni Siege Master",
+                        "strength": 5,
+                        "type": "bronze"
+                    }
+                ],
+                "blue-graveyard": [
+                    {
+                        "id": "122103:John Natalis",
+                        "strength": 6,
+                        "type": "gold"
+                    },
+                    {
+                        "id": "113207:Commander's Horn",
+                        "type": "silver"
+                    },
+                    {
+                        "id": "123201:Reinforcement",
+                        "type": "silver"
+                    },
+                    {
+                        "id": "113309:Scorch",
+                        "type": "silver"
+                    },
+                    {
+                        "id": "200307:Jade Figurine",
+                        "type": "silver"
+                    },
+                    {
+                        "id": "200049:Battering Ram",
+                        "strength": 7,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122302:Reinforced Ballista",
+                        "strength": 7,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122302:Reinforced Ballista",
+                        "strength": 7,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122302:Reinforced Ballista",
+                        "strength": 7,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122301:Ballista",
+                        "strength": 6,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122301:Ballista",
+                        "strength": 6,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122318:Kaedweni Siege Master",
+                        "strength": 5,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122318:Kaedweni Siege Master",
+                        "strength": 5,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122313:Dun Banner Light Cavalry",
+                        "strength": 4,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122313:Dun Banner Light Cavalry",
+                        "strength": 4,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "122313:Dun Banner Light Cavalry",
+                        "strength": 4,
+                        "type": "bronze"
+                    }
+                ],
+                "blue-melee": {},
+                "blue-ranged": {},
+                "blue-siege": {},
+                "red-playable-leader": false,
+                "red-hand": [{},{},{}],
+                "red-deck": [{},{},{},{},{},{},{}],
+                "red-graveyard": [
+                    {
+                        "id": "152107:Coral",
+                        "strength": 5,
+                        "type": "gold"
+                    },
+                    {
+                        "id": "112102:Geralt: Igni",
+                        "strength": 5,
+                        "type": "gold"
+                    },
+                    {
+                        "id": "153201:Restore",
+                        "type": "silver"
+                    },
+                    {
+                        "id": "200021:Bloodcurdling Roar",
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "200021:Bloodcurdling Roar",
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "200226:Wolfsbane",
+                        "type": "gold"
+                    },
+                    {
+                        "id": "200258:Svanrige",
+                        "strength": 10,
+                        "type": "silver"
+                    },
+                    {
+                        "id": "152206:Gremist",
+                        "strength": 8,
+                        "type": "silver"
+                    },
+                    {
+                        "id": "152313:Clan Tuirseach Skirmishers",
+                        "original-base-strength": 7,
+                        "strength": 16,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "200046:Clan Tuirseach Veteran",
+                        "original-base-strength": 7,
+                        "strength": 9,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "200046:Clan Tuirseach Veteran",
+                        "original-base-strength": 7,
+                        "strength": 9,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "200300:Whale Harpooner",
+                        "strength": 8,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "152313:Clan an Craite Raider",
+                        "original-base-strength": 4,
+                        "strength": 5,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "200528:Heymaey Battle Maiden",
+                        "strength": 2,
+                        "type": "bronze"
+                    }
+                ],
+                "red-melee": {},
+                "red-ranged": {},
+                "red-siege": {},
+                "red-banned": [
+                    {
+                        "id": "152209:Morkvarg",
+                        "original-base-strength": 9,
+                        "strength": 1,
+                        "type": "silver"
+                    },
+                    {
+                        "id": "152310:Priestess of Freya",
+                        "strength": 1,
+                        "type": "bronze"
+                    },
+                    {
+                        "id": "152310:Priestess of Freya",
+                        "strength": 1,
+                        "type": "bronze"
+                    }
+                ],
+                "before-mulligan": [
+                    {
+                        "step": 1,
+                        "action": "change",
+                        "target": ["red-leader", "card.red-graveyard.7", "card.red-graveyard.9",
+                            "card.red-graveyard.10", "card.red-graveyard.11"],
+                        "before-after": {
+                            "type": "base-strength-strength",
+                            "before": [5, 10, 16, 9, 9],
+                            "after": [6, 11, 17, 10, 10]
+                        }
+                    }
+                ],
+                "blue-mulligan": [
+                    {
+                        "old-card": "card.blue-hand.3",
+                        "new-card": "card.blue-deck.1"
+                    }
+                ]
+            },
+            "turns": [
+                {
+                    "turn": 1,
+                    "player": "blue",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.blue-hand.1",
+                                "after": "board.blue-melee.1"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 2,
+                    "player": "red",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-hand",
+                                "after": "board.red-siege.1"
+                            },
+                            "card": {
+                                "id": "200255:Sigrdrifa",
+                                "strength": 3,
+                                "type": "silver"
+                            }
+                        },
+                        {
+                            "step": 2,
+                            "action": "choice",
+                            "card-list": [
+                                "card.red-graveyard.14", "card.red-graveyard.13",
+                                "card.red-graveyard.9", "card.red-graveyard.10",
+                                "card.red-graveyard.11", "card.red-graveyard.12",
+                                "card.red-graveyard.8", "card.red-graveyard.7"
+                            ],
+                            "chosen": [4]
+                        },
+                        {
+                            "step": 3,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-graveyard.10",
+                                "after": "board.red-ranged.1"
+                            }
+                        },
+                        {
+                            "step": 4,
+                            "action": "change",
+                            "target": [
+                                "card.red-leader", "card.red-graveyard.9",
+                                "card.red-graveyard.10"
+                            ],
+                            "before-after": {
+                                "type": "base-strength-strength",
+                                "before": [6, 17, 10],
+                                "after": [7, 18, 11]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 3,
+                    "player": "blue",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.blue-hand.3",
+                                "after": "board.blue-melee.2"
+                            }
+                        },
+                        {
+                            "step": 2,
+                            "action": "change",
+                            "target": "card.blue-melee.2",
+                            "before-after": {
+                                "type": "armor",
+                                "before": 0,
+                                "after": 3
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 4,
+                    "player": "red",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-hand",
+                                "after": "board.red-siege.1"
+                            }
+                        },
+                        {
+                            "step": 2,
+                            "action": "targeting",
+                            "source": "card.red-siege.1",
+                            "target": "card.red-ranged.1"
+                        },
+                        {
+                            "step": 3,
+                            "action": "move",
+                            "before-after": {
+                                "type": "position",
+                                "before": "card.red-deck",
+                                "after": "board.red-siege.3"
+                            },
+                            "card": {
+                                "id": "200046:Clan Tuirseach Veteran",
+                                "original-base-strength": 7,
+                                "strength": 12,
+                                "type": "bronze"
+                            }
+                        },
+                        {
+                            "step": 4,
+                            "action": "change",
+                            "target": [
+                                "card.red-leader", "card.red-ranged.1",
+                                "card.red-graveyard.7", "card.red-graveyard.9",
+                                "card.red-graveyard.10"
+                            ],
+                            "before-after": {
+                                "type": "base-strength-strength",
+                                "before": [7, 10, 12, 18, 11],
+                                "after": [8, 11, 13, 19, 12]
+                            }
+                        },
+                        {
+                            "step": 5,
+                            "action": "change",
+                            "source": "card.red-siege.1",
+                            "target": "card.red-ranged.1",
+                            "before-after": {
+                                "type": "strength",
+                                "before": 11,
+                                "after": 10
+                            }
+                        }
+                    ]
+                },
+                {
+                    "turn": 5,
+                    "player": "blue",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "change",
+                            "target": "card.blue-melee.2",
+                            "before-after": {
+                                "type": "countdown",
+                                "before": 3,
+                                "after": 2
+                            }
+                        },
+                        {
+                            "step": 2,
+                            "action": "move",
+                            "before-after": {
+                                "type": "move",
+                                "before": "card.blue-hand.2",
+                                "after": "board.blue-melee.3"
+                            }
+                        },
+                        {
+                            "step": 3,
+                            "action": "choice",
+                            "card-list": [
+                                "card.blue-graveyard.16", "card.blue-graveyard.15", 
+                                "card.blue-graveyard.14", "card.blue-graveyard.13", 
+                                "card.blue-graveyard.13", "card.blue-graveyard.11", 
+                                "card.blue-graveyard.11", "card.blue-graveyard.10", 
+                                "card.blue-graveyard.9", "card.blue-graveyard.8", 
+                                "card.blue-graveyard.7", "card.blue-graveyard.6"
+                            ],
+                            "chosen": []
+                        }
+                    ]
+                },
+                {
+                    "turn": 6,
+                    "player": "red",
+                    "steps": [
+                        {
+                            "step": 1,
+                            "action": "forfeit"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
