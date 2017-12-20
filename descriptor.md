@@ -197,6 +197,11 @@ The ``blue-mulligan`` is an array of cards changes. It happens using the ``blue-
 * The new card takes the position of the old card.
 * If the new card position in the deck is known, it is recommended that the old card takes it. Else, the old card new position should be the first empty card object.
 
+Element | Description
+--- | ---
+``old-card`` | Card **position** in ``blue-hand``
+``new-card`` | Card **position** in ``blue-deck`` or **card** object
+
 
 ## Turns
 A **turn** object contains a list of **steps** played during a player turn.
