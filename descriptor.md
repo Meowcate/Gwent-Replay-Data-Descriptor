@@ -97,7 +97,9 @@ Element | Description | Possibles values | Default Value
 ``blue-melee`` | Player's melee **Board-row** | *See the **Board-row** section* |
 ``blue-ranged`` | Player's ranged **Board-row** | *See the **Board-row** section* |
 ``blue-siege`` | Player's siege **Board-row** | *See the **Board-row** section* |
-``blue-mulligan``\* | Player's mulligan sequence | *See the **Mulligan** section* |
+``blue-mulligan``\* | Player's **Mulligan** sequence | *See the **Mulligan** section* |
+``before-mulligan``\* | Array of **steps** actions | |
+``after-mulligan``\* | Array of **steps** actions | |
 
 ### Example
 ```json
