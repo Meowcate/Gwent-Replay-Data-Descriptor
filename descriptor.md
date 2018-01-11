@@ -1,3 +1,4 @@
+
 # Gwent Replay Data Descriptor
 
 The Gwent Replay Data Descriptor (GRDD) gives a complete structure to record a Gwent game, to be used for step by step replay application.
@@ -13,11 +14,11 @@ The **game** object contains basic informations about the game itself.
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
 ``name``\* | Name of the game | *anything*| A Round Of Gwent
-``blue-name``\* | Name of the blue player | *anything* | Blue
-``blue-mmr``\* | Player's MMR during this game | *any positive integer* | *none*
-``blue-faction`` | Player's faction | ``northern-realms``, ``skellige``, ``nilfgaard``, ``monsters``, ``scoia-tael`` | 
-``blue-leader`` | Player's leader | *any Gwent leader card ID* | 
-``red-visible`` | Are red hand cards visible ? | ``true``, ``false`` | false
+``blueName``\* | Name of the blue player | *anything* | Blue
+``blueMmr``\* | Player's MMR during this game | *any positive integer* | *none*
+``blueFaction`` | Player's faction | ``northern-realms``, ``skellige``, ``nilfgaard``, ``monsters``, ``scoiatael`` | 
+``blueLeader`` | Player's leader | *any Gwent leader card ID* | 
+``redVisible`` | Are red hand cards visible ? | ``true``, ``false`` | false
 ``version`` | The game version number during this replay | *A version number without letters with major, minor, and patch numbers* | *The current version number. For example : ``0.9.12``*
 ``winner``* | Winner player | ``blue``, ``red`` | *none*
 
@@ -27,14 +28,14 @@ Element | Description | Possibles values | Default Value
 ```json
 "game": {
   "name": "Let's play Gwent",
-  "blue-name": "Geralt",
-  "blue-mmr": 4051,
-  "blue-faction": "northern-realms",
-  "blue-leader": "200169:Radovid",
-  "red-name": "Ciri",
-  "red-mmr": 4127,
-  "red-faction": "skellige",
-  "red-leader": "200161",
+  "blueName": "Geralt",
+  "blueMmr": 4051,
+  "blueFaction": "northern-realms",
+  "blueLeader": "200169:Radovid",
+  "red?ame": "Ciri",
+  "redMmr": 4127,
+  "redFaction": "skellige",
+  "redLeader": "200161",
   "version": "0.9.12",
   "winner": "blue"
 }
@@ -47,7 +48,7 @@ Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
 ``round`` | Number of the round | 1
 ``coinflip`` | Which player plays first | ``blue``, ``red`` | blue
-``blue-point`` | Number of points the player have at the beggining of the round | ``0`` or ``1`` | 0
+``bluePoint`` | Number of points the player have at the beggining of the round | ``0`` or ``1`` | 0
 ``board`` | Board description | *See the **Board** section* |
 ``turns`` | Array of changes on the board, turn after turn | *See the **Turn** section* |
 
@@ -57,8 +58,8 @@ Element | Description | Possibles values | Default Value
   {
     "number": 1,
     "coinflip": "blue",
-    "blue-point": 0,
-    "red-point": 0,
+    "bluePoint": 0,
+    "redPoint": 0,
     "board": {
       "(...)"
     },
@@ -69,15 +70,15 @@ Element | Description | Possibles values | Default Value
   {
     "number": 2,
     "coinflip": "red",
-    "blue-point": 1,
-    "red-point": 0,
+    "bluePoint": 1,
+    "redPoint": 0,
     "(...)"
   },
   {
     "number": 3,
     "coinflip": "blue",
-    "blue-point": 1,
-    "red-point": 1,
+    "bluePoint": 1,
+    "redPoint": 1,
     "(...)"
   }
 ]
@@ -87,45 +88,45 @@ Element | Description | Possibles values | Default Value
 A **board** object contains a full description of the board at the beggining of a round.
 
 * If there is resilient units, it should be a part of the board.
-* Before-mulligan actions as *losing resilience*, *automatic resurrection*, *deathwishes on a new round* and others has to be placed in the ``before-mulligan`` element as **step** elements. ``after-mulligan`` acts the same, especially for actions activated when a card is discarded from the mulligan. Any action executed before the first player gets the "Your turn" Gwent message must be put into one of those space.
+* Before-mulligan actions as *losing resilience*, *automatic resurrection*, *deathwishes on a new round* and others has to be placed in the ``beforeMulligan`` element as **step** elements. ``afterMulligan`` acts the same, especially for actions activated when a card is discarded from the mulligan. Any action executed before the first player gets the "Your turn" Gwent message must be put into one of those space.
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
-``blue-playable-leader`` | Show if the leader is still playable | ``true`` if the leader can be played, else ``false`` | false
-``blue-hand`` | Player's hand **Card-list** | *See the **Card-list** section* |
-``blue-deck`` | Player's deck **Card-list** | *See the **Card-list** section* |
-``blue-graveyard`` | Player's graveyard **Card-list** | *See the **Card-list** section* |
-``blue-melee`` | Player's melee **Board-row** | *See the **Board-row** section* |
-``blue-ranged`` | Player's ranged **Board-row** | *See the **Board-row** section* |
-``blue-siege`` | Player's siege **Board-row** | *See the **Board-row** section* |
-``blue-mulligan``\* | Player's **Mulligan** sequence | *See the **Mulligan** section* |
-``before-mulligan``\* | Array of **steps** actions | |
-``after-mulligan``\* | Array of **steps** actions | |
+``bluePlayableLeader`` | Show if the leader is still playable | ``true`` if the leader can be played, else ``false`` | false
+``blueHand`` | Player's hand **Card-list** | *See the **Card-list** section* |
+``blueDeck`` | Player's deck **Card-list** | *See the **Card-list** section* |
+``blueGraveyard`` | Player's graveyard **Card-list** | *See the **Card-list** section* |
+``blueMelee`` | Player's melee **Board-row** | *See the **Board-row** section* |
+``blueRanged`` | Player's ranged **Board-row** | *See the **Board-row** section* |
+``blueSiege`` | Player's siege **Board-row** | *See the **Board-row** section* |
+``blueMulligan``\* | Player's **Mulligan** sequence | *See the **Mulligan** section* |
+``beforeMulligan``\* | Array of **steps** actions | |
+``afterMulligan``\* | Array of **steps** actions | |
 
 ### Example
 ```json
 "board": {
-  "blue-used-leader": true,
-  "blue-hand": [
+  "blueUsedLeader": true,
+  "blueHand": [
     "(...)"
   ],
-  "blue-deck": [
+  "blueDeck": [
     "(...)"
   ],
-  "blue-graveyard": [
+  "blueGraveyard": [
     "(...)"
   ],
-  "blue-melee": [
+  "blueMelee": [
     "(...)"
   ],
-  "blue-ranged": [
+  "blueRanged": [
     "(...)"
   ],
-  "blue-siege": [
+  "blueSiege": [
     "(...)"
   ],
-  "red-used-leader": false,
-  "red-hand": [
+  "redUsedLeader": false,
+  "redHand": [
     "(...)",
   ],
   "(...)"
@@ -139,8 +140,8 @@ A **card-list** array contains a list of **cards**.
 * The cards are ordered from left to right.
 * Any empty object value is considered as a hidden card, which is considered to be inaccessible (e.g. the red deck), simply hidden but can be revealed (e.g. the red hand) or temporary hidden (e.g. an *ambush* card).
 * Hidden or revelead, a card-list must contain as many values as cards in the list.
-* The **card-list** can be a string, designating an entire existing card-list (e.g. when a player has to choose a card to discard from his deck, the **card-list** can be ``blue-deck``).
-* A card from the **card-list** can be a string, each string designating a position (e.g. when a player has to resurrect a gold card from his graveyard, the **card-list** can be ``["card.red-graveyard.2", "card.red-graveyard.6"]``).
+* The **card-list** can be a string, designating an entire existing card-list (e.g. when a player has to choose a card to discard from his deck, the **card-list** can be ``blueDeck``).
+* A card from the **card-list** can be a string, each string designating a position (e.g. when a player has to resurrect a gold card from his graveyard, the **card-list** can be ``["card.redGraveyard.2", "card.redGraveyard.6"]``).
 * A card from the **card-list** can be a **card object**.
 
 ## Board-row
@@ -149,7 +150,7 @@ A **board-row** object contains the description of a row.
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
 ``status``\* | Status of the row | ``frost``, ``fog``, ``rain``, ``drought``, ``ragh-nar-roog``, ``golden-froth``, ``clean`` | clear
-``card-list`` | Card-list of the row | | *none*
+``cardList`` | Card-list of the row | | *none*
 
 ## Card
 A **card** object contains the current statut of the card.
@@ -163,36 +164,36 @@ A **card** object contains the current statut of the card.
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
 ``id`` | Gwent card ID | *Positive integer ID* |
-``original-strength``\* | Original base strength when playing a copy of the card | *Positive integer* | 
-``base-strength``\* | Current base strength | *Positive integer* | 
+``originalStrength``\* | Original base strength when playing a copy of the card | *Positive integer* | 
+``baseStrength``\* | Current base strength | *Positive integer* | 
 ``strength``\* | Current strength | *Positive integer* | 
-``spy-token``\* | Spy token | ``true``, ``false`` | false
-``resilience-token``\* | Resilience token | ``true``, ``false`` | false
-``lock-token``\* | Lock token | ``true``, ``false`` | false
-``shield-token``\* | Shield token | ``true``, ``false`` | false
+``spyToken``\* | Spy token | ``true``, ``false`` | false
+``resilienceToken``\* | Resilience token | ``true``, ``false`` | false
+``lockToken``\* | Lock token | ``true``, ``false`` | false
+``shieldToken``\* | Shield token | ``true``, ``false`` | false
 ``armor``\* | Current armor value | *Positive integer* | 0
 ``countdown``\* | Current countdown value | *Positive integer* | 0
 ``revealed``\* | The card is visible to the other player | ``true``, ``false`` | false
 ``type`` | Card type | ``bronze``, ``silver``, ``gold`` | 
 
-> Note : if the `strength` is ommited, the card is considerated as a *special card*. If the `base-strength` is ommited, a replay tool must take the `strength` value as the `base-value`. If the `original-strength` value is ommited, a replay tool must take the `base-value` as the `original-strength` value.
+> Note : if the `strength` is ommited, the card is considerated as a *special card*. If the `baseStrength` is ommited, a replay tool must take the `strength` value as the `base-value`. If the `originalStrength` value is ommited, a replay tool must take the `base-value` as the `originalStrength` value.
 
 ### Example
 The next card has been renforced by 2, then boosted by 3.
 ```json
 {
   "id": "132313:Ekimmara",
-  "original-strength": 6,
-  "base-strength": 8,
+  "originalStrength": 6,
+  "baseStrength": 8,
   "strength": 11,
-  "resilience-token": true,
-  "shield-token": true,
+  "resilienceToken": true,
+  "shieldToken": true,
   "type": "bronze"
 }
 ```
 
 ## Mulligan
-The ``blue-mulligan`` is an array of cards changes. It happens using the ``blue-deck`` and ``blue-hand`` cards-lists specified at the begin of a **round** element.
+The ``blueMulligan`` is an array of cards changes. It happens using the ``blueDeck`` and ``blueHand`` cards-lists specified at the begin of a **round** element.
 
 * The new card comes from a **position** (if the card is identitfied in the deck) or is a card object.
 * The new card takes the position of the old card.
@@ -200,8 +201,8 @@ The ``blue-mulligan`` is an array of cards changes. It happens using the ``blue-
 
 Element | Description
 --- | ---
-``old-card`` | Card **position** in ``blue-hand``
-``new-card`` | Card **position** in ``blue-deck`` or **card** object
+``oldCard`` | Card **position** in ``blueHand``
+``newCard`` | Card **position** in ``blueDeck`` or **card** object
 
 
 ## Turns
@@ -225,31 +226,31 @@ Element | Description | Possibles values | Default Value
 ``source``\* | Source of an action | *See the **Positions** section* |
 ``action``\* | Type of action | *See **List of actions*** |
 ``target``\* | Target of an action | *See the **Positions** section* |
-``before-after``\* | Variable value before the action | *See the **Befores/afters** section* |
+``beforeAfter``\* | Variable value before the action | *See the **Befores/afters** section* |
 ``card``\* | Card object | *See the **Card** section* |
-``card-list``\* | Cards-list when necessary | *See the **Card-list** section* |
-``card-choice``\* | ID of the card for an action choice | *Integer* |
+``cardList``\* | Cards-list when necessary | *See the **Card-list** section* |
+``cardChoice``\* | ID of the card for an action choice | *Integer* |
 ``chosen``\* | Array of chosen choices from a card-list | *See the note below* |
 
-> **Note :** When a player have choices (from a card-list, from actions...), ``chosen`` is an array of integers, each one designating the *nth* choice (from left to right) that has been done by the player. Therefore, if a player can choose 2 between 5 spells to play, the 5 cards are showed from the ``card-list``, and (in the same **step**), the ``chosen`` array can be ``[3, 5]``, picking the 3rd and 5th choices of the list.
-When the choices are from a card's action (and not "choose to spawn *card A* or *card B*"), the card ID is put to ``card-choice``, so the replay tool can show the card instead of a card list. The ``chosen`` element must contain the number of the choice (1st, 2nd, etc) the same way in an array (for example, *[2]* for taking the 2nd action).
+> **Note :** When a player have choices (from a card-list, from actions...), ``chosen`` is an array of integers, each one designating the *nth* choice (from left to right) that has been done by the player. Therefore, if a player can choose 2 between 5 spells to play, the 5 cards are showed from the ``cardList``, and (in the same **step**), the ``chosen`` array can be ``[3, 5]``, picking the 3rd and 5th choices of the list.
+When the choices are from a card's action (and not "choose to spawn *card A* or *card B*"), the card ID is put to ``cardChoice``, so the replay tool can show the card instead of a card list. The ``chosen`` element must contain the number of the choice (1st, 2nd, etc) the same way in an array (for example, *[2]* for taking the 2nd action).
 
 ### Position object :
 A **position** string contains the position of a source or target of an action. It can designate a card or an element of the board.
 
-*  The two elements of a position are separated by a dot. For example, the 4th card of the blue melee is *blue-melee.4*.
+*  The two elements of a position are separated by a dot. For example, the 4th card of the blue melee is *blueMelee.4*.
 *  When the position is an entire row or the original leader position, the location is *0* (and so, optional).
 *  When the position is a specific card, the location is the number of the card from left to right.
-*  When the position is between cards, the location is the number of the card to the right. For example, on a row with 6 cards, deploying a card on 1st position is **board.blue-melee.1**. Between the 3rd and 4th card, it becomes **board.blue-melee.4**. And after the 6th card, it's **board.blue-melee.7**.
+*  When the position is between cards, the location is the number of the card to the right. For example, on a row with 6 cards, deploying a card on 1st position is **board.blueMelee.1**. Between the 3rd and 4th card, it becomes **board.blueMelee.4**. And after the 6th card, it's **board.blueMelee.7**.
 *  The *0* (or absence of) location can be used for a *card* ``type`` to designate the first empty card object of a list. 
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
 ``type`` | Type of position | ``card``, ``board`` |
-``region`` | Area of choice | ``blue-leader``, ``blue-hand``, ``blue-deck``, ``blue-graveyard``, ``blue-melee``, ``blue-ranged``, ``blue-siege``, ``blue-play``, ``blue-banned``, ``generated`` |
+``region`` | Area of choice | ``blueLeader``, ``blueHand``, ``blueDeck``, ``blueGraveyard``, ``blueMelee``, ``blueRanged``, ``blueSiege``, ``bluePlay``, ``blueBanned``, ``generated`` |
 ``location``\* | Exact position of the target. Not needed if it targets a full row for example | *Integer. See above for the details* | 0
 
-> **Note :** *blue-play* is the position of a spell being played, on the right side of the board. This helps to show which card is played before its sends to graveyard.
+> **Note :** *bluePlay* is the position of a spell being played, on the right side of the board. This helps to show which card is played before its sends to graveyard.
 > The ``generated`` position is when a card doesn't come from the board (e.g. a card spawned by a spell).
 
 
@@ -260,12 +261,12 @@ Gwent action | GRDD action code | Note
 --- | --- | ---
 Transform a card into another | ``transform`` | The changed card is in **step.target**. The new card is in **step.card**.
 Move a card | ``move`` | Move a card from anywhere to anywhere. It's used to deploy, pick a card from the deck, move to graveyard or banned pile... You can generate a new card by setting the ``before`` position as ``generated``.
-Play a card | ``play`` | Shortcut for spells to move a card to the ``blue-play`` this turn, and be considered and moved to the graveyard at the end of the step. **Important :** when using ``play``, ``source`` must be the played spell, because ``target`` designates the potential target of the spell.
+Play a card | ``play`` | Shortcut for spells to move a card to the ``bluePlay`` this turn, and be considered and moved to the graveyard at the end of the step. **Important :** when using ``play``, ``source`` must be the played spell, because ``target`` designates the potential target of the spell.
 Play and ban | ``playban`` | Similar as ``play``, when a spell must be banned after been played.
-Change a token / an element | ``change`` | The changed element, its previous and its new status are in **step.before-after**
-Destroy a card | ``destroy`` | Shortcut to move a unit card to its side's graveyard last place. The previous and new state of the card are on the **step.before-after**.
+Change a token / an element | ``change`` | The changed element, its previous and its new status are in **step.beforeAfter**
+Destroy a card | ``destroy`` | Shortcut to move a unit card to its side's graveyard last place. The previous and new state of the card are on the **step.beforeAfter**.
 Display a card | ``display`` | Display a hidden card (ambush, red hand, etc). **step.card** must contain the informations of the showed card.
-Play the player's leader | ``leader`` | This action, which has no ``source`` nor ``target`` nor ``before-after``, must be followed by a ``move`` action with ``generated`` source for the deployed card : the leader card is different (at least as different ``ingameid`` according to Gwent standard), to the card deployed on the board.
+Play the player's leader | ``leader`` | This action, which has no ``source`` nor ``target`` nor ``beforeAfter``, must be followed by a ``move`` action with ``generated`` source for the deployed card : the leader card is different (at least as different ``ingameid`` according to Gwent standard), to the card deployed on the board.
 
 > **Note :** When a card is moved from a pile of unknow position, the position *0* is used. The pile must then remove one empty element.
 When the **red player** plays a hidden card, the card information must be filled. The *0* position can be used as a shortcut to the first possible hidden card of the hand.
@@ -274,12 +275,12 @@ When the **red player** plays a hidden card, the card information must be filled
 #### Actions on rows
 Gwent action | GRDD action code | Note
 --- | --- | ---
-Change the status | ``change-row`` | The name of the boon or the hazard is in **step.before/after**. Cleaning a row is applying the ``clear`` status.
+Change the status | ``changeRow`` | The name of the boon or the hazard is in **step.before/after**. Cleaning a row is applying the ``clear`` status.
 
 #### Others actions
 Gwent action | GRDD action code | Note
 --- | --- | ---
-Choice in a list of cards | ``choice`` | The ``card-list`` element must be provided. This action shows a list of cards to choose for a player, so the replay viewer can see what the player could choose. The cards of the list are not moved from/to any position and exists only for display.
+Choice in a list of cards | ``choice`` | The ``cardList`` element must be provided. This action shows a list of cards to choose for a player, so the replay viewer can see what the player could choose. The cards of the list are not moved from/to any position and exists only for display.
 Discover a card | `` discover`` | *See the Note below*
 Targeting something | ``targeting`` | When anything needs to show it targets something else (using ``source`` and ``target``), but there is no specific action except the targetting display (e.g. one deployed card can make another card repeat its deploy action : the first must ``targetting`` the second, before the second does its deploy action again)
 
@@ -298,15 +299,15 @@ A **before/after** is an object containing the specific change of an action. Thi
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
-``type`` | Type of change | ``position``, ``[card-element]``, ``base-strength-strength``, ``row``, ``card`` |
+``type`` | Type of change | ``position``, ``[card-element]``, ``baseStrengthStrength``, ``row``, ``card`` |
 ``before`` | Value before change | *See list below* |
 ``after`` | Value after change | *See list below* |
 
-* Any ``[card-element]`` (except the ``id``) can be changed using the same element name (``spy-token``, ``base-strength``...) as type. See the **Card** section to check all the possibilities and the possible values.
+* Any ``[card-element]`` (except the ``id``) can be changed using the same element name (``spyToken``, ``baseStrength``...) as type. See the **Card** section to check all the possibilities and the possible values.
 * The ``position`` is a position object. See the **Position** section for more informations.
 * The ``row`` before/after values must be one of these : ``frost``, ``fog``, ``rain``, ``drought``, ``ragh-nar-roog``, ``skellige-storm``, ``golden-froth``, ``clean``
 * The ``card`` type is necessary when you need to keep the full state of a card before ``transform`` or ``destroy``. Note that the ``id`` is necessary for ``transform`` (the card identity should be different), but not for ``destroy``.
-* ``base-strength-strength`` is a shortcut when you need to change the strength and the base-strength of a unit from the **same** ``before`` value to the **same** ``after`` value. It helps for example when you need to *reset-and-weaken* an unit.
+* ``baseStrengthStrength`` is a shortcut when you need to change the strength and the baseStrength of a unit from the **same** ``before`` value to the **same** ``after`` value. It helps for example when you need to *reset-and-weaken* an unit.
 
 
 ## Massive assignations
@@ -321,11 +322,11 @@ Note that, for the ``destroy`` action, the targets are going to their graveyards
 
 ### Examples
 *  **(Step 1)** The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being *played*.
-*  **(Step 2)** It picks the random strongest unit from the deck. The card (an **Ekimmara** here (base strength 6), which was *boosted* by 2 (strength 8) and has a *shield*, thanks to an earlier **Quen Sign**) is boosted by 2 when spawned (strength 10), and deployed (*moved*) from an unkown position in the deck (``card.blue-deck``) to the blue ranged row between the 1st and 2nd card (the *board.blue-ranged.2* position)
+*  **(Step 2)** It picks the random strongest unit from the deck. The card (an **Ekimmara** here (base strength 6), which was *boosted* by 2 (strength 8) and has a *shield*, thanks to an earlier **Quen Sign**) is boosted by 2 when spawned (strength 10), and deployed (*moved*) from an unkown position in the deck (``card.blueDeck``) to the blue ranged row between the 1st and 2nd card (the *board.blueRanged.2* position)
 *  **(Step 3)** It earns *resilience*,
 *  **(Step 4)** and consumes (*destroy*) the card (a **Nekker** which has a strength of 7) on the *blue melee row on 3rd position*.
 * **(Step 5)** The Ekimmara is *boosted* again by 7.
-* **(Step 6)** As the Ekimmara consumed a card, all invisible nekkers in the blue deck are *boosted*. As we don't know the position of each card, we will call twice the *card.blue-deck* position, as there is two nekkers in the deck. And because we don't know the current strength of the nekker (but may be known, for example with GwentUp), we don't use the ``before-after`` here.
+* **(Step 6)** As the Ekimmara consumed a card, all invisible nekkers in the blue deck are *boosted*. As we don't know the position of each card, we will call twice the *card.blueDeck* position, as there is two nekkers in the deck. And because we don't know the current strength of the nekker (but may be known, for example with GwentUp), we don't use the ``beforeAfter`` here.
 * **(Step 7)** Because the Nekker died and can call another one with his *deathwish*, another Nekker is *moved* from the deck (now with a strength of 8) on the 5th of the melee row.
 ```json
 "turns": {
@@ -334,43 +335,43 @@ Note that, for the ``destroy`` action, the targets are going to their graveyards
   "steps": [
     {
       "step": 1,
-      "source": "card.blue-hand.3",
+      "source": "card.blueHand.3",
       "action": "play"
     },
     {
       "step": 2,
       "action": "move",
-      "source": "card.blue-deck",
-      "target": "board.blue-ranged-2",
+      "source": "card.blueDeck",
+      "target": "board.blueRanged.2",
       "card": {
           "id": "132313:Ekimmara",
-          "original-strength": 6,
-          "base-strength": 6,
+          "originalStrength": 6,
+          "baseStrength": 6,
           "strength": 10,
-          "shield-token": true,
+          "shieldToken": true,
           "type": "bronze"
       }
     },
     {
       "step": 3,
       "action": "change",
-      "target": "card.blue-ranged.2",
-      "before-after": {
-        "type": "resilience-token",
+      "target": "card.blueRanged.2",
+      "beforeAfter": {
+        "type": "resilienceToken",
         "before": false,
         "after": true
       }
     },
     {
       "step": 4,
-      "source": "card.blue-ranged.2",
+      "source": "card.blueRanged.2",
       "action": "destroy",
-      "target": "card.blue-melee.3",
-      "before-after": {
+      "target": "card.blueMelee.3",
+      "beforeAfter": {
         "type": "card",
         "before": {
           "id": "132305:Nekker",
-          "base-strength": 3,
+          "baseStrength": 3,
           "strength": 7,
           "type": "bronze"
         },
@@ -384,8 +385,8 @@ Note that, for the ``destroy`` action, the targets are going to their graveyards
     {
       "step": 5,
       "action": "change",
-      "target": "card.blue-ranged.2",
-      "before-after": {
+      "target": "card.blueRanged.2",
+      "beforeAfter": {
         "type": "strength",
         "before": 10,
         "after": 17
@@ -394,20 +395,20 @@ Note that, for the ``destroy`` action, the targets are going to their graveyards
     {
       "step": 6,
       "action": "change",
-      "target": ["card.blue-deck", "card.blue-deck"]
+      "target": ["card.blueDeck", "card.blueDeck"]
     },
     {
       "step": 7,
       "action": "move",
-      "before-after": {
+      "beforeAfter": {
         "type": "position",
-        "before": "card.blue-deck",
-        "after": "board.blue-melee.5"
+        "before": "card.blueDeck",
+        "after": "board.blueMelee.5"
       }
       "card": {
           "id": "132305:Nekker",
-          "original-strength": 3,
-          "base-strength": 3,
+          "originalStrength": 3,
+          "baseStrength": 3,
           "strength": 8,
           "type": "bronze"
       }
