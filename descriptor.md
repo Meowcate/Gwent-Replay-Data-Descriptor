@@ -163,7 +163,7 @@ A **card** object contains the current statut of the card.
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
 ``id`` | Gwent card ID | *Positive integer ID* |
-``original-base-strength``\* | Original base strength when playing a copy of the card | *Positive integer* | 
+``original-strength``\* | Original base strength when playing a copy of the card | *Positive integer* | 
 ``base-strength``\* | Current base strength | *Positive integer* | 
 ``strength``\* | Current strength | *Positive integer* | 
 ``spy-token``\* | Spy token | ``true``, ``false`` | false
@@ -175,14 +175,14 @@ Element | Description | Possibles values | Default Value
 ``revealed``\* | The card is visible to the other player | ``true``, ``false`` | false
 ``type`` | Card type | ``bronze``, ``silver``, ``gold`` | 
 
-> Note : if the `strength` is ommited, the card is considerated as a *special card*. If the `base-strength` is ommited, a replay tool must take the `strength` value as the `base-value`. If the `original-base-value` is ommited, a replay tool must take the `base-value` as the `original-base-value`.
+> Note : if the `strength` is ommited, the card is considerated as a *special card*. If the `base-strength` is ommited, a replay tool must take the `strength` value as the `base-value`. If the `original-strength` value is ommited, a replay tool must take the `base-value` as the `original-strength` value.
 
 ### Example
 The next card has been renforced by 2, then boosted by 3.
 ```json
 {
   "id": "132313:Ekimmara",
-  "original-base-strength": 6,
+  "original-strength": 6,
   "base-strength": 8,
   "strength": 11,
   "resilience-token": true,
@@ -344,7 +344,7 @@ Note that, for the ``destroy`` action, the targets are going to their graveyards
       "target": "board.blue-ranged-2",
       "card": {
           "id": "132313:Ekimmara",
-          "original-base-strength": 6,
+          "original-strength": 6,
           "base-strength": 6,
           "strength": 10,
           "shield-token": true,
@@ -406,7 +406,7 @@ Note that, for the ``destroy`` action, the targets are going to their graveyards
       }
       "card": {
           "id": "132305:Nekker",
-          "original-base-strength": 3,
+          "original-strength": 3,
           "base-strength": 3,
           "strength": 8,
           "type": "bronze"
