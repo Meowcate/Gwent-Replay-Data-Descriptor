@@ -2,23 +2,23 @@
     "game": {
         "video": "https://www.youtube.com/watch?v=KBNAqGUhRWM",
         "name": "A round of Gwent",
-        "blue-name": "ImDelude",
-        "blue-faction": "northern realms",
-        "blue-leader": "200170:Henselt",
-        "red-name": "Grande42",
-        "red-faction": "skellige",
-        "red-leader": "200159:King Bran",
+        "blueName": "ImDelude",
+        "blueFaction": "northern-realms",
+        "blueLeader": "200170:Henselt",
+        "redName": "Grande42",
+        "redFaction": "skellige",
+        "redLeader": "200159:King Bran",
         "version": "0.9.12"
     },
     "rounds": [
         {
             "round": 1,
             "coinflip": "blue",
-            "blue-point": 0,
-            "red-point": 0,
+            "bluePoint": 0,
+            "redPoint": 0,
             "board": {
-                "blue-playable-leader": true,
-                "blue-hand": [
+                "bluePlayableLeader": true,
+                "blueHand": [
                     {
                         "id": "113207:Commander's Horn",
                         "type": "silver"
@@ -69,7 +69,7 @@
                         "type": "gold"
                     }
                 ],
-                "blue-deck": [
+                "blueDeck": [
                     {
                         "id": "122318:Kaedweni Siege Master",
                         "strength": 5,
@@ -144,17 +144,17 @@
                         "type": "gold"
                     }
                 ],
-                "blue-graveyard": [],
-                "blue-melee": {},
-                "blue-ranged": {},
-                "blue-siege": {},
-                "red-playable-leader": true,
-                "red-hand": [{},{},{},{},{},{},{},{},{},{}],
-                "red-deck": [{},{},{},{},{},{},{},{},{},{},{},{},{},{},{}],
-                "red-graveyard": [],
-                "red-melee": {},
-                "red-ranged": {},
-                "red-siege": {}
+                "blueGraveyard": [],
+                "blueMelee": {},
+                "blueRanged": {},
+                "blueSiege": {},
+                "redPlayableLeader": true,
+                "redHand": [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                "redDeck": [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+                "redGraveyard": [],
+                "redMelee": {},
+                "redRanged": {},
+                "redSiege": {}
             },
             "turns": [
                 {
@@ -164,10 +164,10 @@
                         {
                             "step": 1,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.blue-hand.7",
-                                "after": "board.blue-melee.1"
+                                "before": "card.blueHand.7",
+                                "after": "board.blueMelee.1"
                             }
                         }
                     ]
@@ -179,10 +179,10 @@
                         {
                             "step": 1,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-hand",
-                                "after": "board.red-ranged.1"
+                                "before": "card.redHand",
+                                "after": "board.redRanged.1"
                             },
                             "card": {
                                 "id": "152107:Coral",
@@ -193,9 +193,9 @@
                         {
                             "step": 2,
                             "action": "transform",
-                            "source": "card.red-ranged.1",
+                            "source": "card.redRanged.1",
                             "target": "card.blue.melee.1",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "card",
                                 "before": {
                                     "id": "200529:Ronvid of Small Marsh",
@@ -218,18 +218,18 @@
                         {
                             "step": 1,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.blue-hand.6",
-                                "after": "board.blue-melee.1"
+                                "before": "card.blueHand.6",
+                                "after": "board.blueMelee.1"
                             }
                         },
                         {
                             "step": 2,
                             "action": "change",
-                            "source": "card.blue-melee.1",
-                            "target": "card.red-ranged.1",
-                            "before-after": {
+                            "source": "card.blueMelee.1",
+                            "target": "card.redRanged.1",
+                            "beforeAfter": {
                                 "type": "strength",
                                 "before": 5,
                                 "after": 3
@@ -248,10 +248,10 @@
                         {
                             "step": 2,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
                                 "before": "generated",
-                                "after": "board.red-ranged.1"
+                                "after": "board.redRanged.1"
                             },
                             "card": {
                                 "id": "151101:King Bran",
@@ -262,16 +262,16 @@
                         {
                             "step": 3,
                             "action": "choice",
-                            "card-list": "red.deck",
+                            "cardList": "red.deck",
                             "chosen": [1, 2, 3]
                         },
                         {
                             "step": 4,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-deck",
-                                "after": "board.red-graveyard.1"
+                                "before": "card.redDeck",
+                                "after": "board.redGraveyard.1"
                             },
                             "card": {
                                 "id": "152209:Morkvarg",
@@ -282,10 +282,10 @@
                         {
                             "step": 5,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-deck",
-                                "after": "board.red-graveyard.2"
+                                "before": "card.redDeck",
+                                "after": "board.redGraveyard.2"
                             },
                             "card": {
                                 "id": "152316:Clan an Craite Raider",
@@ -296,10 +296,10 @@
                         {
                             "step": 6,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-deck",
-                                "after": "board.red-graveyard.3"
+                                "before": "card.redDeck",
+                                "after": "board.redGraveyard.3"
                             },
                             "card": {
                                 "id": "200226:Wolfsbane",
@@ -310,9 +310,9 @@
                         {
                             "step": 7,
                             "action": "change",
-                            "target": "card.red-graveyard.1",
-                            "before-after": {
-                                "type": "base-strength-strength",
+                            "target": "card.redGraveyard.1",
+                            "beforeAfter": {
+                                "type": "baseStrengthStrength",
                                 "before": 9,
                                 "after": 10
                             }
@@ -320,9 +320,9 @@
                         {
                             "step": 8,
                             "action": "change",
-                            "target": "card.red-graveyard.2",
-                            "before-after": {
-                                "type": "base-strength-strength",
+                            "target": "card.redGraveyard.2",
+                            "beforeAfter": {
+                                "type": "baseStrengthStrength",
                                 "before": 4,
                                 "after": 5
                             }
@@ -330,19 +330,19 @@
                         {
                             "step": 9,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-graveyard.1",
-                                "after": "board.red-melee.1"
+                                "before": "card.redGraveyard.1",
+                                "after": "board.redMelee.1"
                             }
                         },
                         {
                             "step": 10,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-graveyard.1",
-                                "after": "board.red-melee.2"
+                                "before": "card.redGraveyard.1",
+                                "after": "board.redMelee.2"
                             }
                         }
                     ]
@@ -354,24 +354,24 @@
                         {
                             "step": 1,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.blue-hand.3",
-                                "after": "board.blue-melee.1"
+                                "before": "card.blueHand.3",
+                                "after": "board.blueMelee.1"
                             }
                         },
                         {
                             "step": 2,
                             "action": "targeting",
-                            "source": "card.blue-melee.1",
-                            "target": "card.blue-melee.2"
+                            "source": "card.blueMelee.1",
+                            "target": "card.blueMelee.2"
                         },
                         {
                             "step": 3,
                             "action": "change",
-                            "source": "card.blue-melee.2",
-                            "target": "card.red-ranged.2",
-                            "before-after": {
+                            "source": "card.blueMelee.2",
+                            "target": "card.redRanged.2",
+                            "beforeAfter": {
                                 "type": "strength",
                                 "before": 3,
                                 "after": 0
@@ -380,9 +380,9 @@
                         {
                             "step": 4,
                             "action": "change",
-                            "source": "card.blue-melee.2",
-                            "target": "card.red-melee.2",
-                            "before-after": {
+                            "source": "card.blueMelee.2",
+                            "target": "card.redMelee.2",
+                            "beforeAfter": {
                                 "type": "strength",
                                 "before": 5,
                                 "after": 2
@@ -391,10 +391,10 @@
                         {
                             "step": 5,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-ranged.2",
-                                "after": "board.red-banned"
+                                "before": "card.redRanged.2",
+                                "after": "board.redBanned"
                             }
                         }
                     ]
@@ -406,7 +406,7 @@
                         {
                             "step": 1,
                             "action": "change",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "countdown",
                                 "before": 3,
                                 "after": 2
@@ -415,10 +415,10 @@
                         {
                             "step": 2,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-hand",
-                                "after": "board.red-siege.1"
+                                "before": "card.redHand",
+                                "after": "board.redSiege.1"
                             },
                             "card": {
                                 "id": "200046:Clan Tuirseach Veteran",
@@ -429,9 +429,9 @@
                         {
                             "step": 3,
                             "action": "change",
-                            "target": ["card.red-leader", "card.red-ranged.1"],
-                            "before-after": {
-                                "type": "base-strength-strength",
+                            "target": ["card.redLeader", "card.redRanged.1"],
+                            "beforeAfter": {
+                                "type": "baseStrengthStrength",
                                 "before": [2, 2],
                                 "after": [3, 3]
                             }
@@ -445,24 +445,24 @@
                         {
                             "step": 1,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.blue-hand.3",
-                                "after": "board.blue-melee.3"
+                                "before": "card.blueHand.3",
+                                "after": "board.blueMelee.3"
                             }
                         },
                         {
                             "step": 2,
                             "action": "targeting",
-                            "source": "card.blue-melee.3",
-                            "target": "card.blue-melee.2"
+                            "source": "card.blueMelee.3",
+                            "target": "card.blueMelee.2"
                         },
                         {
                             "step": 3,
                             "action": "change",
-                            "source": "card.blue-melee.2",
-                            "target": "card.red-ranged.1",
-                            "before-after": {
+                            "source": "card.blueMelee.2",
+                            "target": "card.redRanged.1",
+                            "beforeAfter": {
                                 "type": "strength",
                                 "before": 3,
                                 "after": 0
@@ -471,9 +471,9 @@
                         {
                             "step": 4,
                             "action": "change",
-                            "source": "card.blue-melee.2",
-                            "target": "card.red-melee.1",
-                            "before-after": {
+                            "source": "card.blueMelee.2",
+                            "target": "card.redMelee.1",
+                            "beforeAfter": {
                                 "type": "strength",
                                 "before": 5,
                                 "after": 2
@@ -482,13 +482,13 @@
                         {
                             "step": 5,
                             "action": "destroy",
-                            "target": "card.red-ranged.1",
-                            "before-after": {
+                            "target": "card.redRanged.1",
+                            "beforeAfter": {
                                 "type": "card",
                                 "before": {
                                     "id": "151101:King Bran",
-                                    "original-base-strength": 2,
-                                    "base-strength": 3,
+                                    "originalStrength": 2,
+                                    "baseStrength": 3,
                                     "strength": 0,
                                     "type": "gold"
                                 },
@@ -508,8 +508,8 @@
                         {
                             "step": 1,
                             "action": "change",
-                            "target": "card.red-graveyard.1",
-                            "before-after": {
+                            "target": "card.redGraveyard.1",
+                            "beforeAfter": {
                                 "type": "countdown",
                                 "before": 2,
                                 "after": 1
@@ -518,25 +518,25 @@
                         {
                             "step": 2,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-hand",
-                                "after": "board.red-ranged.1"
+                                "before": "card.redHand",
+                                "after": "board.redRanged.1"
                             }
                         },
                         {
                             "step": 3,
                             "action": "targeting",
-                            "source": "card.red-ranged.1",
-                            "target": "card.red-siege.1"
+                            "source": "card.redRanged.1",
+                            "target": "card.redSiege.1"
                         },
                         {
                             "step": 4,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-deck",
-                                "after": "board.red-ranged.2"
+                                "before": "card.redDeck",
+                                "after": "board.redRanged.2"
                             },
                             "card": {
                                 "id": "200046:Clan Tuirseach Veteran",
@@ -547,9 +547,9 @@
                         {
                             "step": 5,
                             "action": "change",
-                            "target": ["card.red-leader", "card.red-siege.1"],
-                            "before-after": {
-                                "type": "base-strength-strength",
+                            "target": ["card.redLeader", "card.redSiege.1"],
+                            "beforeAfter": {
+                                "type": "baseStrengthStrength",
                                 "before": [3, 7],
                                 "after": [4, 8]
                             }
@@ -557,9 +557,9 @@
                         {
                             "step": 6,
                             "action": "change",
-                            "source": "card.red-ranged.1",
-                            "target": "card.red-siege.1",
-                            "before-after": {
+                            "source": "card.redRanged.1",
+                            "target": "card.redSiege.1",
+                            "beforeAfter": {
                                 "type": "strength",
                                 "before": 8,
                                 "after": 7
@@ -574,48 +574,48 @@
                         {
                             "step": 1,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.blue-hand.5",
-                                "after": "board.blue-melee.1"
+                                "before": "card.blueHand.5",
+                                "after": "board.blueMelee.1"
                             }
                         },
                         {
                             "step": 2,
                             "action": "choice",
-                            "card-list": ["card.blue-deck.12"],
+                            "cardList": ["card.blueDeck.12"],
                             "chosen": [1]
                         },
                         {
                             "step": 3,
                             "action": "play",
-                            "source": "card.blue-deck.12"
+                            "source": "card.blueDeck.12"
                         },
                         {
                             "step": 4,
                             "action": "choice",
-                            "card-list": [
-                                "card.blue-deck.1","card.blue-deck.2","card.blue-deck.3",
-                                    "card.blue-deck.4","card.blue-deck.5","card.blue-deck.6",
-                                        "card.blue-deck.7","card.blue-deck.8","card.blue-deck.9",
-                                            "card.blue-deck.10","card.blue-deck.11"],
+                            "cardList": [
+                                "card.blueDeck.1", "card.blueDeck.2", "card.blueDeck.3",
+                                "card.blueDeck.4", "card.blueDeck.5", "card.blueDeck.6",
+                                "card.blueDeck.7", "card.blueDeck.8", "card.blueDeck.9",
+                                "card.blueDeck.10", "card.blueDeck.11"],
                             "chosen": [4]
                         },
                         {
                             "step": 5,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.blue-deck.4",
-                                "after": "board.blue-melee.3"
+                                "before": "card.blueDeck.4",
+                                "after": "board.blueMelee.3"
                             }
                         },
                         {
                             "step": 6,
                             "action": "change",
-                            "source": "card.blue-melee.3",
-                            "target": ["card.red-ranged.1", "card.red-melee.1", "card.red-melee.2"],
-                            "before-after": {
+                            "source": "card.blueMelee.3",
+                            "target": ["card.redRanged.1", "card.redMelee.1", "card.redMelee.2"],
+                            "beforeAfter": {
                                 "type": "strength",
                                 "before": [2, 2, 2],
                                 "after": [1, 1, 1]
@@ -624,9 +624,9 @@
                         {
                             "step": 7,
                             "action": "change",
-                            "source": "card.blue-melee.3",
-                            "target": ["card.red-ranged.1", "card.red-melee.1", "card.red-melee.2"],
-                            "before-after": {
+                            "source": "card.blueMelee.3",
+                            "target": ["card.redRanged.1", "card.redMelee.1", "card.redMelee.2"],
+                            "beforeAfter": {
                                 "type": "strength",
                                 "before": [1, 1, 1],
                                 "after": [0, 0, 0]
@@ -635,25 +635,25 @@
                         {
                             "step": 8,
                             "action": "destroy",
-                            "target": ["card.red-ranged.1", "card.red-melee.1", "card.red-melee.2"],
-                            "before-after": {
+                            "target": ["card.redRanged.1", "card.redMelee.1", "card.redMelee.2"],
+                            "beforeAfter": {
                                 "type": "card",
                                 "before": [
                                     {
                                         "id": "200528:Heymaey Battle Maiden",
-                                        "base-strength": 2,
+                                        "baseStrength": 2,
                                         "strength": 0,
                                         "type": "bronze"
                                     },
                                     {
                                         "id": "152209:Morkvarg",
-                                        "base-strength": 5,
+                                        "baseStrength": 5,
                                         "strength": 0,
                                         "type": "bronze"
                                     },
                                     {
                                         "id": "152316:Clan an Craite Raider",
-                                        "base-strength": 5,
+                                        "baseStrength": 5,
                                         "strength": 0,
                                         "type": "bronze"
                                     }
@@ -661,7 +661,7 @@
                                 "after": [
                                     {
                                         "id": "200528:Heymaey Battle Maiden",
-                                        "base-strength": 2,
+                                        "baseStrength": 2,
                                         "strength": 0,
                                         "type": "bronze"
                                     },
@@ -681,17 +681,17 @@
                         {
                             "step": 9,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-graveyard.4",
-                                "after": "board.red-melee.1"
+                                "before": "card.redGraveyard.4",
+                                "after": "board.redMelee.1"
                             }
                         },
                         {
                             "step": 10,
                             "action": "change",
-                            "before-after": {
-                                "type": "base-strength-strength",
+                            "beforeAfter": {
+                                "type": "baseStrengthStrength",
                                 "before": 5,
                                 "after": 2
                             }
@@ -705,8 +705,8 @@
                         {
                             "step": 1,
                             "action": "change",
-                            "target": "card.red-graveyard.1",
-                            "before-after": {
+                            "target": "card.redGraveyard.1",
+                            "beforeAfter": {
                                 "type": "countdown",
                                 "before": 1,
                                 "after": 0
@@ -715,9 +715,9 @@
                         {
                             "step": 2,
                             "action": "change",
-                            "source": "card.red-graveyard.1",
-                            "target": "card.red-melee.1",
-                            "before-after": {
+                            "source": "card.redGraveyard.1",
+                            "target": "card.redMelee.1",
+                            "beforeAfter": {
                                 "type": "strength",
                                 "before": 2,
                                 "after": 8
@@ -726,9 +726,9 @@
                         {
                             "step": 3,
                             "action": "change",
-                            "source": "card.red-graveyard.1",
-                            "target": "card.blue-melee.4",
-                            "before-after": {
+                            "source": "card.redGraveyard.1",
+                            "target": "card.blueMelee.4",
+                            "beforeAfter": {
                                 "type": "strength",
                                 "before": 7,
                                 "after": 1
@@ -737,10 +737,10 @@
                         {
                             "step": 4,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-hand",
-                                "after": "board.red-siege.2"
+                                "before": "card.redHand",
+                                "after": "board.redSiege.2"
                             },
                             "card": {
                                 "id": "152213:Svanrige",
@@ -751,25 +751,25 @@
                         {
                             "step": 5,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-deck",
-                                "after": "board.red-hand.1"
+                                "before": "card.redDeck",
+                                "after": "board.redHand.1"
                             }
                         },
                         {
                             "step": 6,
                             "action": "choice",
-                            "card-list": "red-hand",
+                            "cardList": "redHand",
                             "chosen": [1]
                         },
                         {
                             "step": 7,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-hand",
-                                "after": "board.red-graveyard.5"
+                                "before": "card.redHand",
+                                "after": "board.redGraveyard.5"
                             },
                             "card": {
                                 "id": "152313:Clan Tuirseach Skirmishers",
@@ -786,15 +786,15 @@
                         {
                             "step": 1,
                             "action": "play",
-                            "source": "card.blue-hand.1",
-                            "target": "card.blue-melee.4"
+                            "source": "card.blueHand.1",
+                            "target": "card.blueMelee.4"
                         },
                         {
                             "step": 2,
                             "action": "change",
-                            "target": ["card.blue-melee.2","card.blue-melee.3",
-                                "card.blue-melee.4","card.blue-melee.5","card.blue-melee.6"],
-                            "before-after": {
+                            "target": ["card.blueMelee.2", "card.blueMelee.3",
+                                "card.blueMelee.4", "card.blueMelee.5", "card.blueMelee.6"],
+                            "beforeAfter": {
                                 "type": "strength",
                                 "before": [5, 6, 1, 5, 2],
                                 "after": [9, 10, 5, 9, 6]
@@ -809,10 +809,10 @@
                         {
                             "step": 1,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-hand",
-                                "after": "board.red-siege.1"
+                                "before": "card.redHand",
+                                "after": "board.redSiege.1"
                             },
                             "card": {
                                 "id": "152310:Priestess of Freya",
@@ -823,23 +823,23 @@
                         {
                             "step": 2,
                             "action": "choice",
-                            "card-list": ["card.red-graveyard.3","card.red-graveyard.4","card.red-graveyard.5"],
+                            "cardList": ["card.redGraveyard.3", "card.redGraveyard.4", "card.redGraveyard.5"],
                             "chosen": [3]
                         },
                         {
                             "step": 3,
                             "action": "move",
-                            "before-after": {
-                                "before": "card.red-graveyard.5",
-                                "after": "card.red-melee.2"
+                            "beforeAfter": {
+                                "before": "card.redGraveyard.5",
+                                "after": "card.redMelee.2"
                             }
                         },
                         {
                             "step": 4,
                             "action": "change",
-                            "target": "card.red-melee.2",
-                            "before-after": {
-                                "type": "base-strength-strength",
+                            "target": "card.redMelee.2",
+                            "beforeAfter": {
+                                "type": "baseStrengthStrength",
                                 "before": 9,
                                 "after": 12
                             }
@@ -853,18 +853,18 @@
                         {
                             "step": 1,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.blue-hand.2",
-                                "after": "board.blue-melee.2"
+                                "before": "card.blueHand.2",
+                                "after": "board.blueMelee.2"
                             }
                         },
                         {
                             "step": 2,
                             "action": "strength",
-                            "source": "card.blue-melee.2",
-                            "target": "card.red-melee.2",
-                            "before-after": {
+                            "source": "card.blueMelee.2",
+                            "target": "card.redMelee.2",
+                            "beforeAfter": {
                                 "type": "strength",
                                 "before": 12,
                                 "after": 11
@@ -873,9 +873,9 @@
                         {
                             "step": 3,
                             "action": "strength",
-                            "source": "card.blue-melee.2",
-                            "target": ["card.blue-melee.1", "card.blue-ranged.1"],
-                            "before-after": {
+                            "source": "card.blueMelee.2",
+                            "target": ["card.blueMelee.1", "card.blueRanged.1"],
+                            "beforeAfter": {
                                 "type": "strength",
                                 "before": [8, 8],
                                 "after": [7, 7]
@@ -890,10 +890,10 @@
                         {
                             "step": 1,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-hand",
-                                "after": "board.red-siege.4"
+                                "before": "card.redHand",
+                                "after": "board.redSiege.4"
                             },
                             "card": {
                                 "id": "152206:Gremist",
@@ -904,7 +904,7 @@
                         {
                             "step": 2,
                             "action": "choice",
-                            "card-list": [
+                            "cardList": [
                                 {
                                     "id": "113305:Impenetrable Fog",
                                     "type": "bronze"
@@ -924,7 +924,7 @@
                             "step": 3,
                             "action": "playban",
                             "source": "generated",
-                            "target": "card.red-siege.1",
+                            "target": "card.redSiege.1",
                             "card": {
                                 "id": "200021:Bloodcurdling Roar",
                                 "type": "bronze"
@@ -933,19 +933,19 @@
                         {
                             "step": 4,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-siege.1",
-                                "after": "board.red-banned"
+                                "before": "card.redSiege.1",
+                                "after": "board.redBanned"
                             }
                         },
                         {
                             "step": 5,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
                                 "before": "generated",
-                                "after": "board.red-ranged.1"
+                                "after": "board.redRanged.1"
                             },
                             "card": {
                                 "id": "152406:Bear",
@@ -962,18 +962,18 @@
                         {
                             "step": 1,
                             "action": "play",
-                            "source": "card.blue-hand.1"
+                            "source": "card.blueHand.1"
                         },
                         {
                             "step": 2,
                             "action": "destroy",
-                            "target": ["card.red-melee.2", "card.red-ranged.2"],
-                            "before-after": {
+                            "target": ["card.redMelee.2", "card.redRanged.2"],
+                            "beforeAfter": {
                                 "type": "card",
                                 "before": [
                                     {
                                         "id": "152313:Clan Tuirseach Skirmishers",
-                                        "base-strength": 12,
+                                        "baseStrength": 12,
                                         "strength": 11,
                                         "type": "bronze"
                                     },
@@ -1000,10 +1000,10 @@
                         {
                             "step": 3,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-graveyard.7",
-                                "after": "card.red-banned"
+                                "before": "card.redGraveyard.7",
+                                "after": "card.redBanned"
                             }
                         }
                     ]
@@ -1015,10 +1015,10 @@
                         {
                             "step": 1,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-hand",
-                                "after": "board.red-ranged.1"
+                                "before": "card.redHand",
+                                "after": "board.redRanged.1"
                             },
                             "card": {
                                 "id": "200300:Whale Harpooner",
@@ -1028,21 +1028,21 @@
                         },
                         {
                             "step": 2,
-                            "source": "card.red-ranged.1",
-                            "target": "card.blue-melee.4",
+                            "source": "card.redRanged.1",
+                            "target": "card.blueMelee.4",
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.blue-melee.4",
-                                "after": "board.blue-ranged.1"
+                                "before": "card.blueMelee.4",
+                                "after": "board.blueRanged.1"
                             }
                         },
                         {
                             "step": 3,
-                            "source": "card.red-ranged.1",
-                            "target": "card.blue-ranged.1",
+                            "source": "card.redRanged.1",
+                            "target": "card.blueRanged.1",
                             "action": "change",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "strength",
                                 "before": 10,
                                 "after": 9
@@ -1067,10 +1067,10 @@
                         {
                             "step": 1,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-hand",
-                                "after": "board.red-melee.1"
+                                "before": "card.redHand",
+                                "after": "board.redMelee.1"
                             },
                             "card": {
                                 "id": "112102:Geralt: Igni",
@@ -1081,19 +1081,19 @@
                         {
                             "step": 2,
                             "action": "destroy",
-                            "target": ["card.red-melee.3", "card.red-ranged.5"],
-                            "before-after": {
+                            "target": ["card.redMelee.3", "card.redRanged.5"],
+                            "beforeAfter": {
                                 "type": "card",
                                 "before": [
                                     {
                                         "id": "122318:Kaedweni Siege Master",
-                                        "base-strength": 5,
+                                        "baseStrength": 5,
                                         "strength": 9,
                                         "type": "bronze"
                                     },
                                     {
                                         "id": "122318:Kaedweni Siege Master",
-                                        "base-strength": 5,
+                                        "baseStrength": 5,
                                         "strength": 9,
                                         "type": "bronze"
                                     }
@@ -1135,11 +1135,11 @@
         {
             "round": 2,
             "coinflip": "red",
-            "blue-point": 0,
-            "red-point": 1,
+            "bluePoint": 0,
+            "redPoint": 1,
             "board": {
-                "blue-playable-leader": true,
-                "blue-hand": [
+                "bluePlayableLeader": true,
+                "blueHand": [
                     {
                         "id": "122301:Ballista",
                         "strength": 6,
@@ -1162,7 +1162,7 @@
                         "type": "gold"
                     }
                 ],
-                "blue-deck": [
+                "blueDeck": [
                     {
                         "id": "122318:Kaedweni Siege Master",
                         "strength": 5,
@@ -1218,7 +1218,7 @@
                         "type": "gold"
                     }
                 ],
-                "blue-graveyard": [
+                "blueGraveyard": [
                     {
                         "id": "113207:Commander's Horn",
                         "type": "silver"
@@ -1266,13 +1266,13 @@
                         "type": "gold"
                     }
                 ],
-                "blue-melee": {},
-                "blue-ranged": {},
-                "blue-siege": {},
-                "red-playable-leader": false,
-                "red-hand": [{},{}, {}, {}],
-                "red-deck": [{},{},{},{},{},{},{},{}],
-                "red-graveyard": [
+                "blueMelee": {},
+                "blueRanged": {},
+                "blueSiege": {},
+                "redPlayableLeader": false,
+                "redHand": [{}, {}, {}, {}],
+                "redDeck": [{}, {}, {}, {}, {}, {}, {}, {}],
+                "redGraveyard": [
                     {
                         "id": "152107:Coral",
                         "strength": 5,
@@ -1303,19 +1303,19 @@
                     },
                     {
                         "id": "152313:Clan Tuirseach Skirmishers",
-                        "original-base-strength": 7,
+                        "originalStrength": 7,
                         "strength": 12,
                         "type": "bronze"
                     },
                     {
                         "id": "200046:Clan Tuirseach Veteran",
-                        "original-base-strength": 7,
+                        "originalStrength": 7,
                         "strength": 8,
                         "type": "bronze"
                     },
                     {
                         "id": "200046:Clan Tuirseach Veteran",
-                        "original-base-strength": 7,
+                        "originalStrength": 7,
                         "strength": 8,
                         "type": "bronze"
                     },
@@ -1326,7 +1326,7 @@
                     },
                     {
                         "id": "152313:Clan an Craite Raider",
-                        "original-base-strength": 4,
+                        "originalStrength": 4,
                         "strength": 5,
                         "type": "bronze"
                     },
@@ -1337,30 +1337,30 @@
                     },
                     {
                         "id": "152209:Morkvarg",
-                        "original-base-strength": 9,
+                        "originalStrength": 9,
                         "strength": 2,
                         "type": "silver"
                     }
                 ],
-                "red-melee": {},
-                "red-ranged": {},
-                "red-siege": {},
-                "before-mulligan": [
+                "redMelee": {},
+                "redRanged": {},
+                "redSiege": {},
+                "beforeMulligan": [
                     {
                         "step": 1,
                         "action": "move",
-                        "before-after": {
+                        "beforeAfter": {
                             "type": "position",
-                            "before": "card.red-graveyard.13",
-                            "after": "board.red-melee.1"
+                            "before": "card.redGraveyard.13",
+                            "after": "board.redMelee.1"
                         }
                     },
                     {
                         "step": 2,
                         "action": "change",
-                        "target": "card.red-melee.1",
-                        "before-after": {
-                            "type": "base-strength-strength",
+                        "target": "card.redMelee.1",
+                        "beforeAfter": {
+                            "type": "baseStrengthStrength",
                             "before": 2,
                             "after": 1
                         }
@@ -1368,35 +1368,35 @@
                     {
                         "step": 3,
                         "action": "change",
-                        "target": ["red-leader", "card.red-graveyard.5", "card.red-graveyard.7",
-                            "card.red-graveyard.8", "card.red-graveyard.9"],
-                        "before-after": {
-                            "type": "base-strength-strength",
+                        "target": ["redLeader", "card.redGraveyard.5", "card.redGraveyard.7",
+                            "card.redGraveyard.8", "card.redGraveyard.9"],
+                        "beforeAfter": {
+                            "type": "baseStrengthStrength",
                             "before": [4, 9, 12, 8, 8],
                             "after": [5, 10, 13, 9, 9]
                         }
                     }
                 ],
-                "blue-mulligan": [
+                "blueMulligan": [
                     {
-                        "old-card": "card.blue-hand.3",
-                        "new-card": "card.blue-deck.3"
+                        "oldCard": "card.blueHand.3",
+                        "newCard": "card.blueDeck.3"
                     }
                 ],
-                "red-mulligan": [
+                "redMulligan": [
                     {
-                        "old-card": "card.blue-hand",
-                        "new-card": "card.blue-deck"
+                        "oldCard": "card.blueHand",
+                        "newCard": "card.blueDeck"
                     }
                 ],
-                "after-mulligan": [
+                "afterMulligan": [
                     {
                         "step": 1,
                         "action": "move",
-                        "before-after": {
+                        "beforeAfter": {
                             "type": "position",
-                            "before": "card.blue-hand.3",
-                            "after": "board.blue-hand.2"
+                            "before": "card.blueHand.3",
+                            "after": "board.blueHand.2"
                         }
                     }
                 ]
@@ -1409,37 +1409,37 @@
                         {
                             "step": 1,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-hand",
-                                "after": "board.red-siege.1"
+                                "before": "card.redHand",
+                                "after": "board.redSiege.1"
                             }
                         },
                         {
                             "step": 2,
                             "action": "choice",
-                            "card-list": [
-                                "card.red-graveyard.12", "card.red-graveyard.11",
-                                "card.red-graveyard.7", "card.red-graveyard.8", 
-                                "card.red-graveyard.9", "card.red-graveyard.10"
+                            "cardList": [
+                                "card.redGraveyard.12", "card.redGraveyard.11",
+                                "card.redGraveyard.7", "card.redGraveyard.8",
+                                "card.redGraveyard.9", "card.redGraveyard.10"
                             ],
                             "chosen": [3]
                         },
                         {
                             "step": 3,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-graveyard.7",
-                                "after": "board.red-melee.2"
+                                "before": "card.redGraveyard.7",
+                                "after": "board.redMelee.2"
                             }
                         },
                         {
                             "step": 4,
                             "action": "change",
-                            "target": "card.red-melee.2",
-                            "before-after": {
-                                "type": "base-strength-strength",
+                            "target": "card.redMelee.2",
+                            "beforeAfter": {
+                                "type": "baseStrengthStrength",
                                 "before": 13,
                                 "after": 16
                             }
@@ -1453,18 +1453,18 @@
                         {
                             "step": 1,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.blue-hand.2",
-                                "after": "board.blue-melee.1"
+                                "before": "card.blueHand.2",
+                                "after": "board.blueMelee.1"
                             }
                         },
                         {
                             "step": 2,
                             "action": "change",
-                            "source": "card.blue-melee.1",
-                            "target": "card.red-melee.2",
-                            "before-after": {
+                            "source": "card.blueMelee.1",
+                            "target": "card.redMelee.2",
+                            "beforeAfter": {
                                 "type": "strength",
                                 "before": 16,
                                 "after": 14
@@ -1479,7 +1479,7 @@
                         {
                             "step": 1,
                             "action": "play",
-                            "source": "card.red-hand",
+                            "source": "card.redHand",
                             "card": {
                                 "id": "153201:Restore",
                                 "type": "silver"
@@ -1488,29 +1488,29 @@
                         {
                             "step": 2,
                             "action": "choice",
-                            "card-list": [
-                                "card.red-graveyard.11", "card.red-graveyard.10", 
-                                "card.red-graveyard.7", "card.red-graveyard.8", 
-                                "card.red-graveyard.9", "card.red-graveyard.6", 
-                                "card.red-graveyard.5"
+                            "cardList": [
+                                "card.redGraveyard.11", "card.redGraveyard.10",
+                                "card.redGraveyard.7", "card.redGraveyard.8",
+                                "card.redGraveyard.9", "card.redGraveyard.6",
+                                "card.redGraveyard.5"
                             ],
                             "chosen": [7]
                         },
                         {
                             "step": 3,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-graveyard.6",
-                                "after": "card.red-hand.1"
+                                "before": "card.redGraveyard.6",
+                                "after": "card.redHand.1"
                             }
                         },
                         {
                             "step": 4,
                             "action": "change",
-                            "target": "card.red-hand.1",
-                            "before-after": {
-                                "type": "base-strength-strength",
+                            "target": "card.redHand.1",
+                            "beforeAfter": {
+                                "type": "baseStrengthStrength",
                                 "before": 3,
                                 "after": 9
                             }
@@ -1518,22 +1518,22 @@
                         {
                             "step": 5,
                             "action": "choice",
-                            "card-list": [{},{},{}],
+                            "cardList": [{}, {}, {}],
                             "chosen": [3]
                         },
                         {
                             "step": 6,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-hand.1",
-                                "after": "board.red-siege.2"
+                                "before": "card.redHand.1",
+                                "after": "board.redSiege.2"
                             }
                         },
                         {
                             "step": 7,
                             "action": "choice",
-                            "card-list": [
+                            "cardList": [
                                 {
                                     "id": "113305:Impenetrable Fog",
                                     "type": "bronze"
@@ -1553,7 +1553,7 @@
                             "step": 8,
                             "action": "playban",
                             "source": "generated",
-                            "target": "card.red-siege.1",
+                            "target": "card.redSiege.1",
                             "card": {
                                 "id": "200021:Bloodcurdling Roar",
                                 "type": "bronze"
@@ -1562,19 +1562,19 @@
                         {
                             "step": 9,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-siege.1",
-                                "after": "board.red-banned"
+                                "before": "card.redSiege.1",
+                                "after": "board.redBanned"
                             }
                         },
                         {
                             "step": 10,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
                                 "before": "generated",
-                                "after": "board.red-ranged.1"
+                                "after": "board.redRanged.1"
                             },
                             "card": {
                                 "id": "152406:Bear",
@@ -1591,10 +1591,10 @@
                         {
                             "step": 1,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": ["card.blue-deck.6", "card.blue-deck.7", "card.blue-deck.8"],
-                                "after": ["board.blue-ranged.1", "board.blue-ranged.2", "board.blue-ranged.3"]
+                                "before": ["card.blueDeck.6", "card.blueDeck.7", "card.blueDeck.8"],
+                                "after": ["board.blueRanged.1", "board.blueRanged.2", "board.blueRanged.3"]
                             }
                         },
                         {
@@ -1604,10 +1604,10 @@
                         {
                             "step": 3,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
                                 "before": "generated",
-                                "after": "board.blue-melee.1"
+                                "after": "board.blueMelee.1"
                             },
                             "card": {
                                 "id": "121103:Henselt",
@@ -1618,24 +1618,24 @@
                         {
                             "step": 4,
                             "action": "targeting",
-                            "source": "card.blue-melee.1",
-                            "target": "card.blue-melee.2"
+                            "source": "card.blueMelee.1",
+                            "target": "card.blueMelee.2"
                         },
                         {
                             "step": 5,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.blue-deck.4",
-                                "after": "board.blue-melee.1"
+                                "before": "card.blueDeck.4",
+                                "after": "board.blueMelee.1"
                             }
                         },
                         {
                             "step": 6,
                             "action": "change",
-                            "source": "card.blue-melee.1",
-                            "target": "card.red-siege.1",
-                            "before-after": {
+                            "source": "card.blueMelee.1",
+                            "target": "card.redSiege.1",
+                            "beforeAfter": {
                                 "type": "strength",
                                 "before": 8,
                                 "after": 6
@@ -1644,9 +1644,9 @@
                         {
                             "step": 7,
                             "action": "change",
-                            "source": "card.blue-melee.1",
-                            "target": "card.red-ranged.1",
-                            "before-after": {
+                            "source": "card.blueMelee.1",
+                            "target": "card.redRanged.1",
+                            "beforeAfter": {
                                 "type": "strength",
                                 "before": 11,
                                 "after": 9
@@ -1655,18 +1655,18 @@
                         {
                             "step": 8,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.blue-deck.4",
-                                "after": "board.blue-melee.3"
+                                "before": "card.blueDeck.4",
+                                "after": "board.blueMelee.3"
                             }
                         },
                         {
                             "step": 9,
                             "action": "change",
-                            "source": "card.blue-melee.3",
-                            "target": "card.red-siege.1",
-                            "before-after": {
+                            "source": "card.blueMelee.3",
+                            "target": "card.redSiege.1",
+                            "beforeAfter": {
                                 "type": "strength",
                                 "before": 6,
                                 "after": 4
@@ -1675,9 +1675,9 @@
                         {
                             "step": 10,
                             "action": "change",
-                            "source": "card.blue-melee.3",
-                            "target": "card.red-ranged.1",
-                            "before-after": {
+                            "source": "card.blueMelee.3",
+                            "target": "card.redRanged.1",
+                            "beforeAfter": {
                                 "type": "strength",
                                 "before": 9,
                                 "after": 7
@@ -1710,11 +1710,11 @@
         {
             "round": 3,
             "coinflip": "blue",
-            "blue-point": 1,
-            "red-point": 1,
+            "bluePoint": 1,
+            "redPoint": 1,
             "board": {
-                "blue-playable-leader": false,
-                "blue-hand": [
+                "bluePlayableLeader": false,
+                "blueHand": [
                     {
                         "id": "122301:Ballista",
                         "strength": 6,
@@ -1737,7 +1737,7 @@
                         "type": "gold"
                     }
                 ],
-                "blue-deck": [
+                "blueDeck": [
                     {
                         "id": "122106:Shani",
                         "strength": 5,
@@ -1763,7 +1763,7 @@
                         "type": "bronze"
                     }
                 ],
-                "blue-graveyard": [
+                "blueGraveyard": [
                     {
                         "id": "122103:John Natalis",
                         "strength": 6,
@@ -1841,13 +1841,13 @@
                         "type": "bronze"
                     }
                 ],
-                "blue-melee": {},
-                "blue-ranged": {},
-                "blue-siege": {},
-                "red-playable-leader": false,
-                "red-hand": [{},{},{}],
-                "red-deck": [{},{},{},{},{},{},{}],
-                "red-graveyard": [
+                "blueMelee": {},
+                "blueRanged": {},
+                "blueSiege": {},
+                "redPlayableLeader": false,
+                "redHand": [{}, {}, {}],
+                "redDeck": [{}, {}, {}, {}, {}, {}, {}],
+                "redGraveyard": [
                     {
                         "id": "152107:Coral",
                         "strength": 5,
@@ -1886,19 +1886,19 @@
                     },
                     {
                         "id": "152313:Clan Tuirseach Skirmishers",
-                        "original-base-strength": 7,
+                        "originalStrength": 7,
                         "strength": 16,
                         "type": "bronze"
                     },
                     {
                         "id": "200046:Clan Tuirseach Veteran",
-                        "original-base-strength": 7,
+                        "originalStrength": 7,
                         "strength": 9,
                         "type": "bronze"
                     },
                     {
                         "id": "200046:Clan Tuirseach Veteran",
-                        "original-base-strength": 7,
+                        "originalStrength": 7,
                         "strength": 9,
                         "type": "bronze"
                     },
@@ -1909,7 +1909,7 @@
                     },
                     {
                         "id": "152313:Clan an Craite Raider",
-                        "original-base-strength": 4,
+                        "originalStrength": 4,
                         "strength": 5,
                         "type": "bronze"
                     },
@@ -1919,13 +1919,13 @@
                         "type": "bronze"
                     }
                 ],
-                "red-melee": {},
-                "red-ranged": {},
-                "red-siege": {},
-                "red-banned": [
+                "redMelee": {},
+                "redRanged": {},
+                "redSiege": {},
+                "redBanned": [
                     {
                         "id": "152209:Morkvarg",
-                        "original-base-strength": 9,
+                        "originalStrength": 9,
                         "strength": 1,
                         "type": "silver"
                     },
@@ -1940,23 +1940,23 @@
                         "type": "bronze"
                     }
                 ],
-                "before-mulligan": [
+                "beforeMulligan": [
                     {
                         "step": 1,
                         "action": "change",
-                        "target": ["red-leader", "card.red-graveyard.7", "card.red-graveyard.9",
-                            "card.red-graveyard.10", "card.red-graveyard.11"],
-                        "before-after": {
-                            "type": "base-strength-strength",
+                        "target": ["redLeader", "card.redGraveyard.7", "card.redGraveyard.9",
+                            "card.redGraveyard.10", "card.redGraveyard.11"],
+                        "beforeAfter": {
+                            "type": "baseStrengthStrength",
                             "before": [5, 10, 16, 9, 9],
                             "after": [6, 11, 17, 10, 10]
                         }
                     }
                 ],
-                "blue-mulligan": [
+                "blueMulligan": [
                     {
-                        "old-card": "card.blue-hand.3",
-                        "new-card": "card.blue-deck.1"
+                        "oldCard": "card.blueHand.3",
+                        "newCard": "card.blueDeck.1"
                     }
                 ]
             },
@@ -1968,10 +1968,10 @@
                         {
                             "step": 1,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.blue-hand.1",
-                                "after": "board.blue-melee.1"
+                                "before": "card.blueHand.1",
+                                "after": "board.blueMelee.1"
                             }
                         }
                     ]
@@ -1983,10 +1983,10 @@
                         {
                             "step": 1,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-hand",
-                                "after": "board.red-siege.1"
+                                "before": "card.redHand",
+                                "after": "board.redSiege.1"
                             },
                             "card": {
                                 "id": "200255:Sigrdrifa",
@@ -1997,32 +1997,32 @@
                         {
                             "step": 2,
                             "action": "choice",
-                            "card-list": [
-                                "card.red-graveyard.14", "card.red-graveyard.13",
-                                "card.red-graveyard.9", "card.red-graveyard.10",
-                                "card.red-graveyard.11", "card.red-graveyard.12",
-                                "card.red-graveyard.8", "card.red-graveyard.7"
+                            "cardList": [
+                                "card.redGraveyard.14", "card.redGraveyard.13",
+                                "card.redGraveyard.9", "card.redGraveyard.10",
+                                "card.redGraveyard.11", "card.redGraveyard.12",
+                                "card.redGraveyard.8", "card.redGraveyard.7"
                             ],
                             "chosen": [4]
                         },
                         {
                             "step": 3,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-graveyard.10",
-                                "after": "board.red-ranged.1"
+                                "before": "card.redGraveyard.10",
+                                "after": "board.redRanged.1"
                             }
                         },
                         {
                             "step": 4,
                             "action": "change",
                             "target": [
-                                "card.red-leader", "card.red-graveyard.9",
-                                "card.red-graveyard.10"
+                                "card.redLeader", "card.redGraveyard.9",
+                                "card.redGraveyard.10"
                             ],
-                            "before-after": {
-                                "type": "base-strength-strength",
+                            "beforeAfter": {
+                                "type": "baseStrengthStrength",
                                 "before": [6, 17, 10],
                                 "after": [7, 18, 11]
                             }
@@ -2036,17 +2036,17 @@
                         {
                             "step": 1,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.blue-hand.3",
-                                "after": "board.blue-melee.2"
+                                "before": "card.blueHand.3",
+                                "after": "board.blueMelee.2"
                             }
                         },
                         {
                             "step": 2,
                             "action": "change",
-                            "target": "card.blue-melee.2",
-                            "before-after": {
+                            "target": "card.blueMelee.2",
+                            "beforeAfter": {
                                 "type": "armor",
                                 "before": 0,
                                 "after": 3
@@ -2061,29 +2061,29 @@
                         {
                             "step": 1,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-hand",
-                                "after": "board.red-siege.1"
+                                "before": "card.redHand",
+                                "after": "board.redSiege.1"
                             }
                         },
                         {
                             "step": 2,
                             "action": "targeting",
-                            "source": "card.red-siege.1",
-                            "target": "card.red-ranged.1"
+                            "source": "card.redSiege.1",
+                            "target": "card.redRanged.1"
                         },
                         {
                             "step": 3,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "position",
-                                "before": "card.red-deck",
-                                "after": "board.red-siege.3"
+                                "before": "card.redDeck",
+                                "after": "board.redSiege.3"
                             },
                             "card": {
                                 "id": "200046:Clan Tuirseach Veteran",
-                                "original-base-strength": 7,
+                                "originalStrength": 7,
                                 "strength": 12,
                                 "type": "bronze"
                             }
@@ -2092,12 +2092,12 @@
                             "step": 4,
                             "action": "change",
                             "target": [
-                                "card.red-leader", "card.red-ranged.1",
-                                "card.red-graveyard.7", "card.red-graveyard.9",
-                                "card.red-graveyard.10"
+                                "card.redLeader", "card.redRanged.1",
+                                "card.redGraveyard.7", "card.redGraveyard.9",
+                                "card.redGraveyard.10"
                             ],
-                            "before-after": {
-                                "type": "base-strength-strength",
+                            "beforeAfter": {
+                                "type": "baseStrengthStrength",
                                 "before": [7, 10, 12, 18, 11],
                                 "after": [8, 11, 13, 19, 12]
                             }
@@ -2105,9 +2105,9 @@
                         {
                             "step": 5,
                             "action": "change",
-                            "source": "card.red-siege.1",
-                            "target": "card.red-ranged.1",
-                            "before-after": {
+                            "source": "card.redSiege.1",
+                            "target": "card.redRanged.1",
+                            "beforeAfter": {
                                 "type": "strength",
                                 "before": 11,
                                 "after": 10
@@ -2122,8 +2122,8 @@
                         {
                             "step": 1,
                             "action": "change",
-                            "target": "card.blue-melee.2",
-                            "before-after": {
+                            "target": "card.blueMelee.2",
+                            "beforeAfter": {
                                 "type": "countdown",
                                 "before": 3,
                                 "after": 2
@@ -2132,22 +2132,22 @@
                         {
                             "step": 2,
                             "action": "move",
-                            "before-after": {
+                            "beforeAfter": {
                                 "type": "move",
-                                "before": "card.blue-hand.2",
-                                "after": "board.blue-melee.3"
+                                "before": "card.blueHand.2",
+                                "after": "board.blueMelee.3"
                             }
                         },
                         {
                             "step": 3,
                             "action": "choice",
-                            "card-list": [
-                                "card.blue-graveyard.16", "card.blue-graveyard.15", 
-                                "card.blue-graveyard.14", "card.blue-graveyard.13", 
-                                "card.blue-graveyard.13", "card.blue-graveyard.11", 
-                                "card.blue-graveyard.11", "card.blue-graveyard.10", 
-                                "card.blue-graveyard.9", "card.blue-graveyard.8", 
-                                "card.blue-graveyard.7", "card.blue-graveyard.6"
+                            "cardList": [
+                                "card.blueGraveyard.16", "card.blueGraveyard.15",
+                                "card.blueGraveyard.14", "card.blueGraveyard.13",
+                                "card.blueGraveyard.13", "card.blueGraveyard.11",
+                                "card.blueGraveyard.11", "card.blueGraveyard.10",
+                                "card.blueGraveyard.9", "card.blueGraveyard.8",
+                                "card.blueGraveyard.7", "card.blueGraveyard.6"
                             ],
                             "chosen": []
                         }
