@@ -130,7 +130,7 @@ Element | Description | Possibles values | Default Value
     "siege": [
       "(...)"
     ]
-  }
+  },
   "red": {
     "playableLeader": false,
     "redHand": [
@@ -279,7 +279,8 @@ Element | Description | Possible values
     ]
   },
   "(...)"
-}```
+}
+```
 
 
 ## Turns
@@ -490,7 +491,7 @@ Note that, for the ``destroy`` action, the targets are going to their graveyards
         "type": "position",
         "before": "card.blue.deck",
         "after": "board.blue.melee.5"
-      }
+      },
       "card": {
           "id": "132305:Nekker",
           "originalStrength": 3,
