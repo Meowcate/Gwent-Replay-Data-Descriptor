@@ -136,9 +136,6 @@ Element | Description | Possibles values | Default Value
   "red": {
     "playableLeader": false,
     "lists": {
-      [
-        "(...)",
-      ],
       "(...)"
     }
   }
@@ -161,7 +158,7 @@ A **board-row** object contains the description of the rows.
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
-``blue``.``[list]``\* | Status of the row | ``frost``, ``fog``, ``rain``, ``drought``, ``ragh-nar-roog``, ``golden-froth``, ``clean`` | clear
+``blue``.``[list]``\* | Status of the row | ``frost``, ``fog``, ``rain``, ``drought``, ``ragh-nar-roog``, ``dragon-dream``, ``skellige-storm``, ``golden-froth``, ``clean`` | clear
 
 ### Example
 ```json
