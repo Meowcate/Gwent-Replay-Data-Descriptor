@@ -29,7 +29,7 @@ Element | Description | Possibles values | Default Value
 "game": {
   "name": "Let's play Gwent",
   "blue": {
-    "Geralt",
+    "name": "Geralt",
     "mmr": 4051,
     "faction": "northern-realms",
     "leader": "200169:Radovid"
