@@ -103,7 +103,7 @@ A **board** object contains a full description of the board at the beggining of 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
 ``blue``.``playableLeader`` | Show if the leader is still playable | ``true`` if the leader can be played, else ``false`` | false
-``blue``.``[list]`` | Player's ``[list]`` **Card-list** | ``[list]`` is a **card-list** name. *See the **Card-list** section* |
+``blue``.``lists``.``[list]`` | Player's ``[list]`` **Card-list** | ``[list]`` is a **card-list** name. *See the **Card-list** section* |
 ``rows`` | **Board-row** effects list | *See the **Board-row** section* |
 ``mulligan``\* | **Mulligan** sequence | *See the **Mulligan** section* |
 
@@ -112,31 +112,35 @@ Element | Description | Possibles values | Default Value
 "board": {
   "blue": {
     "playableLeader": true,
-    "hand": [
-      "(...)"
-    ],
-    "deck": [
-      "(...)"
-    ],
-    "graveyard": [
-      "(...)"
-    ],
-    "melee": [
-      "(...)"
-    ],
-    "ranged": [
-      "(...)"
-    ],
-    "siege": [
-      "(...)"
-    ]
+    "lists": {
+      "hand": [
+        "(...)"
+      ],
+      "deck": [
+        "(...)"
+      ],
+      "graveyard": [
+        "(...)"
+      ],
+      "melee": [
+        "(...)"
+      ],
+      "ranged": [
+        "(...)"
+      ],
+      "siege": [
+        "(...)"
+      ]
+    }
   },
   "red": {
     "playableLeader": false,
-    "redHand": [
-      "(...)",
-    ],
-    "(...)"
+    "lists": {
+      [
+        "(...)",
+      ],
+      "(...)"
+    }
   }
 }
 ```
