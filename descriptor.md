@@ -1,5 +1,5 @@
 
-# Gwent Replay Data Descriptor v1.2
+# Gwent Replay Data Descriptor v1.3
 
 The Gwent Replay Data Descriptor (GRDD) gives a complete structure to record a Gwent game, to be used for step by step replay application.
 
@@ -349,10 +349,9 @@ Gwent action | GRDD action code | Note
 --- | --- | ---
 Transform a card into another | ``transform`` | The changed card is in **step.target**. The new card is in **step.card**.
 Move a card | ``move`` | Move a card from anywhere to anywhere. It's used to deploy, pick a card from the deck, move to graveyard or banned pile... You can generate a new card by setting the ``before`` position as ``generated``.
-Play a card | ``play`` | Shortcut for spells to move a card to the ``"blue.play"`` this turn, and be considered and moved to the graveyard at the end of the step. **Important :** when using ``play``, ``source`` must be the played spell, because ``target`` designates the potential target of the spell. It's not a problem as the replay tool must move the card to the play and graveyard region by itself.
-Play and ban | ``playban`` | Similar as ``play``, but the spell card is moved to the ``banned`` card-list after been played instead of the graveyard.
+Play a card | ``play`` | Move a card (a spell) to the ``"blue.play"`` spot. **Important :** when using ``play``, ``source`` must be the played spell, because ``target`` can designate the target of the spell (if any) with a position (targeting a card or a row). There is only one ``blue.play`` spot, so each ``play`` action must be followed by moving the card to ``blue.graveyard`` or ``blue.banned`` when it's no longer on screen.
 Change a token / an element | ``change`` | The changed element, its previous and its new status are in **step.beforeAfter**
-Destroy a card | ``destroy`` | Shortcut to move a unit card to its side's graveyard last place. The previous and new state of the card are on the **step.beforeAfter**.
+Destroy a card | ``destroy`` | Shortcut to move a unit card to its side's graveyard last place. The previous and new state of the card are on the **step.beforeAfter**. The importance of this "shortcut" effect is to be able to reset the card informations (strength back to base, lock token removed...) with the beforeAfter states.
 Display a card | ``display`` | Display a hidden card (ambush, red hand, etc). **step.card** must contain the informations of the showed card.
 Play the player's leader | ``leader`` | This action, which has no ``source`` nor ``target`` nor ``beforeAfter``, must be followed by a ``move`` action with ``generated`` source for the deployed card : the leader card is different (at least as different ``ingameid`` according to Gwent standard), to the card deployed on the board.
 
