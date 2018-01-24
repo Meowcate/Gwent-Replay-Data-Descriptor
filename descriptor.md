@@ -98,14 +98,12 @@ Element | Description | Possibles values | Default Value
 A **board** object contains a full description of the board at the beggining of a round.
 
 * If there is resilient units, it should be a part of the board.
-* Before-mulligan actions as *losing resilience*, *automatic resurrection*, *deathwishes on a new round* and others has to be placed in the ``beforeMulligan`` element as **step** elements. ``afterMulligan`` acts the same, especially for actions activated when a card is discarded from the mulligan. Any action executed before the first player gets the "Your turn" Gwent message must be put into one of those space.
 
 Element | Description | Possibles values | Default Value
 --- | --- | --- | ---
 ``blue``.``playableLeader`` | Show if the leader is still playable | ``true`` if the leader can be played, else ``false`` | false
 ``blue``.``lists``.``[list]`` | Player's ``[list]`` **Card-list** | ``[list]`` is a **card-list** name. *See the **Card-list** section* |
 ``rows`` | **Board-row** effects list | *See the **Board-row** section* |
-``mulligan``\* | **Mulligan** sequence | *See the **Mulligan** section* |
 
 ### Example
 ```json
@@ -217,72 +215,6 @@ The next card has been renforced by 2, then boosted by 3.
 }
 ```
 
-## Mulligan
-A **mulligan** object contains the change appening before, during and after the mulligan sequence.
-
-The ``mulligan``.``blue`` is an array of cards changes. It happens using the ``blue.deck`` and ``blue``.``hand`` cards-lists specified at the begining of a **round** element.
-
-* The "new card" comes from a **position** (if the card object in the deck is not empty) or is a card object.
-* The "new card" takes the position of the "old card". The "old card" is put in the deck.
-* If the "new card" **position** in the deck is known, it is recommended that the "old card" takes it. Else, the "old card" new position should be the first empty card object.
-
-The ``before`` and ``after`` are arrays of **steps**. It contains the different **steps** that can happen before (e.g. a unit is automatically resurected at the end of a round) or after a mulligan (e.g. a unit appears on the board if it has been discarded).
-
-Element | Description | Possible values
---- | ---
-``before``\* | Array of **step** elements | *See the **Steps** section*
-``after``\* | Array of **step** elements | *See the **Steps** section*
-``blue`` or ``red`` | Array of mulligan old/new cards changes |
-``blue``.``oldCard`` | Card **position** in ``blueHand`` | *See the **position** section*
-``blue``.``newCard`` | Card **position** in ``blueDeck`` or **card** object | *See the **position** section or **card** section*
-
-### Example
-```json
-"board": {
-  "mulligan": {
-    "before": [
-      {
-        "step": 1,
-        "action": "move",
-        "beforeAfter": {
-          "type": "position",
-          "before": "card.red.graveyard.13",
-          "after": "board.red.melee.1"
-        }
-      },
-      {
-        "step": 2,
-        "(...)"
-      }
-    ],
-    "blue": [
-      {
-        "oldCard": "card.blue.hand.3",
-        "newCard": "card.blue.deck.3"
-      }
-    ],
-    "red": [
-      {
-        "oldCard": "card.blue.hand",
-        "newCard": "card.blue.deck"
-      }
-    ],
-    "after": [
-      {
-        "step": 1,
-        "action": "move",
-        "beforeAfter": {
-          "type": "position",
-          "before": "card.blue.hand.3",
-          "after": "board.blue.hand.2"
-        }
-      }
-    ]
-  },
-  "(...)"
-}
-```
-
 
 ## Turns
 A **turn** object contains a list of **steps** played during a player turn.
@@ -310,9 +242,13 @@ Element | Description | Possibles values | Default Value
 ``cardList``\* | Cards-list when necessary | *See the **Card-list** section* |
 ``cardChoice``\* | ID of the card for an action choice | *Integer* |
 ``chosen``\* | Array of chosen choices from a card-list | *See the note below* |
+``mulligan``\* | Boolean | ``true`` if the current step is happening during the mulligan phase, ``false`` | false
 
 > **Note :** When a player have choices (from a card-list, from actions...), ``chosen`` is an array of integers, each one designating the *nth* choice (from left to right) that has been done by the player. Therefore, if a player can choose 2 between 5 spells to play, the 5 cards are showed from the ``cardList``, and (in the same **step**), the ``chosen`` array can be ``[3, 5]``, picking the 3rd and 5th choices of the list.
 When the choices are from a card's action (and not "choose to spawn *card A* or *card B*"), the card ID is put to ``cardChoice``, so the replay tool can show the card instead of a card list. The ``chosen`` element must contain the number of the choice (1st, 2nd, etc) the same way in an array (for example, *[2]* for taking the 2nd action).
+
+**About the mulligan :** Any action (`move`, `change`, etc) can happens during mulligan. "Mulligan" is not only changing cards, but everything that happens between the start of the new round (when cards are removed from the board, and crowns are given) and the start for the player (when the first player get a "Your turn" message).
+
 
 ### Position object :
 A **position** string contains the position of a source or target of an action. It can designate a card or an element of the board.
