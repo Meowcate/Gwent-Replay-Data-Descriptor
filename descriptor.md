@@ -406,8 +406,12 @@ Don't forget that it concerns only one action at the time. If you needs to incre
 
 Note that, for the ``destroy`` action, the targets are going to their graveyards following the ``target`` order (in a blue graveyard with 8 cards, first blue target of ``destroy`` takes the 9th place, next is 10th, etc). If one or more targets has to be banned, it should be done once its in the graveyard as the next step.
 
+**Important :** even if massive assignation designates multiples actions at once, each action is executed **separately**. So if you want to destroy `red.melee.1` and `red.melee.2`, your target will be `["red.melee.1", "red.melee.1]` because when the first one is destroyed, the second one is in first position, even if it's just for a very brief moment.
+This is the same for a multiple ``move`` action : the `before` and the `after` positions has to be in order from left to right, and each origin/destination must be considerated with the execution of the previous target `move`. Pushing `red.melee.1` and `red.melee.2` on an empty ``red.ranged`` row will have ``"before": ["red.melee.1", "red.melee.1]`` and ``"after": ["red.ranged.1", "red.ranged.1]``.
+Because they don't change positions, multiple `change` targets are not concerned about this.
 
-### Examples
+
+## Steps example
 *  **(Step 1)** The card **Alzur's Double Cross**, in the *blue player hand, 3rd card*, is being *played*.
 *  **(Step 2)** It picks the random strongest unit from the deck. The card (an **Ekimmara** here (base strength 6), which was *boosted* by 2 (strength 8) and has a *shield*, thanks to an earlier **Quen Sign**) is boosted by 2 when spawned (strength 10), and deployed (*moved*) from an unkown position in the deck (``card.blueDeck``) to the blue ranged row between the 1st and 2nd card (the *board.blue.ranged.2* position)
 *  **(Step 3)** It earns *resilience*,
