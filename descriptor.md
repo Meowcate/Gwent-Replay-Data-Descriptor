@@ -242,12 +242,14 @@ Element | Description | Possibles values | Default Value
 ``cardList``\* | Cards-list when necessary | *See the **Card-list** section* |
 ``cardChoice``\* | ID of the card for an action choice | *Integer* |
 ``chosen``\* | Array of chosen choices from a card-list | *See the note below* |
-``mulligan``\* | Boolean | ``true`` if the current step is happening during the mulligan phase, ``false`` | false
+``mulligan``\* | Player or false. See the note below. | ``blue``, ``red``, ``board`` or ``false`` | false
 
 > **Note :** When a player have choices (from a card-list, from actions...), ``chosen`` is an array of integers, each one designating the *nth* choice (from left to right) that has been done by the player. Therefore, if a player can choose 2 between 5 spells to play, the 5 cards are showed from the ``cardList``, and (in the same **step**), the ``chosen`` array can be ``[3, 5]``, picking the 3rd and 5th choices of the list.
 When the choices are from a card's action (and not "choose to spawn *card A* or *card B*"), the card ID is put to ``cardChoice``, so the replay tool can show the card instead of a card list. The ``chosen`` element must contain the number of the choice (1st, 2nd, etc) the same way in an array (for example, *[2]* for taking the 2nd action).
 
-**About the mulligan :** Any action (`move`, `change`, etc) can happens during mulligan. "Mulligan" is not only changing cards, but everything that happens between the start of the new round (when cards are removed from the board, and crowns are given) and the start for the player (when the first player get a "Your turn" message).
+**About the mulligan :** Any action (`move`, `change`, etc) can happens during mulligan.
+"Mulligan" is not only changing cards, but everything that happens between the start of the new round (when cards are removed from the board, and crowns are given) and the start for the player (when the first player get a "Your turn" message).
+The replay tool specify a mulligan phase if the `mulligan` token is here. When *Blue* or *Red* change their cards (for both `move card hand to deck` and then `move card deck to hand`), `mulligan` must have the value `blue` or `red`. When action before or after changing cards happens, the value `board` must be specify, because it doesn't really happens during a player's turn.
 
 
 ### Position object :
