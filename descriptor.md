@@ -20,7 +20,9 @@ Element | Description | Possibles values | Default Value
 ``blue``.``leader`` | Player's leader | *any Gwent leader card ID* | 
 ``red``.``visible`` | Are red hand cards visible ? | ``true``, ``false`` | false
 ``version`` | The game version number during this replay | *A version number without letters with major, minor, and patch numbers* | *The current version number. For example : ``0.9.12``*
-``winner``* | Winner player | ``blue``, ``red`` | *none*
+``winner``\* | Winner player | ``blue``, ``red`` | *none*
+``video``\* | Link to the video of the game | *any valable link* |
+``link``\* | Link to any relevant web page about the game | *any valable link* |
 
 > **Note :** The ``winner`` element is optional, as a Gwent replay file can content just a specific part of the game (a few turns, or even just one turn), and not the whole game itself.
 
